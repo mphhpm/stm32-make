@@ -11,7 +11,7 @@ export DEBUG      += -ggdb3
 export OPTIMIZE   += -O0
 ##
 ## architecure
-export ARCH       += -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16
+export ARCH       += -mthumb -mfloat-abi=hard
 export ARFLAGS    += rcv
 ##
 ## warnings, cues
@@ -19,7 +19,7 @@ export WARNINGS   +=  -fno-common -ffunction-sections -fdata-sections -Wextra -W
 
 export LDLIBS     += -Wl,--start-group -lc -lgcc -lnosys -Wl,--end-group 
 export CPPFLAGS   += -MD -Wall -Wundef -Weffc++
-export CPPFLAGS   += $(OPTIMIZE) $(ARCH) $(WARNINGS) $(CXXSTD) $(DEBUG)
+export CPPFLAGS   += $(OPTIMIZE) $(ARCH) $(WARNINGS) $(DEBUG) $(CXXSTD)
 
 export CFLAGS     += -Wimplicit-function-declaration -Wstrict-prototypes -Wmissing-prototypes
-export CFLAGS     += $(OPTIMIZE) $(CSTD) $(DEBUG) $(ARCH) $(WARNINGS)
+export CFLAGS     += $(OPTIMIZE) $(ARCH) $(WARNINGS) $(DEBUG) $(CSTD)
