@@ -1,0 +1,62 @@
+
+ display next instruction with: 
+    set disassemble-next-line on
+    
+
+Entire CFSR
+    print/x *(uint32_t *) 0xE000ED28
+
+UsageFault Status Register (UFSR)
+    print/x *(uint16_t *)0xE000ED2A
+
+BusFault Status Register (BFSR)
+    print/x *(uint8_t *)0xE000ED29
+
+HardFault Status Register (HFSR)
+    print/x *(uint32_t *)0xE000ED2C
+    
+MemManage Status Register (MMFSR)
+    print/x *(uint8_t *)0xE000ED28
+
+MemManage Fault Address (MMFAR)
+    print/x *(uint32_t *)0xE000ED34
+    
+disassembly of the next instruction
+    display/i $pc
+    
+print psp, msp, # r0, r1, r2, r3, r12, LR, pc, xPSR
+    p/a *(uint32_t[8] *)$psp
+    p/a *(uint32_t[8] *)$msp    
+
+###########  RCC 
+dma1 (0x4002 6000), dma2 (0x4002 6400) 
+S1M0AR
+    print/x *(uint32_t *)(0x40026000 + 0x1C + (1*0x18))
+S2M0AR
+    print/x *(uint32_t *)(0x40026000 + 0x1C + (2*0x18))
+LISR2
+    print/x *(uint32_t *)(0x40026000 + 0x00)
+LISR2
+    print/x *(uint32_t *)(0x40026400 + 0x00)
+    
+    
+###########  RCC (0x58020000 + 0x4400)
+PLLCKSELR 
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x28)
+
+APB2ENR
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0F0)
+
+D2CCIP1R
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x050)
+
+###########  SPI4 (0x04001000 + 0x3400)
+CR1
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x0)
+CFG1
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x08)
+CFG2
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x0C)
+SR
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x14)
+

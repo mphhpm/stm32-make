@@ -1,0 +1,25 @@
+
+##
+## C/C++ standards
+export CXXSTD     += -std=c++17
+export CSTD       += -std=c99
+##
+## generated debug info
+export DEBUG      += -ggdb3
+##
+## optimize
+export OPTIMIZE   += -O0
+##
+## architecure
+export ARCH       += -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16
+export ARFLAGS    += rcv
+##
+## warnings, cues
+export WARNINGS   +=  -fno-common -ffunction-sections -fdata-sections -Wextra -Wshadow -Wno-unused-variable -Wredundant-decls
+
+export LDLIBS     += -Wl,--start-group -lc -lgcc -lnosys -Wl,--end-group 
+export CPPFLAGS   += -MD -Wall -Wundef -Weffc++
+export CPPFLAGS   += $(OPTIMIZE) $(ARCH) $(WARNINGS) $(CXXSTD) $(DEBUG)
+
+export CFLAGS     += -Wimplicit-function-declaration -Wstrict-prototypes -Wmissing-prototypes
+export CFLAGS     += $(OPTIMIZE) $(CSTD) $(DEBUG) $(ARCH) $(WARNINGS)
