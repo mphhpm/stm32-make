@@ -28,7 +28,7 @@ print psp, msp, # r0, r1, r2, r3, r12, LR, pc, xPSR
     p/a *(uint32_t[8] *)$psp
     p/a *(uint32_t[8] *)$msp    
 
-###########  RCC 
+###########  DMA 
 dma1 (0x4002 6000), dma2 (0x4002 6400) 
 S1M0AR
     print/x *(uint32_t *)(0x40026000 + 0x1C + (1*0x18))
@@ -41,22 +41,311 @@ LISR2
     
     
 ###########  RCC (0x58020000 + 0x4400)
-PLLCKSELR 
-    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x28)
+    print/s "AHB1ENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0D8)
 
-APB2ENR
+    print/s "AHB1HPENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x100)
+
+    print/s "AHB1RSTR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x080)
+
+    print/s "AHB2ENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0DC)
+
+    print/s "AHB2RSTR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x084)
+
+    print/s "AHB3ENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0D4)
+
+    print/s "AHB4ENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0E0)
+
+    print/s "AHB3LPENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0FC)
+
+    print/s "AHB3RSTR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x07C)
+
+    print/s "AHB4RSTR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x088)
+
+    print/s "APB2ENR"
     print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0F0)
 
-D2CCIP1R
+    print/s "APB1HENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0E8)
+
+    print/s "APB1LENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0EC)
+
+    print/s "APB2ENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0F0)
+
+    print/s "APB3ENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0E4)
+
+    print/s "AHB1LPENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x100)
+
+    print/s "AHB2LPENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x104)
+
+    print/s "AHB3LPENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0FC)
+
+    print/s "APB4ENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0F4)
+
+    print/s "APB1HRSTR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x094)
+
+    print/s "APB1HLPENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x114)
+
+    print/s "APB1LLPENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x110)
+
+    print/s "APB1LRSTR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x090)
+
+    print/s "APB2LPENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x118)
+
+    print/s "APB2RSTR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x098)
+
+    print/s "APB3LPENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x10C)
+
+    print/s "APB3RSTR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x08C)
+
+    print/s "APB4LPENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x11C)
+
+    print/s "APB4RSTR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x09C)
+
+    print/s "BDCR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x070)
+
+    print/s "C1_AHB1ENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x138)
+
+    print/s "C1_AHB2ENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x13C)
+
+    print/s "C1_AHB3ENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x134)
+
+    print/s "C1_AHB4ENR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x140)
+
+    print/s "CICR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x068)
+
+    print/s "CIER"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x060)
+
+    print/s "CIFR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x064)
+
+    print/s "CFGR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x010)
+
+    print/s "CRRCR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x008)
+
+    print/s "CSR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x074)
+
+    print/s "CSICFGR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x00C)
+
+    print/s "ICSCR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x004)
+
+    print/s "D1CFGR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x018)
+
+    print/s "D2CFGR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x01C)
+
+    print/s "D3AMR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0A8)
+
+    print/s "D3CFGR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x020)
+
+    print/s "D1CCIP1R"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x04C)
+
+    print/s "D2CCIP1R"
     print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x050)
 
-###########  SPI4 (0x04001000 + 0x3400)
-CR1
-    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x0)
-CFG1
-    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x08)
-CFG2
-    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x0C)
-SR
-    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x14)
+    print/s "D2CCIP2R"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x054)
 
+    print/s "D2CCIP3R"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x058)
+
+    print/s "GCR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x0A0)
+
+    print/s "HSICFGR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x004)
+
+    print/s "ICSCR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x004)
+
+    print/s "PLL1DIVR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x030)
+
+    print/s "PLL1FRACR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x034)
+
+    print/s "PLL2DIVR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x038)
+
+    print/s "PLL2FRACR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x03C)
+
+    print/s "PLL3DIVR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x40)
+
+    print/s "PLL3FRACR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x44)
+
+    print/s "PLLCFGR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x2C)
+
+    print/s "PLLCKSELR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0x28)
+
+    print/s "RSR"
+    print/x *(uint32_t *)(0x58020000 + 0x4400 + 0xD0)
+
+###########  SPI4 (0x04001000 + 0x3400)
+    print/s "CFG1"
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x008)
+
+    print/s "CFG2"
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x00C)
+
+    print/s "CR1"
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x000)
+    
+    print/s "CR2"
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x004)
+    
+    print/s "CRCPOLY"
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x040)
+    
+    print/s "I2SCFGR"
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x050)
+    
+    print/s "IER"
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x010)
+    
+    print/s "IFCR"
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x018)
+    
+    print/s "RXCRC"
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x048)
+    
+    print/s "RXDR"
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x030)
+    
+    print/s "SR"
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x014)
+    
+    print/s "TXCRC"
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x044)
+    
+    print/s "TXDR"
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x020)
+    
+    print/s "UDRDR"
+    print/x *(uint32_t *)(0x40010000 + 0x3400 + 0x04C)
+    
+
+###########  TIM1 (0x04001000 + 0x0000)
+    print/s "AF1"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x060)
+
+    print/s "AF2"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x064)
+
+    print/s "ARR"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x02C)
+
+    print/s "BDTR"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x044)
+
+    print/s "CCER"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x020)
+
+    print/s "CCMR1"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x018)
+
+    print/s "CCMR2"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x01C)
+
+    print/s "CCMR3"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x054)
+
+    print/s "CCMR5"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x058)
+
+    print/s "CCMR6"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x05C)
+
+    print/s "CCR1"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x034)
+
+    print/s "CCR2"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x038)
+
+    print/s "CCR3"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x03C)
+
+    print/s "CCR4"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x040)
+
+    print/s "CNT"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x024)
+
+    print/s "CR1"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x000)
+
+    print/s "CR2"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x004)
+
+    print/s "DCR"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x048)
+
+    print/s "DIER"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x00C)
+
+    print/s "DMAR"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x04C)
+
+    print/s "EGR"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x014)
+
+    print/s "PSC"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x028)
+
+    print/s "RCR"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x030)
+
+    print/s "SMCR"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x008)
+
+    print/s "SR"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x010)
+
+    print/s "TISEL"
+    print/x *(uint32_t *)(0x40010000 + 0x0000 + 0x068)
