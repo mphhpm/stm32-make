@@ -12,7 +12,7 @@ export OPTIMIZE   += -O0
 ##
 ## architecure
 export ARCH       += -mthumb -mfloat-abi=hard
-export ARFLAGS    += rcv
+export ARFLAGS     = rcv
 ##
 ## warnings, cues
 export WARNINGS   +=  -fno-common -ffunction-sections -fdata-sections -Wextra -Wshadow -Wno-unused-variable -Wredundant-decls
