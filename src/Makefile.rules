@@ -23,42 +23,42 @@
 
 $(BUILD_DIR)/%.o: %.cpp
 	$(Q)$(PRINTF) "  [C++]\t$(notdir $<)\n"
-	$(Q)$(shell $(MKDIR) -p $(dir $@))
+	$(Q)$(MKDIR) -p $(dir $@)
 	$(Q)$(CXX) $(CPPFLAGS) -o $@ -c $<
 	
 $(BUILD_DIR)/%.o: %.c
 	$(Q)$(PRINTF) "  [CC]\t$(notdir $<)\n"
-	$(Q)$(shell $(MKDIR) -p $(dir $@))
+	$(Q)$(MKDIR) -p $(dir $@)
 	$(Q)$(CC) $(CFLAGS) -o $@ -c $<
 
 $(BUILD_DIR)/%.o: %.S
 	$(Q)$(PRINTF) "  [AS]\t$(notdir $<)\n"
-	$(Q)$(shell $(MKDIR) -p $(dir $@))
+	$(Q)$(MKDIR) -p $(dir $@)
 	$(Q)$(CC) $(CFLAGS) -o $@ -c $<
 
 $(BUILD_DIR)/%.o: %.s
 	$(Q)$(PRINTF) "  [AS]\t$(notdir $<)\n"
-	$(Q)$(shell $(MKDIR) -p $(dir $@))
+	$(Q)$(MKDIR) -p $(dir $@)
 	$(Q)$(CC) $(CFLAGS) -o $@ -c $<
 
 .cpp.o:
 	$(Q)$(PRINTF) "  [C++]\t$(notdir $<)\n"
-	$(Q)$(shell $(MKDIR) -p $(dir $@))
+	$(Q)$(MKDIR) -p $(dir $@)
 	$(Q)$(CXX) $(CPPFLAGS) -o $@ -c $<
 	
 .c.o:
 	$(Q)$(PRINTF) "  [CC]\t$(notdir $<)\n"
-	$(Q)$(shell $(MKDIR) -p $(dir $@))
+	$(Q)$(MKDIR) -p $(dir $@)
 	$(Q)$(CC) $(CFLAGS) -o $@ -c $<
 
 %.bin: %.elf
 	$(Q)$(PRINTF) "  [OBJCOPY]\t$(notdir $@)\n"
-	$(Q)$(shell $(MKDIR) -p $(dir $@))
+	$(Q)$(MKDIR) -p $(dir $@)
 	$(Q)$(OBJCOPY) -O binary  $< $@
 
 %.list: %.elf
 	$(Q)$(PRINTF) "  [OBJDUMP]\t$(notdir $@)\n"
-	$(Q)$(shell $(MKDIR) -p $(dir $@))
+	$(Q)$(MKDIR) -p $(dir $@)
 	$(Q)$(OBJDUMP) -S $< > $@
 	$(Q)$(OBJDUMP) -h $<
 	
