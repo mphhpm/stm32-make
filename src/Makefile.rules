@@ -61,4 +61,9 @@ $(BUILD_DIR)/%.o: %.s
 	$(Q)$(MKDIR) -p $(dir $@)
 	$(Q)$(OBJDUMP) -S $< > $@
 	$(Q)$(OBJDUMP) -h $<
+
+%.list: %.a
+	$(Q)$(PRINTF) "  [OBJDUMP]\t$(notdir $@)\n"
+	$(Q)$(shell $(MKDIR) -p $(dir $@))
+	$(Q)$(OBJDUMP) -S $< > $@
 	
