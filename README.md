@@ -1,4 +1,3 @@
-# stm32-make
 make scripts (WIP)
 Intended to be used as a submodule to projects rather than copying the files around
 
