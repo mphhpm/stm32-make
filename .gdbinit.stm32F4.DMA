@@ -1,0 +1,45 @@
+##
+## dma
+set $LISR   = 0x00
+set $HISR   = 0x04
+set $S0NDTR = 0x14
+set $S0PAR  = 0x18
+set $S0M0AR = 0x1C
+set $S0M1AR = 0x20
+set $S0FCR  = 0x24
+
+define print_dma
+##                        
+##  e.g. print_dma $DMA2
+	set $baseAddr = $arg0
+	set $dmaunit = $baseAddr == $DMA1 ? 1:2
+
+	set $addr = $baseAddr + $LISR
+	set $name = "LISR"
+	printf "DMA%d.%s 0x%4x %4x: 0x%08x\n", $dmaunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $HISR
+	set $name = "HISR"
+	printf "DMA%d.%s 0x%4x %4x: 0x%08x\n", $dmaunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+end
+
+define print_dmastreams
+##                        dmaAddress registerOffeset
+##  e.g. print_dmastreams $DMA2 $S0FCR
+	set $i = 0
+	set $baseAddr = $arg0
+	set $dmaunit = $baseAddr == $DMA1 ? 1:2
+	set $regOffset= $arg1
+	set $name = $regOffset == $S0NDTR ? "NDTR" : \
+	            $regOffset == $S0PAR  ? "PAR"  : \
+	            $regOffset == $S0M0AR ? "M0AR" : \
+	            $regOffset == $S0M1AR ? "M1AR" : \
+	            $regOffset == $S0FCR  ? "FCR"  : "???"
+	set $regGap= 0x18
+	
+    while $i < 8
+		set $addr = $baseAddr + $regOffset + ($i * $regGap)
+		printf "DMA%d.S%d%s 0x%4x %4x: 0x%08x\n", $dmaunit, $i, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+        set $i = $i + 1
+	end
+end

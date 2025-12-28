@@ -1,0 +1,40 @@
+##
+## F4 Addresses
+set $Base = 0x40000000
+set $APB1 = $Base
+set $APB2 = $Base + 0x10000
+set $AHB1 = $Base + 0x20000
+set $AHB2 = 0x50000000
+
+set $SYSCFG = $APB2 + 0x3800
+set $FLASH  = $AHB1 + 0x3C00
+set $DMA1   = $AHB1 + 0x6000
+set $DMA2   = $AHB1 + 0x6400
+set $I2C1   = $APB1 + 0x5400
+set $I2C2   = $APB1 + 0x5800
+set $I2C3   = $APB1 + 0x5C00
+set $PWR    = $APB1 + 0x7000
+set $SPI1   = $APB2 + 0x3000
+set $SPI2   = $APB1 + 0x3800
+set $SPI3   = $APB1 + 0x3C00
+set $SPI4   = $APB2 + 0x3400
+set $RCC    = $AHB1 + 0x3800
+
+set $TIM1   = $APB2 + 0x0000
+set $TIM2   = $APB1 + 0x0000
+set $TIM3   = $APB1 + 0x0400
+set $TIM4   = $APB1 + 0x0800
+set $TIM5   = $APB1 + 0x0C00
+set $TIM8   = $APB2 + 0x0400
+set $TIM9   = $APB2 + 0x4000
+set $TIM10  = $APB2 + 0x4400
+set $TIM11  = $APB2 + 0x4800
+
+set $GPIOA = $AHB1 + 0x0000
+set $GPIOB = $AHB1 + 0x0400
+set $GPIOC = $AHB1 + 0x0800
+set $GPIOD = $AHB1 + 0x0C00
+set $GPIOE = $AHB1 + 0x1000
+set $GPIOH = $AHB1 + 0x1C00
+
+source lib/stm32-make/.gdbinit.stm32F4.DMA
