@@ -19,6 +19,7 @@ set $SPI2   = $APB1 + 0x3800
 set $SPI3   = $APB1 + 0x3C00
 set $SPI4   = $APB2 + 0x3400
 set $RCC    = $AHB1 + 0x3800
+set $RTC    = $APB1 + 0x2800
 
 set $TIM1   = $APB2 + 0x0000
 set $TIM2   = $APB1 + 0x0000
@@ -39,4 +40,5 @@ set $GPIOH = $AHB1 + 0x1C00
 
 source lib/stm32-make/.gdbinit.stm32F4.DMA
 source lib/stm32-make/.gdbinit.stm32F4.SPI
+source lib/stm32-make/.gdbinit.stm32F4.RTC
 

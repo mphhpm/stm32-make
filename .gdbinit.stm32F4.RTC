@@ -1,0 +1,109 @@
+##
+## rtc
+set $TR  	 = 0x00
+set $DR 	 = 0x04
+set $CR  	 = 0x08
+set $ISR 	 = 0x0C
+set $PRER    = 0x10
+set $WUTR    = 0x14
+set $CALIBR  = 0x18
+set $ALRMAR  = 0x1C
+set $ALRMBR  = 0x20
+set $WPR     = 0x24
+set $SSR     = 0x28
+set $SHIFTR  = 0x2C
+set $TSTR    = 0x30
+set $TSDR    = 0x34
+set $TSSSR   = 0x38
+set $CALR    = 0x3C
+set $TAFCR   = 0x40
+set $ALRMASSR= 0x44
+set $ALRMBSSR= 0x48
+set $BKPR    = 0x50
+
+define print_rtc
+##                        
+##  e.g. print_rtc 
+	set $baseAddr = $RTC
+
+	set $addr = $baseAddr + $TR
+	set $name = "TR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $DR
+	set $name = "DR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $CR
+	set $name = "CR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $ISR
+	set $name = "ISR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $PRER
+	set $name = "PRER"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $WUTR
+	set $name = "WUTR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $CALIBR
+	set $name = "CALIBR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $ALRMAR
+	set $name = "ALRMAR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $ALRMBR
+	set $name = "ALRMBR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $WPR
+	set $name = "WPR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $SSR
+	set $name = "SSR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $SHIFTR
+	set $name = "SHIFTR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $TSTR
+	set $name = "TSTR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $TSDR
+	set $name = "TSDR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $TSSSR
+	set $name = "TSSSR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $CALR
+	set $name = "CALR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $TAFCR
+	set $name = "TAFCR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $ALRMASSR
+	set $name = "ALRMASSR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $ALRMBSSR
+	set $name = "ALRMBSSR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $baseAddr + $BKPR
+	set $name = "BKPR"
+	printf "RTC.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+	print/x *$addr@20 
+end
