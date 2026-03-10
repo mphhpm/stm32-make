@@ -1,0 +1,148 @@
+#
+# print TIM registers
+set $AF1 = 0x60
+set $AF2 = 0x64
+set $ARR = 0x2C
+set $BDTR = 0x44
+set $CCER = 0x20
+set $CCMR1 = 0x18
+set $CCMR2 = 0x1C
+set $CCMR3 = 0x50
+set $CCR1 = 0x34
+set $CCR2 = 0x38
+set $CCR3 = 0x3C
+set $CCR4 = 0x40
+set $CCR5 = 0x48
+set $CCR6 = 0x4C
+set $CNT = 0x24
+set $CR1 = 0x00
+set $CR2 = 0x04
+set $DCR = 0x3DC
+set $DIER = 0x0C
+set $DMAR = 0x3E0
+set $DTR2 = 0x54
+set $ECR = 0x58
+set $EGR = 0x14
+set $PSC = 0x28
+set $RCR = 0x30
+set $SMCR = 0x08
+set $SR = 0x10
+set $TISEL = 0x5C
+
+#
+define print_TIM
+#
+#
+	set $addr = $arg0 + $AF1
+	set $name = "AF1"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $AF2
+	set $name = "AF2"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $ARR
+	set $name = "ARR"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $BDTR
+	set $name = "BDTR"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CCER
+	set $name = "CCER"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CCMR1
+	set $name = "CCMR1"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CCMR2
+	set $name = "CCMR2"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CCMR3
+	set $name = "CCMR3"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CCR1
+	set $name = "CCR1"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CCR2
+	set $name = "CCR2"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CCR3
+	set $name = "CCR3"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CCR4
+	set $name = "CCR4"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CCR5
+	set $name = "CCR5"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CCR6
+	set $name = "CCR6"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CNT
+	set $name = "CNT"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CR1
+	set $name = "CR1"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CR2
+	set $name = "CR2"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $DCR
+	set $name = "DCR"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $DIER
+	set $name = "DIER"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $DMAR
+	set $name = "DMAR"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $DTR2
+	set $name = "DTR2"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $ECR
+	set $name = "ECR"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $EGR
+	set $name = "EGR"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $PSC
+	set $name = "PSC"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $RCR
+	set $name = "RCR"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $SMCR
+	set $name = "SMCR"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $SR
+	set $name = "SR"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $TISEL
+	set $name = "TISEL"
+	printf "TIM.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+end
