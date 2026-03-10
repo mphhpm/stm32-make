@@ -1,0 +1,78 @@
+#
+# print SPI registers
+set $CFG1 = 0x08
+set $CFG2 = 0x0C
+set $CR1 = 0x00
+set $CR2 = 0x04
+set $CRCPOLY = 0x40
+set $I2SCFGR = 0x50
+set $IER = 0x10
+set $IFCR = 0x18
+set $RXCRC = 0x48
+set $RXDR = 0x30
+set $SR = 0x14
+set $TXCRC = 0x44
+set $TXDR = 0x20
+set $UDRDR = 0x4C
+
+#
+define print_SPI
+#
+#
+	set $addr = $arg0 + $CFG1
+	set $name = "CFG1"
+	printf "SPI.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CFG2
+	set $name = "CFG2"
+	printf "SPI.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CR1
+	set $name = "CR1"
+	printf "SPI.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CR2
+	set $name = "CR2"
+	printf "SPI.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CRCPOLY
+	set $name = "CRCPOLY"
+	printf "SPI.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $I2SCFGR
+	set $name = "I2SCFGR"
+	printf "SPI.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $IER
+	set $name = "IER"
+	printf "SPI.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $IFCR
+	set $name = "IFCR"
+	printf "SPI.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $RXCRC
+	set $name = "RXCRC"
+	printf "SPI.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $RXDR
+	set $name = "RXDR"
+	printf "SPI.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $SR
+	set $name = "SR"
+	printf "SPI.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $TXCRC
+	set $name = "TXCRC"
+	printf "SPI.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $TXDR
+	set $name = "TXDR"
+	printf "SPI.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $UDRDR
+	set $name = "UDRDR"
+	printf "SPI.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+end

@@ -1,0 +1,63 @@
+#
+# print I2C registers
+set $CR1 = 0x00
+set $CR2 = 0x04
+set $ICR = 0x1C
+set $ISR = 0x18
+set $OAR1 = 0x08
+set $OAR2 = 0x0C
+set $PECR = 0x20
+set $RXDR = 0x24
+set $TIMEOUTR = 0x14
+set $TIMINGR = 0x10
+set $TXDR = 0x28
+
+#
+define print_I2C
+#
+#
+	set $addr = $arg0 + $CR1
+	set $name = "CR1"
+	printf "I2C.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $CR2
+	set $name = "CR2"
+	printf "I2C.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $ICR
+	set $name = "ICR"
+	printf "I2C.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $ISR
+	set $name = "ISR"
+	printf "I2C.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $OAR1
+	set $name = "OAR1"
+	printf "I2C.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $OAR2
+	set $name = "OAR2"
+	printf "I2C.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $PECR
+	set $name = "PECR"
+	printf "I2C.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $RXDR
+	set $name = "RXDR"
+	printf "I2C.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $TIMEOUTR
+	set $name = "TIMEOUTR"
+	printf "I2C.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $TIMINGR
+	set $name = "TIMINGR"
+	printf "I2C.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $TXDR
+	set $name = "TXDR"
+	printf "I2C.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+end

@@ -1,0 +1,54 @@
+##
+## H523 Addresses
+set $Base = 0x40000000
+set $APB1 = $Base
+set $APB2 = $Base + 0x0010000
+set $APB3 = $Base + 0x4000400
+set $AHB1 = $Base + 0x0020000
+set $AHB2 = $BASE + 0x2020000
+set $AHB3 = $BASE + 0x4000000
+set $AHB4 = $BASE + 0x6005000
+
+set $FLASH  = $AHB1 + 0x2000
+set $DMA1   = $AHB1 + 0x1000
+set $DMA2   = $AHB1 + 0x0000
+set $I2C1   = $APB1 + 0x5400
+set $I2C2   = $APB1 + 0x5800
+set $I3C1   = $APB1 + 0x5C00
+set $PWR    = $AHB3 + 0x0800
+set $SPI1   = $APB2 + 0x3000
+set $SPI2   = $APB1 + 0x3800
+set $SPI3   = $APB1 + 0x3C00
+set $SPI4   = $APB2 + 0x4C00
+set $RCC    = $AHB3 + 0x0C00
+set $RTC    = $APB3 + 0x7800
+
+set $TIM1   = $APB2 + 0x2C00
+set $TIM2   = $APB1 + 0x0000
+set $TIM3   = $APB1 + 0x0400
+set $TIM4   = $APB1 + 0x0800
+set $TIM5   = $APB1 + 0x0C00
+set $TIM6   = $APB1 + 0x1000
+set $TIM7   = $APB1 + 0x1400
+set $TIM8   = $APB2 + 0x3400
+set $TIM9   = $APB2 + 0x4000
+set $TIM10  = $APB2 + 0x4400
+set $TIM11  = $APB2 + 0x4800
+set $TIM12  = $APB1 + 0x1800
+set $TIM15  = $APB2 + 0x4000
+
+set $GPIOA = $AHB2 + 0x0000
+set $GPIOB = $AHB2 + 0x0400
+set $GPIOC = $AHB2 + 0x0800
+set $GPIOD = $AHB2 + 0x0C00
+set $GPIOE = $AHB2 + 0x1000
+set $GPIOF = $AHB2 + 0x1400
+set $GPIOG = $AHB2 + 0x1800
+set $GPIOH = $AHB2 + 0x1C00
+
+source lib/stm32-make/.gdbinit.stm32H5.DMA
+source lib/stm32-make/.gdbinit.stm32H5.I2C
+source lib/stm32-make/.gdbinit.stm32H5.SPI
+source lib/stm32-make/.gdbinit.stm32H5.RTC
+source lib/stm32-make/.gdbinit.stm32H5.RCC
+

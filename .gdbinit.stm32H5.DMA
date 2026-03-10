@@ -1,0 +1,75 @@
+#
+# print DMA registers
+set $MISR = 0x0C
+set $PRIVCFGR = 0x04
+set $RCFGLOCKR = 0x08
+set $SECCFGR = 0x00
+set $SMISR = 0x10
+
+#
+define print_DMA
+#
+#
+	set $addr = $arg0 + $MISR
+	set $name = "MISR"
+	printf "DMA.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $PRIVCFGR
+	set $name = "PRIVCFGR"
+	printf "DMA.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $RCFGLOCKR
+	set $name = "RCFGLOCKR"
+	printf "DMA.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $SECCFGR
+	set $name = "SECCFGR"
+	printf "DMA.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+	set $addr = $arg0 + $SMISR
+	set $name = "SMISR"
+	printf "DMA.%-8s 0x%4x %4x: 0x%08x\n", $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+
+end
+
+set $CBR1 = 0x98
+set $CBR2 = 0xA8
+set $CCR = 0x64
+set $CDAR = 0xA0
+set $CFCR = 0x5C
+set $CLBAR = 0x50
+set $CLLR = 0xCC
+set $CSAR = 0x9C
+set $CSR = 0x60
+set $CTR1 = 0x90
+set $CTR2 = 0x94
+set $CTR3 = 0xA4
+
+
+define print_dmastreams
+##                        dmaAddress registerOffeset
+##  e.g. print_dmastreams $DMA2 $CBR1
+	set $i = 0
+	set $baseAddr = $arg0
+	set $dmaunit = $baseAddr == $DMA1 ? 1:2
+	set $regOffset= $arg1
+	set $name = $regOffset == $CBR1 ? "CBR1" : \
+	            $regOffset == $CBR2  ? "CBR2"  : \
+	            $regOffset == $CCR ? "CCR" : \
+	            $regOffset == $CDAR ? "CDAR" : \
+	            $regOffset == $CFCR ? "CFCR" : \
+	            $regOffset == $CLBAR ? "CLBAR" : \
+	            $regOffset == $CLLR ? "CLLR" : \
+	            $regOffset == $CSAR ? "CSAR" : \
+	            $regOffset == $CSR ? "CSR" : \
+	            $regOffset == $CTR1 ? "CTR1" : \
+	            $regOffset == $CTR2 ? "CTR2" : \
+	            $regOffset == $CTR3  ? "CTR3"  : "???"
+	set $regGap= 0x18
+	
+    while $i < 8
+		set $addr = $baseAddr + $regOffset + ($i * $regGap)
+		printf "DMA%d.S%d%s 0x%4x %4x: 0x%08x\n", $dmaunit, $i, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+        set $i = $i + 1
+	end
+end
