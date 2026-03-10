@@ -48,7 +48,8 @@ set $GPIOH = $AHB2 + 0x1C00
 
 source lib/stm32-make/.gdbinit.stm32H5.DMA
 source lib/stm32-make/.gdbinit.stm32H5.I2C
-source lib/stm32-make/.gdbinit.stm32H5.SPI
-source lib/stm32-make/.gdbinit.stm32H5.RTC
 source lib/stm32-make/.gdbinit.stm32H5.RCC
+source lib/stm32-make/.gdbinit.stm32H5.RTC
+source lib/stm32-make/.gdbinit.stm32H5.SPI
+source lib/stm32-make/.gdbinit.stm32H5.TIM
 
