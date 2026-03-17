@@ -39,6 +39,7 @@ set $GPIOE = $AHB1 + 0x1000
 set $GPIOH = $AHB1 + 0x1C00
 
 source lib/stm32-make/.gdbinit.stm32F4.DMA
-source lib/stm32-make/.gdbinit.stm32F4.SPI
+source lib/stm32-make/.gdbinit.stm32F4.I2C
 source lib/stm32-make/.gdbinit.stm32F4.RTC
+source lib/stm32-make/.gdbinit.stm32F4.SPI
 
