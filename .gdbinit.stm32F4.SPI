@@ -17,7 +17,7 @@ define print_spi
 	set $spiunit = $baseAddr == $SPI1 ? "1": \
 	               $baseAddr == $SPI2 ? "2": \
 				   $baseAddr == $SPI3 ? "3": \
-				   $baseAddr == $SPI3 ? "4":"??"
+				   $baseAddr == $SPI4 ? "4":"??"
 
 	set $addr = $baseAddr + $CR1
 	set $name = "CR1"
