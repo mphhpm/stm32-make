@@ -12,8 +12,9 @@ set $SR2 = 0x18
 set $TRISE = 0x20
 
 #
-define print_I2C
+define print_i2c
 #
+##  e.g. print_i2c $I2C1
 #
 	set $I2C = $arg0
 	set $addr = $I2C + $CCR
