@@ -14,5 +14,10 @@
  4.3 Build Specific projects: select project of .elf file
  5.1 Run st-util at  Run->External Tools->st-util
      or run it in a cmd shell "C:\Program Files\stlink\stlink-1.7.0-i686-w64-mingw32\bin\st-util.exe" --listen_port=1234
+ 5.2 alternative of 5.1 install stm32cubeide and run
+     C:\ST\STM32CubeIDE_2.1.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.win32_2.2.400.202601091506\tools\bin\ST-LINK_gdbserver.exe -p 1234 -l 1 -d -s -cp C:\ST\STM32CubeIDE_2.1.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.400.202601091506\tools\bin -m 0 -k -v 
  6.1 Start debugging session
  
+ 
+ upgrade st-link:
+ C:\ST\STM32CubeIDE_2.1.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.win32_2.2.400.202601091506\tools\bin\STLinkUpgrade.jar

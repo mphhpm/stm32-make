@@ -14,44 +14,44 @@ define print_spi
 ##                        
 ##  e.g. print_spi $SPI1
 	set $baseAddr = $arg0
-	set $spiunit = $baseAddr == $SPI1 ? "1": \
-	               $baseAddr == $SPI2 ? "2": \
-				   $baseAddr == $SPI3 ? "3": \
-				   $baseAddr == $SPI4 ? "4":"??"
+	set $spiunit = $baseAddr == $SPI1 ? "SPI1": \
+	               $baseAddr == $SPI2 ? "SPI2": \
+				   $baseAddr == $SPI3 ? "SPI3": \
+				   $baseAddr == $SPI4 ? "SPI4":"??"
 
 	set $addr = $baseAddr + $CR1
 	set $name = "CR1"
-	printf "SPI%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+	printf "%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
 
 	set $addr = $baseAddr + $CR2
 	set $name = "CR2"
-	printf "SPI%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+	printf "%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
 
 	set $addr = $baseAddr + $SR
 	set $name = "SR"
-	printf "SPI%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+	printf "%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
 
 	set $addr = $baseAddr + $DR
 	set $name = "DR"
-	printf "SPI%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+	printf "%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
 
 	set $addr = $baseAddr + $CRCPR
 	set $name = "CRCPR"
-	printf "SPI%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+	printf "%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
 
 	set $addr = $baseAddr + $RXCRCR
 	set $name = "RXCRCR"
-	printf "SPI%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+	printf "%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
 
 	set $addr = $baseAddr + $TXCRCR
 	set $name = "TXCRCR"
-	printf "SPI%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+	printf "%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
 
 	set $addr = $baseAddr + $I2SCFGR
 	set $name = "I2SCFGR"
-	printf "SPI%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+	printf "%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
 
 	set $addr = $baseAddr + $I2SPR
 	set $name = "I2SPR"
-	printf "SPI%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
+	printf "%s.%-7s 0x%4x %4x: 0x%08x\n", $spiunit, $name, ($addr >> 16), ($addr & 0xFFFF), *$addr
 end

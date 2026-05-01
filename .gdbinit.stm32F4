@@ -7,6 +7,7 @@ set $AHB1 = $Base + 0x20000
 set $AHB2 = 0x50000000
 
 set $SYSCFG = $APB2 + 0x3800
+set $EXTI   = $APB2 + 0x3C00
 set $FLASH  = $AHB1 + 0x3C00
 set $DMA1   = $AHB1 + 0x6000
 set $DMA2   = $AHB1 + 0x6400
@@ -39,6 +40,7 @@ set $GPIOE = $AHB1 + 0x1000
 set $GPIOH = $AHB1 + 0x1C00
 
 source lib/stm32-make/.gdbinit.stm32F4.DMA
+source lib/stm32-make/.gdbinit.stm32F4.EXTI
 source lib/stm32-make/.gdbinit.stm32F4.I2C
 source lib/stm32-make/.gdbinit.stm32F4.RTC
 source lib/stm32-make/.gdbinit.stm32F4.SPI
