@@ -2,6 +2,8 @@
 #### SCB_ACTRL
 set $ACTRL           = 0x0
 
+printf "loading print_scb_actrl\n"
+
 define print_scb_actrl
 
     set $baseaddr = 0xe000e008

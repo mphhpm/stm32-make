@@ -39,6 +39,8 @@ set $DOEPCTL3        = 0x360
 set $DOEPINT3        = 0x368
 set $DOEPTSIZ3       = 0x370
 
+printf "loading print_otg_fs_device\n"
+
 define print_otg_fs_device
 
     set $baseaddr = 0x50000800

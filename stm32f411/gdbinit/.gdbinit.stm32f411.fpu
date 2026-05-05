@@ -4,6 +4,8 @@ set $FPCCR           = 0x0
 set $FPCAR           = 0x4
 set $FPSCR           = 0x8
 
+printf "loading print_fpu\n"
+
 define print_fpu
 
     set $baseaddr = 0xe000ef34

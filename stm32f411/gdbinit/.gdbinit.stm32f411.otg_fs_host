@@ -40,6 +40,8 @@ set $FS_HCINT7       = 0x1e8
 set $FS_HCINTMSK7    = 0x1ec
 set $FS_HCTSIZ7      = 0x1f0
 
+printf "loading print_otg_fs_host\n"
+
 define print_otg_fs_host
 
     set $baseaddr = 0x50000400

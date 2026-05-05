@@ -36,6 +36,8 @@ set $IPR17           = 0x344
 set $IPR18           = 0x348
 set $IPR19           = 0x34c
 
+printf "loading print_nvic\n"
+
 define print_nvic
 
     set $baseaddr = 0xe000e100

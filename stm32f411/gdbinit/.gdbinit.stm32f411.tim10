@@ -12,6 +12,8 @@ set $PSC             = 0x28
 set $ARR             = 0x2c
 set $CCR1            = 0x34
 
+printf "loading print_tim10\n"
+
 define print_tim10
 
     set $baseaddr = 0x40014400

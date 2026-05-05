@@ -11,6 +11,8 @@ set $LCKR            = 0x1c
 set $AFRL            = 0x20
 set $AFRH            = 0x24
 
+printf "loading print_gpioe\n"
+
 define print_gpioe
 
     set $baseaddr = 0x40021000

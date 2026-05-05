@@ -1,6 +1,13 @@
 ##
 ## .gdbinit.stm32f4
 
+printf "load_adc, load_dma, load_exti, load_flash, load_gpio, load_i2c, load_pwr, load_nvic, load_rcc, load_rtc, load_spi, load_syscfg, load_tim, load_usart"
+
+define load_adc
+   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.adc1
+   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.adc_common
+end
+
 define load_dma
    source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.dma1
    source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.dma2
@@ -8,6 +15,10 @@ end
 
 define load_exti
    source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.exti
+end
+
+define load_flash
+   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.flash
 end
 
 define load_gpio
@@ -27,6 +38,19 @@ define load_i2c
    source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.i2s3ext
 end
 
+define load_pwr
+   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.pwr
+end
+
+define load_nvic
+   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.nvic
+   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.nvic_stir
+end
+
+define load_rcc
+   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.rcc
+end
+
 define load_rtc
    source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.rtc
 end
@@ -37,6 +61,10 @@ define load_spi
    source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.spi3
    source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.spi4
    source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.spi5
+end
+
+define load_syscfg
+   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.syscfg
 end
    
 define load_tim
@@ -49,4 +77,10 @@ define load_tim
 	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim9
 	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim10
 	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim11
+end
+
+define load_usart
+	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.usart1
+	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.usart2
+	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.usart6
 end

@@ -6,6 +6,8 @@ set $MPU_RNR         = 0x8
 set $MPU_RBAR        = 0xc
 set $MPU_RASR        = 0x10
 
+printf "loading print_mpu\n"
+
 define print_mpu
 
     set $baseaddr = 0xe000ed90

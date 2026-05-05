@@ -3,6 +3,8 @@
 set $CSR             = 0x0
 set $CCR             = 0x4
 
+printf "loading print_adc_common\n"
+
 define print_adc_common
 
     set $baseaddr = 0x40012300

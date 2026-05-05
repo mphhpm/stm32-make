@@ -22,6 +22,8 @@ set $DCR             = 0x48
 set $DMAR            = 0x4c
 set $OR              = 0x50
 
+printf "loading print_tim2\n"
+
 define print_tim2
 
     set $baseaddr = 0x40000000

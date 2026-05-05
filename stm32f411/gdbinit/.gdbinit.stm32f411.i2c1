@@ -10,6 +10,8 @@ set $SR2             = 0x18
 set $CCR             = 0x1c
 set $TRISE           = 0x20
 
+printf "loading print_i2c1\n"
+
 define print_i2c1
 
     set $baseaddr = 0x40005400

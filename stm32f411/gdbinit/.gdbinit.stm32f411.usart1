@@ -8,6 +8,8 @@ set $CR2             = 0x10
 set $CR3             = 0x14
 set $GTPR            = 0x18
 
+printf "loading print_usart1\n"
+
 define print_usart1
 
     set $baseaddr = 0x40011000

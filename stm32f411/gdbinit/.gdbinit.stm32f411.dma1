@@ -53,6 +53,8 @@ set $S7M0AR          = 0xc4
 set $S7M1AR          = 0xc8
 set $S7FCR           = 0xcc
 
+printf "loading print_dma1\n"
+
 define print_dma1
 
     set $baseaddr = 0x40026000

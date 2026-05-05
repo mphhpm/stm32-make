@@ -40,6 +40,8 @@ set $BKP17R          = 0x94
 set $BKP18R          = 0x98
 set $BKP19R          = 0x9c
 
+printf "loading print_rtc\n"
+
 define print_rtc
 
     set $baseaddr = 0x40002800

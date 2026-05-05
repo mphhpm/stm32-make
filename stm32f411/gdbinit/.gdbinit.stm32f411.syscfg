@@ -8,6 +8,8 @@ set $EXTICR3         = 0x10
 set $EXTICR4         = 0x14
 set $CMPCR           = 0x20
 
+printf "loading print_syscfg\n"
+
 define print_syscfg
 
     set $baseaddr = 0x40013800

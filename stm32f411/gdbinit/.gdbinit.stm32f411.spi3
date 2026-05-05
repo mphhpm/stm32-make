@@ -10,6 +10,8 @@ set $TXCRCR          = 0x18
 set $I2SCFGR         = 0x1c
 set $I2SPR           = 0x20
 
+printf "loading print_spi3\n"
+
 define print_spi3
 
     set $baseaddr = 0x40003c00

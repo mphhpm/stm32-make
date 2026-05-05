@@ -19,6 +19,8 @@ set $MASK            = 0x3c
 set $FIFOCNT         = 0x48
 set $FIFO            = 0x80
 
+printf "loading print_sdio\n"
+
 define print_sdio
 
     set $baseaddr = 0x40012c00

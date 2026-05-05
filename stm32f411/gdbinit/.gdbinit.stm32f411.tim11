@@ -13,6 +13,8 @@ set $ARR             = 0x2c
 set $CCR1            = 0x34
 set $OR              = 0x50
 
+printf "loading print_tim11\n"
+
 define print_tim11
 
     set $baseaddr = 0x40014800

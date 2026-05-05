@@ -21,6 +21,8 @@ set $CSR             = 0x74
 set $SSCGR           = 0x80
 set $PLLI2SCFGR      = 0x84
 
+printf "loading print_rcc\n"
+
 define print_rcc
 
     set $baseaddr = 0x40023800

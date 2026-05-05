@@ -3,6 +3,8 @@
 set $CR              = 0x0
 set $CSR             = 0x4
 
+printf "loading print_pwr\n"
+
 define print_pwr
 
     set $baseaddr = 0x40007000

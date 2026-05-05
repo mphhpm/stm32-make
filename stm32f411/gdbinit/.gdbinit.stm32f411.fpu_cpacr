@@ -2,6 +2,8 @@
 #### FPU_CPACR
 set $CPACR           = 0x0
 
+printf "loading print_fpu_cpacr\n"
+
 define print_fpu_cpacr
 
     set $baseaddr = 0xe000ed88

@@ -16,6 +16,8 @@ set $MMFAR           = 0x34
 set $BFAR            = 0x38
 set $AFSR            = 0x3c
 
+printf "loading print_scb\n"
+
 define print_scb
 
     set $baseaddr = 0xe000ed00

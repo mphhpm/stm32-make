@@ -5,6 +5,8 @@ set $PR              = 0x4
 set $RLR             = 0x8
 set $SR              = 0xc
 
+printf "loading print_iwdg\n"
+
 define print_iwdg
 
     set $baseaddr = 0x40003000

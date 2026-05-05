@@ -2,6 +2,8 @@
 #### NVIC_STIR
 set $STIR            = 0x0
 
+printf "loading print_nvic_stir\n"
+
 define print_nvic_stir
 
     set $baseaddr = 0xe000ef00

@@ -4,6 +4,8 @@ set $CR              = 0x0
 set $CFR             = 0x4
 set $SR              = 0x8
 
+printf "loading print_wwdg\n"
+
 define print_wwdg
 
     set $baseaddr = 0x40002c00

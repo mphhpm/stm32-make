@@ -20,6 +20,8 @@ set $FS_DIEPTXF1     = 0x104
 set $FS_DIEPTXF2     = 0x108
 set $FS_DIEPTXF3     = 0x10c
 
+printf "loading print_otg_fs_global\n"
+
 define print_otg_fs_global
 
     set $baseaddr = 0x50000000

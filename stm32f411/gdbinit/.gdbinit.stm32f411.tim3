@@ -21,6 +21,8 @@ set $CCR4            = 0x40
 set $DCR             = 0x48
 set $DMAR            = 0x4c
 
+printf "loading print_tim3\n"
+
 define print_tim3
 
     set $baseaddr = 0x40000400

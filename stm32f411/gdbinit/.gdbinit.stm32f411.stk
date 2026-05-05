@@ -5,6 +5,8 @@ set $LOAD            = 0x4
 set $VAL             = 0x8
 set $CALIB           = 0xc
 
+printf "loading print_stk\n"
+
 define print_stk
 
     set $baseaddr = 0xe000e010

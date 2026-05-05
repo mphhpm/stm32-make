@@ -2,6 +2,8 @@
 #### OTG_FS_PWRCLK
 set $FS_PCGCCTL      = 0x0
 
+printf "loading print_otg_fs_pwrclk\n"
+
 define print_otg_fs_pwrclk
 
     set $baseaddr = 0x50000e00

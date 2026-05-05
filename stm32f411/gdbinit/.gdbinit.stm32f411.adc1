@@ -21,6 +21,8 @@ set $JDR3            = 0x44
 set $JDR4            = 0x48
 set $DR              = 0x4c
 
+printf "loading print_adc1\n"
+
 define print_adc1
 
     set $baseaddr = 0x40012000

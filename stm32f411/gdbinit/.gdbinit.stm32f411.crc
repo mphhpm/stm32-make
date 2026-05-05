@@ -4,6 +4,8 @@ set $DR              = 0x0
 set $IDR             = 0x4
 set $CR              = 0x8
 
+printf "loading print_crc\n"
+
 define print_crc
 
     set $baseaddr = 0x40023000

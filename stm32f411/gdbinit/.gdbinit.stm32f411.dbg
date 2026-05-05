@@ -5,6 +5,8 @@ set $DBGMCU_CR       = 0x4
 set $DBGMCU_APB1_FZ  = 0x8
 set $DBGMCU_APB2_FZ  = 0xc
 
+printf "loading print_dbg\n"
+
 define print_dbg
 
     set $baseaddr = 0xe0042000

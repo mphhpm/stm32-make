@@ -7,6 +7,8 @@ set $SR              = 0xc
 set $CR              = 0x10
 set $OPTCR           = 0x14
 
+printf "loading print_flash\n"
+
 define print_flash
 
     set $baseaddr = 0x40023c00
