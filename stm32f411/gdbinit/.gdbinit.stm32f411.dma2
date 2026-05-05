@@ -1,0 +1,714 @@
+####
+#### DMA2
+set $LISR            = 0x0
+set $HISR            = 0x4
+set $LIFCR           = 0x8
+set $HIFCR           = 0xc
+set $S0CR            = 0x10
+set $S0NDTR          = 0x14
+set $S0PAR           = 0x18
+set $S0M0AR          = 0x1c
+set $S0M1AR          = 0x20
+set $S0FCR           = 0x24
+set $S1CR            = 0x28
+set $S1NDTR          = 0x2c
+set $S1PAR           = 0x30
+set $S1M0AR          = 0x34
+set $S1M1AR          = 0x38
+set $S1FCR           = 0x3c
+set $S2CR            = 0x40
+set $S2NDTR          = 0x44
+set $S2PAR           = 0x48
+set $S2M0AR          = 0x4c
+set $S2M1AR          = 0x50
+set $S2FCR           = 0x54
+set $S3CR            = 0x58
+set $S3NDTR          = 0x5c
+set $S3PAR           = 0x60
+set $S3M0AR          = 0x64
+set $S3M1AR          = 0x68
+set $S3FCR           = 0x6c
+set $S4CR            = 0x70
+set $S4NDTR          = 0x74
+set $S4PAR           = 0x78
+set $S4M0AR          = 0x7c
+set $S4M1AR          = 0x80
+set $S4FCR           = 0x84
+set $S5CR            = 0x88
+set $S5NDTR          = 0x8c
+set $S5PAR           = 0x90
+set $S5M0AR          = 0x94
+set $S5M1AR          = 0x98
+set $S5FCR           = 0x9c
+set $S6CR            = 0xa0
+set $S6NDTR          = 0xa4
+set $S6PAR           = 0xa8
+set $S6M0AR          = 0xac
+set $S6M1AR          = 0xb0
+set $S6FCR           = 0xb4
+set $S7CR            = 0xb8
+set $S7NDTR          = 0xbc
+set $S7PAR           = 0xc0
+set $S7M0AR          = 0xc4
+set $S7M1AR          = 0xc8
+set $S7FCR           = 0xcc
+
+define print_dma2
+
+    set $baseaddr = 0x40026400
+    ###########################
+    ##        LISR           ##
+    ###########################
+    set $addr = $baseaddr + $LISR
+    printf "DMA2.LISR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "TCIF3:%d ", (($addr >> 27) & 0x01)
+    printf "HTIF3:%d ", (($addr >> 26) & 0x01)
+    printf "TEIF3:%d ", (($addr >> 25) & 0x01)
+    printf "DMEIF3:%d ", (($addr >> 24) & 0x01)
+    printf "FEIF3:%d ", (($addr >> 22) & 0x01)
+    printf "TCIF2:%d ", (($addr >> 21) & 0x01)
+    printf "HTIF2:%d ", (($addr >> 20) & 0x01)
+    printf "TEIF2:%d ", (($addr >> 19) & 0x01)
+    printf "DMEIF2:%d ", (($addr >> 18) & 0x01)
+    printf "FEIF2:%d ", (($addr >> 16) & 0x01)
+    printf "TCIF1:%d ", (($addr >> 11) & 0x01)
+    printf "HTIF1:%d ", (($addr >> 10) & 0x01)
+    printf "TEIF1:%d ", (($addr >> 9) & 0x01)
+    printf "DMEIF1:%d ", (($addr >> 8) & 0x01)
+    printf "FEIF1:%d ", (($addr >> 6) & 0x01)
+    printf "TCIF0:%d ", (($addr >> 5) & 0x01)
+    printf "HTIF0:%d ", (($addr >> 4) & 0x01)
+    printf "TEIF0:%d ", (($addr >> 3) & 0x01)
+    printf "DMEIF0:%d ", (($addr >> 2) & 0x01)
+    printf "FEIF0:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        HISR           ##
+    ###########################
+    set $addr = $baseaddr + $HISR
+    printf "DMA2.HISR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "TCIF7:%d ", (($addr >> 27) & 0x01)
+    printf "HTIF7:%d ", (($addr >> 26) & 0x01)
+    printf "TEIF7:%d ", (($addr >> 25) & 0x01)
+    printf "DMEIF7:%d ", (($addr >> 24) & 0x01)
+    printf "FEIF7:%d ", (($addr >> 22) & 0x01)
+    printf "TCIF6:%d ", (($addr >> 21) & 0x01)
+    printf "HTIF6:%d ", (($addr >> 20) & 0x01)
+    printf "TEIF6:%d ", (($addr >> 19) & 0x01)
+    printf "DMEIF6:%d ", (($addr >> 18) & 0x01)
+    printf "FEIF6:%d ", (($addr >> 16) & 0x01)
+    printf "TCIF5:%d ", (($addr >> 11) & 0x01)
+    printf "HTIF5:%d ", (($addr >> 10) & 0x01)
+    printf "TEIF5:%d ", (($addr >> 9) & 0x01)
+    printf "DMEIF5:%d ", (($addr >> 8) & 0x01)
+    printf "FEIF5:%d ", (($addr >> 6) & 0x01)
+    printf "TCIF4:%d ", (($addr >> 5) & 0x01)
+    printf "HTIF4:%d ", (($addr >> 4) & 0x01)
+    printf "TEIF4:%d ", (($addr >> 3) & 0x01)
+    printf "DMEIF4:%d ", (($addr >> 2) & 0x01)
+    printf "FEIF4:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        LIFCR          ##
+    ###########################
+    set $addr = $baseaddr + $LIFCR
+    printf "DMA2.LIFCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CTCIF3:%d ", (($addr >> 27) & 0x01)
+    printf "CHTIF3:%d ", (($addr >> 26) & 0x01)
+    printf "CTEIF3:%d ", (($addr >> 25) & 0x01)
+    printf "CDMEIF3:%d ", (($addr >> 24) & 0x01)
+    printf "CFEIF3:%d ", (($addr >> 22) & 0x01)
+    printf "CTCIF2:%d ", (($addr >> 21) & 0x01)
+    printf "CHTIF2:%d ", (($addr >> 20) & 0x01)
+    printf "CTEIF2:%d ", (($addr >> 19) & 0x01)
+    printf "CDMEIF2:%d ", (($addr >> 18) & 0x01)
+    printf "CFEIF2:%d ", (($addr >> 16) & 0x01)
+    printf "CTCIF1:%d ", (($addr >> 11) & 0x01)
+    printf "CHTIF1:%d ", (($addr >> 10) & 0x01)
+    printf "CTEIF1:%d ", (($addr >> 9) & 0x01)
+    printf "CDMEIF1:%d ", (($addr >> 8) & 0x01)
+    printf "CFEIF1:%d ", (($addr >> 6) & 0x01)
+    printf "CTCIF0:%d ", (($addr >> 5) & 0x01)
+    printf "CHTIF0:%d ", (($addr >> 4) & 0x01)
+    printf "CTEIF0:%d ", (($addr >> 3) & 0x01)
+    printf "CDMEIF0:%d ", (($addr >> 2) & 0x01)
+    printf "CFEIF0:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        HIFCR          ##
+    ###########################
+    set $addr = $baseaddr + $HIFCR
+    printf "DMA2.HIFCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CTCIF7:%d ", (($addr >> 27) & 0x01)
+    printf "CHTIF7:%d ", (($addr >> 26) & 0x01)
+    printf "CTEIF7:%d ", (($addr >> 25) & 0x01)
+    printf "CDMEIF7:%d ", (($addr >> 24) & 0x01)
+    printf "CFEIF7:%d ", (($addr >> 22) & 0x01)
+    printf "CTCIF6:%d ", (($addr >> 21) & 0x01)
+    printf "CHTIF6:%d ", (($addr >> 20) & 0x01)
+    printf "CTEIF6:%d ", (($addr >> 19) & 0x01)
+    printf "CDMEIF6:%d ", (($addr >> 18) & 0x01)
+    printf "CFEIF6:%d ", (($addr >> 16) & 0x01)
+    printf "CTCIF5:%d ", (($addr >> 11) & 0x01)
+    printf "CHTIF5:%d ", (($addr >> 10) & 0x01)
+    printf "CTEIF5:%d ", (($addr >> 9) & 0x01)
+    printf "CDMEIF5:%d ", (($addr >> 8) & 0x01)
+    printf "CFEIF5:%d ", (($addr >> 6) & 0x01)
+    printf "CTCIF4:%d ", (($addr >> 5) & 0x01)
+    printf "CHTIF4:%d ", (($addr >> 4) & 0x01)
+    printf "CTEIF4:%d ", (($addr >> 3) & 0x01)
+    printf "CDMEIF4:%d ", (($addr >> 2) & 0x01)
+    printf "CFEIF4:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        S0CR           ##
+    ###########################
+    set $addr = $baseaddr + $S0CR
+    printf "DMA2.S0CR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHSEL:%d ", (($addr >> 25) & 0x07)
+    printf "MBURST:%d ", (($addr >> 23) & 0x03)
+    printf "PBURST:%d ", (($addr >> 21) & 0x03)
+    printf "CT:%d ", (($addr >> 19) & 0x01)
+    printf "DBM:%d ", (($addr >> 18) & 0x01)
+    printf "PL:%d ", (($addr >> 16) & 0x03)
+    printf "PINCOS:%d ", (($addr >> 15) & 0x01)
+    printf "MSIZE:%d ", (($addr >> 13) & 0x03)
+    printf "PSIZE:%d ", (($addr >> 11) & 0x03)
+    printf "MINC:%d ", (($addr >> 10) & 0x01)
+    printf "PINC:%d ", (($addr >> 9) & 0x01)
+    printf "CIRC:%d ", (($addr >> 8) & 0x01)
+    printf "DIR:%d ", (($addr >> 6) & 0x03)
+    printf "PFCTRL:%d ", (($addr >> 5) & 0x01)
+    printf "TCIE:%d ", (($addr >> 4) & 0x01)
+    printf "HTIE:%d ", (($addr >> 3) & 0x01)
+    printf "TEIE:%d ", (($addr >> 2) & 0x01)
+    printf "DMEIE:%d ", (($addr >> 1) & 0x01)
+    printf "EN:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        S0NDTR         ##
+    ###########################
+    set $addr = $baseaddr + $S0NDTR
+    printf "DMA2.S0NDTR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S0PAR          ##
+    ###########################
+    set $addr = $baseaddr + $S0PAR
+    printf "DMA2.S0PAR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S0M0AR         ##
+    ###########################
+    set $addr = $baseaddr + $S0M0AR
+    printf "DMA2.S0M0AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S0M1AR         ##
+    ###########################
+    set $addr = $baseaddr + $S0M1AR
+    printf "DMA2.S0M1AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S0FCR          ##
+    ###########################
+    set $addr = $baseaddr + $S0FCR
+    printf "DMA2.S0FCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "FEIE:%d ", (($addr >> 7) & 0x01)
+    printf "FS:%d ", (($addr >> 3) & 0x07)
+    printf "DMDIS:%d ", (($addr >> 2) & 0x01)
+    printf "FTH:%d ", (($addr >> 0) & 0x03)
+    printf "\n"
+
+    ###########################
+    ##        S1CR           ##
+    ###########################
+    set $addr = $baseaddr + $S1CR
+    printf "DMA2.S1CR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHSEL:%d ", (($addr >> 25) & 0x07)
+    printf "MBURST:%d ", (($addr >> 23) & 0x03)
+    printf "PBURST:%d ", (($addr >> 21) & 0x03)
+    printf "ACK:%d ", (($addr >> 20) & 0x01)
+    printf "CT:%d ", (($addr >> 19) & 0x01)
+    printf "DBM:%d ", (($addr >> 18) & 0x01)
+    printf "PL:%d ", (($addr >> 16) & 0x03)
+    printf "PINCOS:%d ", (($addr >> 15) & 0x01)
+    printf "MSIZE:%d ", (($addr >> 13) & 0x03)
+    printf "PSIZE:%d ", (($addr >> 11) & 0x03)
+    printf "MINC:%d ", (($addr >> 10) & 0x01)
+    printf "PINC:%d ", (($addr >> 9) & 0x01)
+    printf "CIRC:%d ", (($addr >> 8) & 0x01)
+    printf "DIR:%d ", (($addr >> 6) & 0x03)
+    printf "PFCTRL:%d ", (($addr >> 5) & 0x01)
+    printf "TCIE:%d ", (($addr >> 4) & 0x01)
+    printf "HTIE:%d ", (($addr >> 3) & 0x01)
+    printf "TEIE:%d ", (($addr >> 2) & 0x01)
+    printf "DMEIE:%d ", (($addr >> 1) & 0x01)
+    printf "EN:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        S1NDTR         ##
+    ###########################
+    set $addr = $baseaddr + $S1NDTR
+    printf "DMA2.S1NDTR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S1PAR          ##
+    ###########################
+    set $addr = $baseaddr + $S1PAR
+    printf "DMA2.S1PAR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S1M0AR         ##
+    ###########################
+    set $addr = $baseaddr + $S1M0AR
+    printf "DMA2.S1M0AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S1M1AR         ##
+    ###########################
+    set $addr = $baseaddr + $S1M1AR
+    printf "DMA2.S1M1AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S1FCR          ##
+    ###########################
+    set $addr = $baseaddr + $S1FCR
+    printf "DMA2.S1FCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "FEIE:%d ", (($addr >> 7) & 0x01)
+    printf "FS:%d ", (($addr >> 3) & 0x07)
+    printf "DMDIS:%d ", (($addr >> 2) & 0x01)
+    printf "FTH:%d ", (($addr >> 0) & 0x03)
+    printf "\n"
+
+    ###########################
+    ##        S2CR           ##
+    ###########################
+    set $addr = $baseaddr + $S2CR
+    printf "DMA2.S2CR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHSEL:%d ", (($addr >> 25) & 0x07)
+    printf "MBURST:%d ", (($addr >> 23) & 0x03)
+    printf "PBURST:%d ", (($addr >> 21) & 0x03)
+    printf "ACK:%d ", (($addr >> 20) & 0x01)
+    printf "CT:%d ", (($addr >> 19) & 0x01)
+    printf "DBM:%d ", (($addr >> 18) & 0x01)
+    printf "PL:%d ", (($addr >> 16) & 0x03)
+    printf "PINCOS:%d ", (($addr >> 15) & 0x01)
+    printf "MSIZE:%d ", (($addr >> 13) & 0x03)
+    printf "PSIZE:%d ", (($addr >> 11) & 0x03)
+    printf "MINC:%d ", (($addr >> 10) & 0x01)
+    printf "PINC:%d ", (($addr >> 9) & 0x01)
+    printf "CIRC:%d ", (($addr >> 8) & 0x01)
+    printf "DIR:%d ", (($addr >> 6) & 0x03)
+    printf "PFCTRL:%d ", (($addr >> 5) & 0x01)
+    printf "TCIE:%d ", (($addr >> 4) & 0x01)
+    printf "HTIE:%d ", (($addr >> 3) & 0x01)
+    printf "TEIE:%d ", (($addr >> 2) & 0x01)
+    printf "DMEIE:%d ", (($addr >> 1) & 0x01)
+    printf "EN:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        S2NDTR         ##
+    ###########################
+    set $addr = $baseaddr + $S2NDTR
+    printf "DMA2.S2NDTR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S2PAR          ##
+    ###########################
+    set $addr = $baseaddr + $S2PAR
+    printf "DMA2.S2PAR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S2M0AR         ##
+    ###########################
+    set $addr = $baseaddr + $S2M0AR
+    printf "DMA2.S2M0AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S2M1AR         ##
+    ###########################
+    set $addr = $baseaddr + $S2M1AR
+    printf "DMA2.S2M1AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S2FCR          ##
+    ###########################
+    set $addr = $baseaddr + $S2FCR
+    printf "DMA2.S2FCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "FEIE:%d ", (($addr >> 7) & 0x01)
+    printf "FS:%d ", (($addr >> 3) & 0x07)
+    printf "DMDIS:%d ", (($addr >> 2) & 0x01)
+    printf "FTH:%d ", (($addr >> 0) & 0x03)
+    printf "\n"
+
+    ###########################
+    ##        S3CR           ##
+    ###########################
+    set $addr = $baseaddr + $S3CR
+    printf "DMA2.S3CR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHSEL:%d ", (($addr >> 25) & 0x07)
+    printf "MBURST:%d ", (($addr >> 23) & 0x03)
+    printf "PBURST:%d ", (($addr >> 21) & 0x03)
+    printf "ACK:%d ", (($addr >> 20) & 0x01)
+    printf "CT:%d ", (($addr >> 19) & 0x01)
+    printf "DBM:%d ", (($addr >> 18) & 0x01)
+    printf "PL:%d ", (($addr >> 16) & 0x03)
+    printf "PINCOS:%d ", (($addr >> 15) & 0x01)
+    printf "MSIZE:%d ", (($addr >> 13) & 0x03)
+    printf "PSIZE:%d ", (($addr >> 11) & 0x03)
+    printf "MINC:%d ", (($addr >> 10) & 0x01)
+    printf "PINC:%d ", (($addr >> 9) & 0x01)
+    printf "CIRC:%d ", (($addr >> 8) & 0x01)
+    printf "DIR:%d ", (($addr >> 6) & 0x03)
+    printf "PFCTRL:%d ", (($addr >> 5) & 0x01)
+    printf "TCIE:%d ", (($addr >> 4) & 0x01)
+    printf "HTIE:%d ", (($addr >> 3) & 0x01)
+    printf "TEIE:%d ", (($addr >> 2) & 0x01)
+    printf "DMEIE:%d ", (($addr >> 1) & 0x01)
+    printf "EN:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        S3NDTR         ##
+    ###########################
+    set $addr = $baseaddr + $S3NDTR
+    printf "DMA2.S3NDTR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S3PAR          ##
+    ###########################
+    set $addr = $baseaddr + $S3PAR
+    printf "DMA2.S3PAR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S3M0AR         ##
+    ###########################
+    set $addr = $baseaddr + $S3M0AR
+    printf "DMA2.S3M0AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S3M1AR         ##
+    ###########################
+    set $addr = $baseaddr + $S3M1AR
+    printf "DMA2.S3M1AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S3FCR          ##
+    ###########################
+    set $addr = $baseaddr + $S3FCR
+    printf "DMA2.S3FCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "FEIE:%d ", (($addr >> 7) & 0x01)
+    printf "FS:%d ", (($addr >> 3) & 0x07)
+    printf "DMDIS:%d ", (($addr >> 2) & 0x01)
+    printf "FTH:%d ", (($addr >> 0) & 0x03)
+    printf "\n"
+
+    ###########################
+    ##        S4CR           ##
+    ###########################
+    set $addr = $baseaddr + $S4CR
+    printf "DMA2.S4CR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHSEL:%d ", (($addr >> 25) & 0x07)
+    printf "MBURST:%d ", (($addr >> 23) & 0x03)
+    printf "PBURST:%d ", (($addr >> 21) & 0x03)
+    printf "ACK:%d ", (($addr >> 20) & 0x01)
+    printf "CT:%d ", (($addr >> 19) & 0x01)
+    printf "DBM:%d ", (($addr >> 18) & 0x01)
+    printf "PL:%d ", (($addr >> 16) & 0x03)
+    printf "PINCOS:%d ", (($addr >> 15) & 0x01)
+    printf "MSIZE:%d ", (($addr >> 13) & 0x03)
+    printf "PSIZE:%d ", (($addr >> 11) & 0x03)
+    printf "MINC:%d ", (($addr >> 10) & 0x01)
+    printf "PINC:%d ", (($addr >> 9) & 0x01)
+    printf "CIRC:%d ", (($addr >> 8) & 0x01)
+    printf "DIR:%d ", (($addr >> 6) & 0x03)
+    printf "PFCTRL:%d ", (($addr >> 5) & 0x01)
+    printf "TCIE:%d ", (($addr >> 4) & 0x01)
+    printf "HTIE:%d ", (($addr >> 3) & 0x01)
+    printf "TEIE:%d ", (($addr >> 2) & 0x01)
+    printf "DMEIE:%d ", (($addr >> 1) & 0x01)
+    printf "EN:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        S4NDTR         ##
+    ###########################
+    set $addr = $baseaddr + $S4NDTR
+    printf "DMA2.S4NDTR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S4PAR          ##
+    ###########################
+    set $addr = $baseaddr + $S4PAR
+    printf "DMA2.S4PAR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S4M0AR         ##
+    ###########################
+    set $addr = $baseaddr + $S4M0AR
+    printf "DMA2.S4M0AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S4M1AR         ##
+    ###########################
+    set $addr = $baseaddr + $S4M1AR
+    printf "DMA2.S4M1AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S4FCR          ##
+    ###########################
+    set $addr = $baseaddr + $S4FCR
+    printf "DMA2.S4FCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "FEIE:%d ", (($addr >> 7) & 0x01)
+    printf "FS:%d ", (($addr >> 3) & 0x07)
+    printf "DMDIS:%d ", (($addr >> 2) & 0x01)
+    printf "FTH:%d ", (($addr >> 0) & 0x03)
+    printf "\n"
+
+    ###########################
+    ##        S5CR           ##
+    ###########################
+    set $addr = $baseaddr + $S5CR
+    printf "DMA2.S5CR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHSEL:%d ", (($addr >> 25) & 0x07)
+    printf "MBURST:%d ", (($addr >> 23) & 0x03)
+    printf "PBURST:%d ", (($addr >> 21) & 0x03)
+    printf "ACK:%d ", (($addr >> 20) & 0x01)
+    printf "CT:%d ", (($addr >> 19) & 0x01)
+    printf "DBM:%d ", (($addr >> 18) & 0x01)
+    printf "PL:%d ", (($addr >> 16) & 0x03)
+    printf "PINCOS:%d ", (($addr >> 15) & 0x01)
+    printf "MSIZE:%d ", (($addr >> 13) & 0x03)
+    printf "PSIZE:%d ", (($addr >> 11) & 0x03)
+    printf "MINC:%d ", (($addr >> 10) & 0x01)
+    printf "PINC:%d ", (($addr >> 9) & 0x01)
+    printf "CIRC:%d ", (($addr >> 8) & 0x01)
+    printf "DIR:%d ", (($addr >> 6) & 0x03)
+    printf "PFCTRL:%d ", (($addr >> 5) & 0x01)
+    printf "TCIE:%d ", (($addr >> 4) & 0x01)
+    printf "HTIE:%d ", (($addr >> 3) & 0x01)
+    printf "TEIE:%d ", (($addr >> 2) & 0x01)
+    printf "DMEIE:%d ", (($addr >> 1) & 0x01)
+    printf "EN:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        S5NDTR         ##
+    ###########################
+    set $addr = $baseaddr + $S5NDTR
+    printf "DMA2.S5NDTR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S5PAR          ##
+    ###########################
+    set $addr = $baseaddr + $S5PAR
+    printf "DMA2.S5PAR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S5M0AR         ##
+    ###########################
+    set $addr = $baseaddr + $S5M0AR
+    printf "DMA2.S5M0AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S5M1AR         ##
+    ###########################
+    set $addr = $baseaddr + $S5M1AR
+    printf "DMA2.S5M1AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S5FCR          ##
+    ###########################
+    set $addr = $baseaddr + $S5FCR
+    printf "DMA2.S5FCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "FEIE:%d ", (($addr >> 7) & 0x01)
+    printf "FS:%d ", (($addr >> 3) & 0x07)
+    printf "DMDIS:%d ", (($addr >> 2) & 0x01)
+    printf "FTH:%d ", (($addr >> 0) & 0x03)
+    printf "\n"
+
+    ###########################
+    ##        S6CR           ##
+    ###########################
+    set $addr = $baseaddr + $S6CR
+    printf "DMA2.S6CR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHSEL:%d ", (($addr >> 25) & 0x07)
+    printf "MBURST:%d ", (($addr >> 23) & 0x03)
+    printf "PBURST:%d ", (($addr >> 21) & 0x03)
+    printf "ACK:%d ", (($addr >> 20) & 0x01)
+    printf "CT:%d ", (($addr >> 19) & 0x01)
+    printf "DBM:%d ", (($addr >> 18) & 0x01)
+    printf "PL:%d ", (($addr >> 16) & 0x03)
+    printf "PINCOS:%d ", (($addr >> 15) & 0x01)
+    printf "MSIZE:%d ", (($addr >> 13) & 0x03)
+    printf "PSIZE:%d ", (($addr >> 11) & 0x03)
+    printf "MINC:%d ", (($addr >> 10) & 0x01)
+    printf "PINC:%d ", (($addr >> 9) & 0x01)
+    printf "CIRC:%d ", (($addr >> 8) & 0x01)
+    printf "DIR:%d ", (($addr >> 6) & 0x03)
+    printf "PFCTRL:%d ", (($addr >> 5) & 0x01)
+    printf "TCIE:%d ", (($addr >> 4) & 0x01)
+    printf "HTIE:%d ", (($addr >> 3) & 0x01)
+    printf "TEIE:%d ", (($addr >> 2) & 0x01)
+    printf "DMEIE:%d ", (($addr >> 1) & 0x01)
+    printf "EN:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        S6NDTR         ##
+    ###########################
+    set $addr = $baseaddr + $S6NDTR
+    printf "DMA2.S6NDTR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S6PAR          ##
+    ###########################
+    set $addr = $baseaddr + $S6PAR
+    printf "DMA2.S6PAR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S6M0AR         ##
+    ###########################
+    set $addr = $baseaddr + $S6M0AR
+    printf "DMA2.S6M0AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S6M1AR         ##
+    ###########################
+    set $addr = $baseaddr + $S6M1AR
+    printf "DMA2.S6M1AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S6FCR          ##
+    ###########################
+    set $addr = $baseaddr + $S6FCR
+    printf "DMA2.S6FCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "FEIE:%d ", (($addr >> 7) & 0x01)
+    printf "FS:%d ", (($addr >> 3) & 0x07)
+    printf "DMDIS:%d ", (($addr >> 2) & 0x01)
+    printf "FTH:%d ", (($addr >> 0) & 0x03)
+    printf "\n"
+
+    ###########################
+    ##        S7CR           ##
+    ###########################
+    set $addr = $baseaddr + $S7CR
+    printf "DMA2.S7CR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHSEL:%d ", (($addr >> 25) & 0x07)
+    printf "MBURST:%d ", (($addr >> 23) & 0x03)
+    printf "PBURST:%d ", (($addr >> 21) & 0x03)
+    printf "ACK:%d ", (($addr >> 20) & 0x01)
+    printf "CT:%d ", (($addr >> 19) & 0x01)
+    printf "DBM:%d ", (($addr >> 18) & 0x01)
+    printf "PL:%d ", (($addr >> 16) & 0x03)
+    printf "PINCOS:%d ", (($addr >> 15) & 0x01)
+    printf "MSIZE:%d ", (($addr >> 13) & 0x03)
+    printf "PSIZE:%d ", (($addr >> 11) & 0x03)
+    printf "MINC:%d ", (($addr >> 10) & 0x01)
+    printf "PINC:%d ", (($addr >> 9) & 0x01)
+    printf "CIRC:%d ", (($addr >> 8) & 0x01)
+    printf "DIR:%d ", (($addr >> 6) & 0x03)
+    printf "PFCTRL:%d ", (($addr >> 5) & 0x01)
+    printf "TCIE:%d ", (($addr >> 4) & 0x01)
+    printf "HTIE:%d ", (($addr >> 3) & 0x01)
+    printf "TEIE:%d ", (($addr >> 2) & 0x01)
+    printf "DMEIE:%d ", (($addr >> 1) & 0x01)
+    printf "EN:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        S7NDTR         ##
+    ###########################
+    set $addr = $baseaddr + $S7NDTR
+    printf "DMA2.S7NDTR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S7PAR          ##
+    ###########################
+    set $addr = $baseaddr + $S7PAR
+    printf "DMA2.S7PAR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S7M0AR         ##
+    ###########################
+    set $addr = $baseaddr + $S7M0AR
+    printf "DMA2.S7M0AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S7M1AR         ##
+    ###########################
+    set $addr = $baseaddr + $S7M1AR
+    printf "DMA2.S7M1AR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        S7FCR          ##
+    ###########################
+    set $addr = $baseaddr + $S7FCR
+    printf "DMA2.S7FCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "FEIE:%d ", (($addr >> 7) & 0x01)
+    printf "FS:%d ", (($addr >> 3) & 0x07)
+    printf "DMDIS:%d ", (($addr >> 2) & 0x01)
+    printf "FTH:%d ", (($addr >> 0) & 0x03)
+    printf "\n"
+
+end

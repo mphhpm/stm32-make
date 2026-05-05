@@ -1,0 +1,49 @@
+####
+#### ADC_Common
+set $CSR             = 0x0
+set $CCR             = 0x4
+
+define print_adc_common
+
+    set $baseaddr = 0x40012300
+    ###########################
+    ##        CSR            ##
+    ###########################
+    set $addr = $baseaddr + $CSR
+    printf "ADC_Common.CSR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "OVR3:%d ", (($addr >> 21) & 0x01)
+    printf "STRT3:%d ", (($addr >> 20) & 0x01)
+    printf "JSTRT3:%d ", (($addr >> 19) & 0x01)
+    printf "JEOC3:%d ", (($addr >> 18) & 0x01)
+    printf "EOC3:%d ", (($addr >> 17) & 0x01)
+    printf "AWD3:%d ", (($addr >> 16) & 0x01)
+    printf "OVR2:%d ", (($addr >> 13) & 0x01)
+    printf "STRT2:%d ", (($addr >> 12) & 0x01)
+    printf "JSTRT2:%d ", (($addr >> 11) & 0x01)
+    printf "JEOC2:%d ", (($addr >> 10) & 0x01)
+    printf "EOC2:%d ", (($addr >> 9) & 0x01)
+    printf "AWD2:%d ", (($addr >> 8) & 0x01)
+    printf "OVR1:%d ", (($addr >> 5) & 0x01)
+    printf "STRT1:%d ", (($addr >> 4) & 0x01)
+    printf "JSTRT1:%d ", (($addr >> 3) & 0x01)
+    printf "JEOC1:%d ", (($addr >> 2) & 0x01)
+    printf "EOC1:%d ", (($addr >> 1) & 0x01)
+    printf "AWD1:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        CCR            ##
+    ###########################
+    set $addr = $baseaddr + $CCR
+    printf "ADC_Common.CCR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "TSVREFE:%d ", (($addr >> 23) & 0x01)
+    printf "VBATE:%d ", (($addr >> 22) & 0x01)
+    printf "ADCPRE:%d ", (($addr >> 16) & 0x03)
+    printf "DMA:%d ", (($addr >> 14) & 0x03)
+    printf "DDS:%d ", (($addr >> 13) & 0x01)
+    printf "DELAY:%d ", (($addr >> 8) & 0x0f)
+    printf "\n"
+
+end

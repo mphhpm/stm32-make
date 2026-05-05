@@ -1,0 +1,31 @@
+####
+#### CRC
+set $DR              = 0x0
+set $IDR             = 0x4
+set $CR              = 0x8
+
+define print_crc
+
+    set $baseaddr = 0x40023000
+    ###########################
+    ##        DR             ##
+    ###########################
+    set $addr = $baseaddr + $DR
+    printf "CRC.DR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        IDR            ##
+    ###########################
+    set $addr = $baseaddr + $IDR
+    printf "CRC.IDR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        CR             ##
+    ###########################
+    set $addr = $baseaddr + $CR
+    printf "CRC.CR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+end

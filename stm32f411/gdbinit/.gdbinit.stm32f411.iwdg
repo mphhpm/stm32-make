@@ -1,0 +1,42 @@
+####
+#### IWDG
+set $KR              = 0x0
+set $PR              = 0x4
+set $RLR             = 0x8
+set $SR              = 0xc
+
+define print_iwdg
+
+    set $baseaddr = 0x40003000
+    ###########################
+    ##        KR             ##
+    ###########################
+    set $addr = $baseaddr + $KR
+    printf "IWDG.KR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        PR             ##
+    ###########################
+    set $addr = $baseaddr + $PR
+    printf "IWDG.PR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        RLR            ##
+    ###########################
+    set $addr = $baseaddr + $RLR
+    printf "IWDG.RLR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        SR             ##
+    ###########################
+    set $addr = $baseaddr + $SR
+    printf "IWDG.SR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "RVU:%d ", (($addr >> 1) & 0x01)
+    printf "PVU:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+end

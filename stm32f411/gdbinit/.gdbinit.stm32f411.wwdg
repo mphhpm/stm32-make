@@ -1,0 +1,39 @@
+####
+#### WWDG
+set $CR              = 0x0
+set $CFR             = 0x4
+set $SR              = 0x8
+
+define print_wwdg
+
+    set $baseaddr = 0x40002c00
+    ###########################
+    ##        CR             ##
+    ###########################
+    set $addr = $baseaddr + $CR
+    printf "WWDG.CR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "WDGA:%d ", (($addr >> 7) & 0x01)
+    printf "T:%d ", (($addr >> 0) & 0x7f)
+    printf "\n"
+
+    ###########################
+    ##        CFR            ##
+    ###########################
+    set $addr = $baseaddr + $CFR
+    printf "WWDG.CFR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "EWI:%d ", (($addr >> 9) & 0x01)
+    printf "WDGTB1:%d ", (($addr >> 8) & 0x01)
+    printf "WDGTB0:%d ", (($addr >> 7) & 0x01)
+    printf "W:%d ", (($addr >> 0) & 0x7f)
+    printf "\n"
+
+    ###########################
+    ##        SR             ##
+    ###########################
+    set $addr = $baseaddr + $SR
+    printf "WWDG.SR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+end

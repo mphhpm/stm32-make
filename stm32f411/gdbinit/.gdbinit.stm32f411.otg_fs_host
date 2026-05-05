@@ -1,0 +1,631 @@
+####
+#### OTG_FS_HOST
+set $FS_HCFG         = 0x0
+set $HFIR            = 0x4
+set $FS_HFNUM        = 0x8
+set $FS_HPTXSTS      = 0x10
+set $HAINT           = 0x14
+set $HAINTMSK        = 0x18
+set $FS_HPRT         = 0x40
+set $FS_HCCHAR0      = 0x100
+set $FS_HCINT0       = 0x108
+set $FS_HCINTMSK0    = 0x10c
+set $FS_HCTSIZ0      = 0x110
+set $FS_HCCHAR1      = 0x120
+set $FS_HCINT1       = 0x128
+set $FS_HCINTMSK1    = 0x12c
+set $FS_HCTSIZ1      = 0x130
+set $FS_HCCHAR2      = 0x140
+set $FS_HCINT2       = 0x148
+set $FS_HCINTMSK2    = 0x14c
+set $FS_HCTSIZ2      = 0x150
+set $FS_HCCHAR3      = 0x160
+set $FS_HCINT3       = 0x168
+set $FS_HCINTMSK3    = 0x16c
+set $FS_HCTSIZ3      = 0x170
+set $FS_HCCHAR4      = 0x180
+set $FS_HCINT4       = 0x188
+set $FS_HCINTMSK4    = 0x18c
+set $FS_HCTSIZ4      = 0x190
+set $FS_HCCHAR5      = 0x1a0
+set $FS_HCINT5       = 0x1a8
+set $FS_HCINTMSK5    = 0x1ac
+set $FS_HCTSIZ5      = 0x1b0
+set $FS_HCCHAR6      = 0x1c0
+set $FS_HCINT6       = 0x1c8
+set $FS_HCINTMSK6    = 0x1cc
+set $FS_HCTSIZ6      = 0x1d0
+set $FS_HCCHAR7      = 0x1e0
+set $FS_HCINT7       = 0x1e8
+set $FS_HCINTMSK7    = 0x1ec
+set $FS_HCTSIZ7      = 0x1f0
+
+define print_otg_fs_host
+
+    set $baseaddr = 0x50000400
+    ###########################
+    ##        FS_HCFG        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCFG
+    printf "OTG_FS_HOST.FS_HCFG 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "FSLSS:%d ", (($addr >> 2) & 0x01)
+    printf "FSLSPCS:%d ", (($addr >> 0) & 0x03)
+    printf "\n"
+
+    ###########################
+    ##        HFIR           ##
+    ###########################
+    set $addr = $baseaddr + $HFIR
+    printf "OTG_FS_HOST.HFIR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        FS_HFNUM        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HFNUM
+    printf "OTG_FS_HOST.FS_HFNUM 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "FTREM:%d ", (($addr >> 16) & 0xffff)
+    printf "FRNUM:%d ", (($addr >> 0) & 0xffff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HPTXSTS        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HPTXSTS
+    printf "OTG_FS_HOST.FS_HPTXSTS 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "PTXQTOP:%d ", (($addr >> 24) & 0xff)
+    printf "PTXQSAV:%d ", (($addr >> 16) & 0xff)
+    printf "PTXFSAVL:%d ", (($addr >> 0) & 0xffff)
+    printf "\n"
+
+    ###########################
+    ##        HAINT          ##
+    ###########################
+    set $addr = $baseaddr + $HAINT
+    printf "OTG_FS_HOST.HAINT   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        HAINTMSK        ##
+    ###########################
+    set $addr = $baseaddr + $HAINTMSK
+    printf "OTG_FS_HOST.HAINTMSK 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        FS_HPRT        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HPRT
+    printf "OTG_FS_HOST.FS_HPRT 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "PSPD:%d ", (($addr >> 17) & 0x03)
+    printf "PTCTL:%d ", (($addr >> 13) & 0x0f)
+    printf "PPWR:%d ", (($addr >> 12) & 0x01)
+    printf "PLSTS:%d ", (($addr >> 10) & 0x03)
+    printf "PRST:%d ", (($addr >> 8) & 0x01)
+    printf "PSUSP:%d ", (($addr >> 7) & 0x01)
+    printf "PRES:%d ", (($addr >> 6) & 0x01)
+    printf "POCCHNG:%d ", (($addr >> 5) & 0x01)
+    printf "POCA:%d ", (($addr >> 4) & 0x01)
+    printf "PENCHNG:%d ", (($addr >> 3) & 0x01)
+    printf "PENA:%d ", (($addr >> 2) & 0x01)
+    printf "PCDET:%d ", (($addr >> 1) & 0x01)
+    printf "PCSTS:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCCHAR0        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCCHAR0
+    printf "OTG_FS_HOST.FS_HCCHAR0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHENA:%d ", (($addr >> 31) & 0x01)
+    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
+    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
+    printf "DAD:%d ", (($addr >> 22) & 0x7f)
+    printf "MCNT:%d ", (($addr >> 20) & 0x03)
+    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
+    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
+    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
+    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
+    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINT0        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINT0
+    printf "OTG_FS_HOST.FS_HCINT0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERR:%d ", (($addr >> 10) & 0x01)
+    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
+    printf "BBERR:%d ", (($addr >> 8) & 0x01)
+    printf "TXERR:%d ", (($addr >> 7) & 0x01)
+    printf "ACK:%d ", (($addr >> 5) & 0x01)
+    printf "NAK:%d ", (($addr >> 4) & 0x01)
+    printf "STALL:%d ", (($addr >> 3) & 0x01)
+    printf "CHH:%d ", (($addr >> 1) & 0x01)
+    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINTMSK0        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINTMSK0
+    printf "OTG_FS_HOST.FS_HCINTMSK0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
+    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
+    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
+    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
+    printf "NYET:%d ", (($addr >> 6) & 0x01)
+    printf "ACKM:%d ", (($addr >> 5) & 0x01)
+    printf "NAKM:%d ", (($addr >> 4) & 0x01)
+    printf "STALLM:%d ", (($addr >> 3) & 0x01)
+    printf "CHHM:%d ", (($addr >> 1) & 0x01)
+    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCTSIZ0        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCTSIZ0
+    printf "OTG_FS_HOST.FS_HCTSIZ0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DPID:%d ", (($addr >> 29) & 0x03)
+    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
+    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCCHAR1        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCCHAR1
+    printf "OTG_FS_HOST.FS_HCCHAR1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHENA:%d ", (($addr >> 31) & 0x01)
+    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
+    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
+    printf "DAD:%d ", (($addr >> 22) & 0x7f)
+    printf "MCNT:%d ", (($addr >> 20) & 0x03)
+    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
+    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
+    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
+    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
+    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINT1        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINT1
+    printf "OTG_FS_HOST.FS_HCINT1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERR:%d ", (($addr >> 10) & 0x01)
+    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
+    printf "BBERR:%d ", (($addr >> 8) & 0x01)
+    printf "TXERR:%d ", (($addr >> 7) & 0x01)
+    printf "ACK:%d ", (($addr >> 5) & 0x01)
+    printf "NAK:%d ", (($addr >> 4) & 0x01)
+    printf "STALL:%d ", (($addr >> 3) & 0x01)
+    printf "CHH:%d ", (($addr >> 1) & 0x01)
+    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINTMSK1        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINTMSK1
+    printf "OTG_FS_HOST.FS_HCINTMSK1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
+    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
+    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
+    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
+    printf "NYET:%d ", (($addr >> 6) & 0x01)
+    printf "ACKM:%d ", (($addr >> 5) & 0x01)
+    printf "NAKM:%d ", (($addr >> 4) & 0x01)
+    printf "STALLM:%d ", (($addr >> 3) & 0x01)
+    printf "CHHM:%d ", (($addr >> 1) & 0x01)
+    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCTSIZ1        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCTSIZ1
+    printf "OTG_FS_HOST.FS_HCTSIZ1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DPID:%d ", (($addr >> 29) & 0x03)
+    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
+    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCCHAR2        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCCHAR2
+    printf "OTG_FS_HOST.FS_HCCHAR2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHENA:%d ", (($addr >> 31) & 0x01)
+    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
+    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
+    printf "DAD:%d ", (($addr >> 22) & 0x7f)
+    printf "MCNT:%d ", (($addr >> 20) & 0x03)
+    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
+    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
+    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
+    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
+    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINT2        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINT2
+    printf "OTG_FS_HOST.FS_HCINT2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERR:%d ", (($addr >> 10) & 0x01)
+    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
+    printf "BBERR:%d ", (($addr >> 8) & 0x01)
+    printf "TXERR:%d ", (($addr >> 7) & 0x01)
+    printf "ACK:%d ", (($addr >> 5) & 0x01)
+    printf "NAK:%d ", (($addr >> 4) & 0x01)
+    printf "STALL:%d ", (($addr >> 3) & 0x01)
+    printf "CHH:%d ", (($addr >> 1) & 0x01)
+    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINTMSK2        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINTMSK2
+    printf "OTG_FS_HOST.FS_HCINTMSK2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
+    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
+    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
+    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
+    printf "NYET:%d ", (($addr >> 6) & 0x01)
+    printf "ACKM:%d ", (($addr >> 5) & 0x01)
+    printf "NAKM:%d ", (($addr >> 4) & 0x01)
+    printf "STALLM:%d ", (($addr >> 3) & 0x01)
+    printf "CHHM:%d ", (($addr >> 1) & 0x01)
+    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCTSIZ2        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCTSIZ2
+    printf "OTG_FS_HOST.FS_HCTSIZ2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DPID:%d ", (($addr >> 29) & 0x03)
+    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
+    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCCHAR3        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCCHAR3
+    printf "OTG_FS_HOST.FS_HCCHAR3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHENA:%d ", (($addr >> 31) & 0x01)
+    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
+    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
+    printf "DAD:%d ", (($addr >> 22) & 0x7f)
+    printf "MCNT:%d ", (($addr >> 20) & 0x03)
+    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
+    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
+    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
+    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
+    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINT3        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINT3
+    printf "OTG_FS_HOST.FS_HCINT3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERR:%d ", (($addr >> 10) & 0x01)
+    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
+    printf "BBERR:%d ", (($addr >> 8) & 0x01)
+    printf "TXERR:%d ", (($addr >> 7) & 0x01)
+    printf "ACK:%d ", (($addr >> 5) & 0x01)
+    printf "NAK:%d ", (($addr >> 4) & 0x01)
+    printf "STALL:%d ", (($addr >> 3) & 0x01)
+    printf "CHH:%d ", (($addr >> 1) & 0x01)
+    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINTMSK3        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINTMSK3
+    printf "OTG_FS_HOST.FS_HCINTMSK3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
+    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
+    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
+    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
+    printf "NYET:%d ", (($addr >> 6) & 0x01)
+    printf "ACKM:%d ", (($addr >> 5) & 0x01)
+    printf "NAKM:%d ", (($addr >> 4) & 0x01)
+    printf "STALLM:%d ", (($addr >> 3) & 0x01)
+    printf "CHHM:%d ", (($addr >> 1) & 0x01)
+    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCTSIZ3        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCTSIZ3
+    printf "OTG_FS_HOST.FS_HCTSIZ3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DPID:%d ", (($addr >> 29) & 0x03)
+    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
+    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCCHAR4        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCCHAR4
+    printf "OTG_FS_HOST.FS_HCCHAR4 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHENA:%d ", (($addr >> 31) & 0x01)
+    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
+    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
+    printf "DAD:%d ", (($addr >> 22) & 0x7f)
+    printf "MCNT:%d ", (($addr >> 20) & 0x03)
+    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
+    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
+    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
+    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
+    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINT4        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINT4
+    printf "OTG_FS_HOST.FS_HCINT4 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERR:%d ", (($addr >> 10) & 0x01)
+    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
+    printf "BBERR:%d ", (($addr >> 8) & 0x01)
+    printf "TXERR:%d ", (($addr >> 7) & 0x01)
+    printf "ACK:%d ", (($addr >> 5) & 0x01)
+    printf "NAK:%d ", (($addr >> 4) & 0x01)
+    printf "STALL:%d ", (($addr >> 3) & 0x01)
+    printf "CHH:%d ", (($addr >> 1) & 0x01)
+    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINTMSK4        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINTMSK4
+    printf "OTG_FS_HOST.FS_HCINTMSK4 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
+    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
+    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
+    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
+    printf "NYET:%d ", (($addr >> 6) & 0x01)
+    printf "ACKM:%d ", (($addr >> 5) & 0x01)
+    printf "NAKM:%d ", (($addr >> 4) & 0x01)
+    printf "STALLM:%d ", (($addr >> 3) & 0x01)
+    printf "CHHM:%d ", (($addr >> 1) & 0x01)
+    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCTSIZ4        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCTSIZ4
+    printf "OTG_FS_HOST.FS_HCTSIZ4 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DPID:%d ", (($addr >> 29) & 0x03)
+    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
+    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCCHAR5        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCCHAR5
+    printf "OTG_FS_HOST.FS_HCCHAR5 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHENA:%d ", (($addr >> 31) & 0x01)
+    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
+    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
+    printf "DAD:%d ", (($addr >> 22) & 0x7f)
+    printf "MCNT:%d ", (($addr >> 20) & 0x03)
+    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
+    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
+    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
+    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
+    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINT5        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINT5
+    printf "OTG_FS_HOST.FS_HCINT5 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERR:%d ", (($addr >> 10) & 0x01)
+    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
+    printf "BBERR:%d ", (($addr >> 8) & 0x01)
+    printf "TXERR:%d ", (($addr >> 7) & 0x01)
+    printf "ACK:%d ", (($addr >> 5) & 0x01)
+    printf "NAK:%d ", (($addr >> 4) & 0x01)
+    printf "STALL:%d ", (($addr >> 3) & 0x01)
+    printf "CHH:%d ", (($addr >> 1) & 0x01)
+    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINTMSK5        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINTMSK5
+    printf "OTG_FS_HOST.FS_HCINTMSK5 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
+    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
+    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
+    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
+    printf "NYET:%d ", (($addr >> 6) & 0x01)
+    printf "ACKM:%d ", (($addr >> 5) & 0x01)
+    printf "NAKM:%d ", (($addr >> 4) & 0x01)
+    printf "STALLM:%d ", (($addr >> 3) & 0x01)
+    printf "CHHM:%d ", (($addr >> 1) & 0x01)
+    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCTSIZ5        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCTSIZ5
+    printf "OTG_FS_HOST.FS_HCTSIZ5 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DPID:%d ", (($addr >> 29) & 0x03)
+    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
+    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCCHAR6        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCCHAR6
+    printf "OTG_FS_HOST.FS_HCCHAR6 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHENA:%d ", (($addr >> 31) & 0x01)
+    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
+    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
+    printf "DAD:%d ", (($addr >> 22) & 0x7f)
+    printf "MCNT:%d ", (($addr >> 20) & 0x03)
+    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
+    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
+    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
+    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
+    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINT6        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINT6
+    printf "OTG_FS_HOST.FS_HCINT6 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERR:%d ", (($addr >> 10) & 0x01)
+    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
+    printf "BBERR:%d ", (($addr >> 8) & 0x01)
+    printf "TXERR:%d ", (($addr >> 7) & 0x01)
+    printf "ACK:%d ", (($addr >> 5) & 0x01)
+    printf "NAK:%d ", (($addr >> 4) & 0x01)
+    printf "STALL:%d ", (($addr >> 3) & 0x01)
+    printf "CHH:%d ", (($addr >> 1) & 0x01)
+    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINTMSK6        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINTMSK6
+    printf "OTG_FS_HOST.FS_HCINTMSK6 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
+    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
+    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
+    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
+    printf "NYET:%d ", (($addr >> 6) & 0x01)
+    printf "ACKM:%d ", (($addr >> 5) & 0x01)
+    printf "NAKM:%d ", (($addr >> 4) & 0x01)
+    printf "STALLM:%d ", (($addr >> 3) & 0x01)
+    printf "CHHM:%d ", (($addr >> 1) & 0x01)
+    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCTSIZ6        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCTSIZ6
+    printf "OTG_FS_HOST.FS_HCTSIZ6 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DPID:%d ", (($addr >> 29) & 0x03)
+    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
+    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCCHAR7        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCCHAR7
+    printf "OTG_FS_HOST.FS_HCCHAR7 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CHENA:%d ", (($addr >> 31) & 0x01)
+    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
+    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
+    printf "DAD:%d ", (($addr >> 22) & 0x7f)
+    printf "MCNT:%d ", (($addr >> 20) & 0x03)
+    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
+    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
+    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
+    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
+    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINT7        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINT7
+    printf "OTG_FS_HOST.FS_HCINT7 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERR:%d ", (($addr >> 10) & 0x01)
+    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
+    printf "BBERR:%d ", (($addr >> 8) & 0x01)
+    printf "TXERR:%d ", (($addr >> 7) & 0x01)
+    printf "ACK:%d ", (($addr >> 5) & 0x01)
+    printf "NAK:%d ", (($addr >> 4) & 0x01)
+    printf "STALL:%d ", (($addr >> 3) & 0x01)
+    printf "CHH:%d ", (($addr >> 1) & 0x01)
+    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCINTMSK7        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCINTMSK7
+    printf "OTG_FS_HOST.FS_HCINTMSK7 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
+    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
+    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
+    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
+    printf "NYET:%d ", (($addr >> 6) & 0x01)
+    printf "ACKM:%d ", (($addr >> 5) & 0x01)
+    printf "NAKM:%d ", (($addr >> 4) & 0x01)
+    printf "STALLM:%d ", (($addr >> 3) & 0x01)
+    printf "CHHM:%d ", (($addr >> 1) & 0x01)
+    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        FS_HCTSIZ7        ##
+    ###########################
+    set $addr = $baseaddr + $FS_HCTSIZ7
+    printf "OTG_FS_HOST.FS_HCTSIZ7 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DPID:%d ", (($addr >> 29) & 0x03)
+    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
+    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "\n"
+
+end

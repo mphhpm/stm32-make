@@ -1,0 +1,15 @@
+####
+#### FPU_CPACR
+set $CPACR           = 0x0
+
+define print_fpu_cpacr
+
+    set $baseaddr = 0xe000ed88
+    ###########################
+    ##        CPACR          ##
+    ###########################
+    set $addr = $baseaddr + $CPACR
+    printf "FPU_CPACR.CPACR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+end

@@ -1,0 +1,228 @@
+####
+#### ADC1
+set $SR              = 0x0
+set $CR1             = 0x4
+set $CR2             = 0x8
+set $SMPR1           = 0xc
+set $SMPR2           = 0x10
+set $JOFR1           = 0x14
+set $JOFR2           = 0x18
+set $JOFR3           = 0x1c
+set $JOFR4           = 0x20
+set $HTR             = 0x24
+set $LTR             = 0x28
+set $SQR1            = 0x2c
+set $SQR2            = 0x30
+set $SQR3            = 0x34
+set $JSQR            = 0x38
+set $JDR1            = 0x3c
+set $JDR2            = 0x40
+set $JDR3            = 0x44
+set $JDR4            = 0x48
+set $DR              = 0x4c
+
+define print_adc1
+
+    set $baseaddr = 0x40012000
+    ###########################
+    ##        SR             ##
+    ###########################
+    set $addr = $baseaddr + $SR
+    printf "ADC1.SR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "OVR:%d ", (($addr >> 5) & 0x01)
+    printf "STRT:%d ", (($addr >> 4) & 0x01)
+    printf "JSTRT:%d ", (($addr >> 3) & 0x01)
+    printf "JEOC:%d ", (($addr >> 2) & 0x01)
+    printf "EOC:%d ", (($addr >> 1) & 0x01)
+    printf "AWD:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        CR1            ##
+    ###########################
+    set $addr = $baseaddr + $CR1
+    printf "ADC1.CR1     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "OVRIE:%d ", (($addr >> 26) & 0x01)
+    printf "RES:%d ", (($addr >> 24) & 0x03)
+    printf "AWDEN:%d ", (($addr >> 23) & 0x01)
+    printf "JAWDEN:%d ", (($addr >> 22) & 0x01)
+    printf "DISCNUM:%d ", (($addr >> 13) & 0x07)
+    printf "JDISCEN:%d ", (($addr >> 12) & 0x01)
+    printf "DISCEN:%d ", (($addr >> 11) & 0x01)
+    printf "JAUTO:%d ", (($addr >> 10) & 0x01)
+    printf "AWDSGL:%d ", (($addr >> 9) & 0x01)
+    printf "SCAN:%d ", (($addr >> 8) & 0x01)
+    printf "JEOCIE:%d ", (($addr >> 7) & 0x01)
+    printf "AWDIE:%d ", (($addr >> 6) & 0x01)
+    printf "EOCIE:%d ", (($addr >> 5) & 0x01)
+    printf "AWDCH:%d ", (($addr >> 0) & 0x1f)
+    printf "\n"
+
+    ###########################
+    ##        CR2            ##
+    ###########################
+    set $addr = $baseaddr + $CR2
+    printf "ADC1.CR2     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "SWSTART:%d ", (($addr >> 30) & 0x01)
+    printf "EXTEN:%d ", (($addr >> 28) & 0x03)
+    printf "EXTSEL:%d ", (($addr >> 24) & 0x0f)
+    printf "JSWSTART:%d ", (($addr >> 22) & 0x01)
+    printf "JEXTEN:%d ", (($addr >> 20) & 0x03)
+    printf "JEXTSEL:%d ", (($addr >> 16) & 0x0f)
+    printf "ALIGN:%d ", (($addr >> 11) & 0x01)
+    printf "EOCS:%d ", (($addr >> 10) & 0x01)
+    printf "DDS:%d ", (($addr >> 9) & 0x01)
+    printf "DMA:%d ", (($addr >> 8) & 0x01)
+    printf "CONT:%d ", (($addr >> 1) & 0x01)
+    printf "ADON:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        SMPR1          ##
+    ###########################
+    set $addr = $baseaddr + $SMPR1
+    printf "ADC1.SMPR1   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        SMPR2          ##
+    ###########################
+    set $addr = $baseaddr + $SMPR2
+    printf "ADC1.SMPR2   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        JOFR1          ##
+    ###########################
+    set $addr = $baseaddr + $JOFR1
+    printf "ADC1.JOFR1   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        JOFR2          ##
+    ###########################
+    set $addr = $baseaddr + $JOFR2
+    printf "ADC1.JOFR2   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        JOFR3          ##
+    ###########################
+    set $addr = $baseaddr + $JOFR3
+    printf "ADC1.JOFR3   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        JOFR4          ##
+    ###########################
+    set $addr = $baseaddr + $JOFR4
+    printf "ADC1.JOFR4   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        HTR            ##
+    ###########################
+    set $addr = $baseaddr + $HTR
+    printf "ADC1.HTR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        LTR            ##
+    ###########################
+    set $addr = $baseaddr + $LTR
+    printf "ADC1.LTR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        SQR1           ##
+    ###########################
+    set $addr = $baseaddr + $SQR1
+    printf "ADC1.SQR1    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "L:%d ", (($addr >> 20) & 0x0f)
+    printf "SQ16:%d ", (($addr >> 15) & 0x1f)
+    printf "SQ15:%d ", (($addr >> 10) & 0x1f)
+    printf "SQ14:%d ", (($addr >> 5) & 0x1f)
+    printf "SQ13:%d ", (($addr >> 0) & 0x1f)
+    printf "\n"
+
+    ###########################
+    ##        SQR2           ##
+    ###########################
+    set $addr = $baseaddr + $SQR2
+    printf "ADC1.SQR2    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "SQ12:%d ", (($addr >> 25) & 0x1f)
+    printf "SQ11:%d ", (($addr >> 20) & 0x1f)
+    printf "SQ10:%d ", (($addr >> 15) & 0x1f)
+    printf "SQ9:%d ", (($addr >> 10) & 0x1f)
+    printf "SQ8:%d ", (($addr >> 5) & 0x1f)
+    printf "SQ7:%d ", (($addr >> 0) & 0x1f)
+    printf "\n"
+
+    ###########################
+    ##        SQR3           ##
+    ###########################
+    set $addr = $baseaddr + $SQR3
+    printf "ADC1.SQR3    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "SQ6:%d ", (($addr >> 25) & 0x1f)
+    printf "SQ5:%d ", (($addr >> 20) & 0x1f)
+    printf "SQ4:%d ", (($addr >> 15) & 0x1f)
+    printf "SQ3:%d ", (($addr >> 10) & 0x1f)
+    printf "SQ2:%d ", (($addr >> 5) & 0x1f)
+    printf "SQ1:%d ", (($addr >> 0) & 0x1f)
+    printf "\n"
+
+    ###########################
+    ##        JSQR           ##
+    ###########################
+    set $addr = $baseaddr + $JSQR
+    printf "ADC1.JSQR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "JL:%d ", (($addr >> 20) & 0x03)
+    printf "JSQ4:%d ", (($addr >> 15) & 0x1f)
+    printf "JSQ3:%d ", (($addr >> 10) & 0x1f)
+    printf "JSQ2:%d ", (($addr >> 5) & 0x1f)
+    printf "JSQ1:%d ", (($addr >> 0) & 0x1f)
+    printf "\n"
+
+    ###########################
+    ##        JDR1           ##
+    ###########################
+    set $addr = $baseaddr + $JDR1
+    printf "ADC1.JDR1    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        JDR2           ##
+    ###########################
+    set $addr = $baseaddr + $JDR2
+    printf "ADC1.JDR2    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        JDR3           ##
+    ###########################
+    set $addr = $baseaddr + $JDR3
+    printf "ADC1.JDR3    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        JDR4           ##
+    ###########################
+    set $addr = $baseaddr + $JDR4
+    printf "ADC1.JDR4    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        DR             ##
+    ###########################
+    set $addr = $baseaddr + $DR
+    printf "ADC1.DR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+end

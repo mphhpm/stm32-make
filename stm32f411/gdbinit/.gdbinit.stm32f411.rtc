@@ -1,0 +1,452 @@
+####
+#### RTC
+set $TR              = 0x0
+set $DR              = 0x4
+set $CR              = 0x8
+set $ISR             = 0xc
+set $PRER            = 0x10
+set $WUTR            = 0x14
+set $CALIBR          = 0x18
+set $ALRMAR          = 0x1c
+set $ALRMBR          = 0x20
+set $WPR             = 0x24
+set $SSR             = 0x28
+set $SHIFTR          = 0x2c
+set $TSTR            = 0x30
+set $TSDR            = 0x34
+set $TSSSR           = 0x38
+set $CALR            = 0x3c
+set $TAFCR           = 0x40
+set $ALRMASSR        = 0x44
+set $ALRMBSSR        = 0x48
+set $BKP0R           = 0x50
+set $BKP1R           = 0x54
+set $BKP2R           = 0x58
+set $BKP3R           = 0x5c
+set $BKP4R           = 0x60
+set $BKP5R           = 0x64
+set $BKP6R           = 0x68
+set $BKP7R           = 0x6c
+set $BKP8R           = 0x70
+set $BKP9R           = 0x74
+set $BKP10R          = 0x78
+set $BKP11R          = 0x7c
+set $BKP12R          = 0x80
+set $BKP13R          = 0x84
+set $BKP14R          = 0x88
+set $BKP15R          = 0x8c
+set $BKP16R          = 0x90
+set $BKP17R          = 0x94
+set $BKP18R          = 0x98
+set $BKP19R          = 0x9c
+
+define print_rtc
+
+    set $baseaddr = 0x40002800
+    ###########################
+    ##        TR             ##
+    ###########################
+    set $addr = $baseaddr + $TR
+    printf "RTC.TR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "PM:%d ", (($addr >> 22) & 0x01)
+    printf "HT:%d ", (($addr >> 20) & 0x03)
+    printf "HU:%d ", (($addr >> 16) & 0x0f)
+    printf "MNT:%d ", (($addr >> 12) & 0x07)
+    printf "MNU:%d ", (($addr >> 8) & 0x0f)
+    printf "ST:%d ", (($addr >> 4) & 0x07)
+    printf "SU:%d ", (($addr >> 0) & 0x0f)
+    printf "\n"
+
+    ###########################
+    ##        DR             ##
+    ###########################
+    set $addr = $baseaddr + $DR
+    printf "RTC.DR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "YT:%d ", (($addr >> 20) & 0x0f)
+    printf "YU:%d ", (($addr >> 16) & 0x0f)
+    printf "WDU:%d ", (($addr >> 13) & 0x07)
+    printf "MT:%d ", (($addr >> 12) & 0x01)
+    printf "MU:%d ", (($addr >> 8) & 0x0f)
+    printf "DT:%d ", (($addr >> 4) & 0x03)
+    printf "DU:%d ", (($addr >> 0) & 0x0f)
+    printf "\n"
+
+    ###########################
+    ##        CR             ##
+    ###########################
+    set $addr = $baseaddr + $CR
+    printf "RTC.CR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "COE:%d ", (($addr >> 23) & 0x01)
+    printf "OSEL:%d ", (($addr >> 21) & 0x03)
+    printf "POL:%d ", (($addr >> 20) & 0x01)
+    printf "COSEL:%d ", (($addr >> 19) & 0x01)
+    printf "BKP:%d ", (($addr >> 18) & 0x01)
+    printf "SUB1H:%d ", (($addr >> 17) & 0x01)
+    printf "ADD1H:%d ", (($addr >> 16) & 0x01)
+    printf "TSIE:%d ", (($addr >> 15) & 0x01)
+    printf "WUTIE:%d ", (($addr >> 14) & 0x01)
+    printf "ALRBIE:%d ", (($addr >> 13) & 0x01)
+    printf "ALRAIE:%d ", (($addr >> 12) & 0x01)
+    printf "TSE:%d ", (($addr >> 11) & 0x01)
+    printf "WUTE:%d ", (($addr >> 10) & 0x01)
+    printf "ALRBE:%d ", (($addr >> 9) & 0x01)
+    printf "ALRAE:%d ", (($addr >> 8) & 0x01)
+    printf "DCE:%d ", (($addr >> 7) & 0x01)
+    printf "FMT:%d ", (($addr >> 6) & 0x01)
+    printf "BYPSHAD:%d ", (($addr >> 5) & 0x01)
+    printf "REFCKON:%d ", (($addr >> 4) & 0x01)
+    printf "TSEDGE:%d ", (($addr >> 3) & 0x01)
+    printf "WCKSEL:%d ", (($addr >> 0) & 0x07)
+    printf "\n"
+
+    ###########################
+    ##        ISR            ##
+    ###########################
+    set $addr = $baseaddr + $ISR
+    printf "RTC.ISR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "RECALPF:%d ", (($addr >> 16) & 0x01)
+    printf "TAMP2F:%d ", (($addr >> 14) & 0x01)
+    printf "TAMP1F:%d ", (($addr >> 13) & 0x01)
+    printf "TSOVF:%d ", (($addr >> 12) & 0x01)
+    printf "TSF:%d ", (($addr >> 11) & 0x01)
+    printf "WUTF:%d ", (($addr >> 10) & 0x01)
+    printf "ALRBF:%d ", (($addr >> 9) & 0x01)
+    printf "ALRAF:%d ", (($addr >> 8) & 0x01)
+    printf "INIT:%d ", (($addr >> 7) & 0x01)
+    printf "INITF:%d ", (($addr >> 6) & 0x01)
+    printf "RSF:%d ", (($addr >> 5) & 0x01)
+    printf "INITS:%d ", (($addr >> 4) & 0x01)
+    printf "SHPF:%d ", (($addr >> 3) & 0x01)
+    printf "WUTWF:%d ", (($addr >> 2) & 0x01)
+    printf "ALRBWF:%d ", (($addr >> 1) & 0x01)
+    printf "ALRAWF:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        PRER           ##
+    ###########################
+    set $addr = $baseaddr + $PRER
+    printf "RTC.PRER    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "PREDIV_A:%d ", (($addr >> 16) & 0x7f)
+    printf "PREDIV_S:%d ", (($addr >> 0) & 0x7fff)
+    printf "\n"
+
+    ###########################
+    ##        WUTR           ##
+    ###########################
+    set $addr = $baseaddr + $WUTR
+    printf "RTC.WUTR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        CALIBR         ##
+    ###########################
+    set $addr = $baseaddr + $CALIBR
+    printf "RTC.CALIBR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DCS:%d ", (($addr >> 7) & 0x01)
+    printf "DC:%d ", (($addr >> 0) & 0x1f)
+    printf "\n"
+
+    ###########################
+    ##        ALRMAR         ##
+    ###########################
+    set $addr = $baseaddr + $ALRMAR
+    printf "RTC.ALRMAR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "MSK4:%d ", (($addr >> 31) & 0x01)
+    printf "WDSEL:%d ", (($addr >> 30) & 0x01)
+    printf "DT:%d ", (($addr >> 28) & 0x03)
+    printf "DU:%d ", (($addr >> 24) & 0x0f)
+    printf "MSK3:%d ", (($addr >> 23) & 0x01)
+    printf "PM:%d ", (($addr >> 22) & 0x01)
+    printf "HT:%d ", (($addr >> 20) & 0x03)
+    printf "HU:%d ", (($addr >> 16) & 0x0f)
+    printf "MSK2:%d ", (($addr >> 15) & 0x01)
+    printf "MNT:%d ", (($addr >> 12) & 0x07)
+    printf "MNU:%d ", (($addr >> 8) & 0x0f)
+    printf "MSK1:%d ", (($addr >> 7) & 0x01)
+    printf "ST:%d ", (($addr >> 4) & 0x07)
+    printf "SU:%d ", (($addr >> 0) & 0x0f)
+    printf "\n"
+
+    ###########################
+    ##        ALRMBR         ##
+    ###########################
+    set $addr = $baseaddr + $ALRMBR
+    printf "RTC.ALRMBR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "MSK4:%d ", (($addr >> 31) & 0x01)
+    printf "WDSEL:%d ", (($addr >> 30) & 0x01)
+    printf "DT:%d ", (($addr >> 28) & 0x03)
+    printf "DU:%d ", (($addr >> 24) & 0x0f)
+    printf "MSK3:%d ", (($addr >> 23) & 0x01)
+    printf "PM:%d ", (($addr >> 22) & 0x01)
+    printf "HT:%d ", (($addr >> 20) & 0x03)
+    printf "HU:%d ", (($addr >> 16) & 0x0f)
+    printf "MSK2:%d ", (($addr >> 15) & 0x01)
+    printf "MNT:%d ", (($addr >> 12) & 0x07)
+    printf "MNU:%d ", (($addr >> 8) & 0x0f)
+    printf "MSK1:%d ", (($addr >> 7) & 0x01)
+    printf "ST:%d ", (($addr >> 4) & 0x07)
+    printf "SU:%d ", (($addr >> 0) & 0x0f)
+    printf "\n"
+
+    ###########################
+    ##        WPR            ##
+    ###########################
+    set $addr = $baseaddr + $WPR
+    printf "RTC.WPR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        SSR            ##
+    ###########################
+    set $addr = $baseaddr + $SSR
+    printf "RTC.SSR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        SHIFTR         ##
+    ###########################
+    set $addr = $baseaddr + $SHIFTR
+    printf "RTC.SHIFTR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "ADD1S:%d ", (($addr >> 31) & 0x01)
+    printf "SUBFS:%d ", (($addr >> 0) & 0x7fff)
+    printf "\n"
+
+    ###########################
+    ##        TSTR           ##
+    ###########################
+    set $addr = $baseaddr + $TSTR
+    printf "RTC.TSTR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "PM:%d ", (($addr >> 22) & 0x01)
+    printf "HT:%d ", (($addr >> 20) & 0x03)
+    printf "HU:%d ", (($addr >> 16) & 0x0f)
+    printf "MNT:%d ", (($addr >> 12) & 0x07)
+    printf "MNU:%d ", (($addr >> 8) & 0x0f)
+    printf "ST:%d ", (($addr >> 4) & 0x07)
+    printf "SU:%d ", (($addr >> 0) & 0x0f)
+    printf "\n"
+
+    ###########################
+    ##        TSDR           ##
+    ###########################
+    set $addr = $baseaddr + $TSDR
+    printf "RTC.TSDR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "WDU:%d ", (($addr >> 13) & 0x07)
+    printf "MT:%d ", (($addr >> 12) & 0x01)
+    printf "MU:%d ", (($addr >> 8) & 0x0f)
+    printf "DT:%d ", (($addr >> 4) & 0x03)
+    printf "DU:%d ", (($addr >> 0) & 0x0f)
+    printf "\n"
+
+    ###########################
+    ##        TSSSR          ##
+    ###########################
+    set $addr = $baseaddr + $TSSSR
+    printf "RTC.TSSSR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        CALR           ##
+    ###########################
+    set $addr = $baseaddr + $CALR
+    printf "RTC.CALR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CALP:%d ", (($addr >> 15) & 0x01)
+    printf "CALW8:%d ", (($addr >> 14) & 0x01)
+    printf "CALW16:%d ", (($addr >> 13) & 0x01)
+    printf "CALM:%d ", (($addr >> 0) & 0x1ff)
+    printf "\n"
+
+    ###########################
+    ##        TAFCR          ##
+    ###########################
+    set $addr = $baseaddr + $TAFCR
+    printf "RTC.TAFCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "ALARMOUTTYPE:%d ", (($addr >> 18) & 0x01)
+    printf "TSINSEL:%d ", (($addr >> 17) & 0x01)
+    printf "TAMP1INSEL:%d ", (($addr >> 16) & 0x01)
+    printf "TAMPPUDIS:%d ", (($addr >> 15) & 0x01)
+    printf "TAMPPRCH:%d ", (($addr >> 13) & 0x03)
+    printf "TAMPFLT:%d ", (($addr >> 11) & 0x03)
+    printf "TAMPFREQ:%d ", (($addr >> 8) & 0x07)
+    printf "TAMPTS:%d ", (($addr >> 7) & 0x01)
+    printf "TAMP2TRG:%d ", (($addr >> 4) & 0x01)
+    printf "TAMP2E:%d ", (($addr >> 3) & 0x01)
+    printf "TAMPIE:%d ", (($addr >> 2) & 0x01)
+    printf "TAMP1TRG:%d ", (($addr >> 1) & 0x01)
+    printf "TAMP1E:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        ALRMASSR        ##
+    ###########################
+    set $addr = $baseaddr + $ALRMASSR
+    printf "RTC.ALRMASSR 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "MASKSS:%d ", (($addr >> 24) & 0x0f)
+    printf "SS:%d ", (($addr >> 0) & 0x7fff)
+    printf "\n"
+
+    ###########################
+    ##        ALRMBSSR        ##
+    ###########################
+    set $addr = $baseaddr + $ALRMBSSR
+    printf "RTC.ALRMBSSR 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "MASKSS:%d ", (($addr >> 24) & 0x0f)
+    printf "SS:%d ", (($addr >> 0) & 0x7fff)
+    printf "\n"
+
+    ###########################
+    ##        BKP0R          ##
+    ###########################
+    set $addr = $baseaddr + $BKP0R
+    printf "RTC.BKP0R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP1R          ##
+    ###########################
+    set $addr = $baseaddr + $BKP1R
+    printf "RTC.BKP1R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP2R          ##
+    ###########################
+    set $addr = $baseaddr + $BKP2R
+    printf "RTC.BKP2R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP3R          ##
+    ###########################
+    set $addr = $baseaddr + $BKP3R
+    printf "RTC.BKP3R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP4R          ##
+    ###########################
+    set $addr = $baseaddr + $BKP4R
+    printf "RTC.BKP4R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP5R          ##
+    ###########################
+    set $addr = $baseaddr + $BKP5R
+    printf "RTC.BKP5R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP6R          ##
+    ###########################
+    set $addr = $baseaddr + $BKP6R
+    printf "RTC.BKP6R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP7R          ##
+    ###########################
+    set $addr = $baseaddr + $BKP7R
+    printf "RTC.BKP7R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP8R          ##
+    ###########################
+    set $addr = $baseaddr + $BKP8R
+    printf "RTC.BKP8R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP9R          ##
+    ###########################
+    set $addr = $baseaddr + $BKP9R
+    printf "RTC.BKP9R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP10R         ##
+    ###########################
+    set $addr = $baseaddr + $BKP10R
+    printf "RTC.BKP10R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP11R         ##
+    ###########################
+    set $addr = $baseaddr + $BKP11R
+    printf "RTC.BKP11R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP12R         ##
+    ###########################
+    set $addr = $baseaddr + $BKP12R
+    printf "RTC.BKP12R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP13R         ##
+    ###########################
+    set $addr = $baseaddr + $BKP13R
+    printf "RTC.BKP13R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP14R         ##
+    ###########################
+    set $addr = $baseaddr + $BKP14R
+    printf "RTC.BKP14R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP15R         ##
+    ###########################
+    set $addr = $baseaddr + $BKP15R
+    printf "RTC.BKP15R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP16R         ##
+    ###########################
+    set $addr = $baseaddr + $BKP16R
+    printf "RTC.BKP16R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP17R         ##
+    ###########################
+    set $addr = $baseaddr + $BKP17R
+    printf "RTC.BKP17R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP18R         ##
+    ###########################
+    set $addr = $baseaddr + $BKP18R
+    printf "RTC.BKP18R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BKP19R         ##
+    ###########################
+    set $addr = $baseaddr + $BKP19R
+    printf "RTC.BKP19R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+end

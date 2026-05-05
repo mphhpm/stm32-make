@@ -1,0 +1,206 @@
+####
+#### SCB
+set $CPUID           = 0x0
+set $ICSR            = 0x4
+set $VTOR            = 0x8
+set $AIRCR           = 0xc
+set $SCR             = 0x10
+set $CCR             = 0x14
+set $SHPR1           = 0x18
+set $SHPR2           = 0x1c
+set $SHPR3           = 0x20
+set $SHCRS           = 0x24
+set $CFSR_UFSR_BFSR_MMFSR = 0x28
+set $HFSR            = 0x2c
+set $MMFAR           = 0x34
+set $BFAR            = 0x38
+set $AFSR            = 0x3c
+
+define print_scb
+
+    set $baseaddr = 0xe000ed00
+    ###########################
+    ##        CPUID          ##
+    ###########################
+    set $addr = $baseaddr + $CPUID
+    printf "SCB.CPUID   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "Implementer:%d ", (($addr >> 24) & 0xff)
+    printf "Variant:%d ", (($addr >> 20) & 0x0f)
+    printf "Constant:%d ", (($addr >> 16) & 0x0f)
+    printf "PartNo:%d ", (($addr >> 4) & 0xfff)
+    printf "Revision:%d ", (($addr >> 0) & 0x0f)
+    printf "\n"
+
+    ###########################
+    ##        ICSR           ##
+    ###########################
+    set $addr = $baseaddr + $ICSR
+    printf "SCB.ICSR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "NMIPENDSET:%d ", (($addr >> 31) & 0x01)
+    printf "PENDSVSET:%d ", (($addr >> 28) & 0x01)
+    printf "PENDSVCLR:%d ", (($addr >> 27) & 0x01)
+    printf "PENDSTSET:%d ", (($addr >> 26) & 0x01)
+    printf "PENDSTCLR:%d ", (($addr >> 25) & 0x01)
+    printf "ISRPENDING:%d ", (($addr >> 22) & 0x01)
+    printf "VECTPENDING:%d ", (($addr >> 12) & 0x7f)
+    printf "RETTOBASE:%d ", (($addr >> 11) & 0x01)
+    printf "VECTACTIVE:%d ", (($addr >> 0) & 0x1ff)
+    printf "\n"
+
+    ###########################
+    ##        VTOR           ##
+    ###########################
+    set $addr = $baseaddr + $VTOR
+    printf "SCB.VTOR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        AIRCR          ##
+    ###########################
+    set $addr = $baseaddr + $AIRCR
+    printf "SCB.AIRCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "VECTKEYSTAT:%d ", (($addr >> 16) & 0xffff)
+    printf "ENDIANESS:%d ", (($addr >> 15) & 0x01)
+    printf "PRIGROUP:%d ", (($addr >> 8) & 0x07)
+    printf "SYSRESETREQ:%d ", (($addr >> 2) & 0x01)
+    printf "VECTCLRACTIVE:%d ", (($addr >> 1) & 0x01)
+    printf "VECTRESET:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        SCR            ##
+    ###########################
+    set $addr = $baseaddr + $SCR
+    printf "SCB.SCR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "SEVEONPEND:%d ", (($addr >> 4) & 0x01)
+    printf "SLEEPDEEP:%d ", (($addr >> 2) & 0x01)
+    printf "SLEEPONEXIT:%d ", (($addr >> 1) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        CCR            ##
+    ###########################
+    set $addr = $baseaddr + $CCR
+    printf "SCB.CCR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "STKALIGN:%d ", (($addr >> 9) & 0x01)
+    printf "BFHFNMIGN:%d ", (($addr >> 8) & 0x01)
+    printf "DIV_0_TRP:%d ", (($addr >> 4) & 0x01)
+    printf "UNALIGN__TRP:%d ", (($addr >> 3) & 0x01)
+    printf "USERSETMPEND:%d ", (($addr >> 1) & 0x01)
+    printf "NONBASETHRDENA:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        SHPR1          ##
+    ###########################
+    set $addr = $baseaddr + $SHPR1
+    printf "SCB.SHPR1   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "PRI_6:%d ", (($addr >> 16) & 0xff)
+    printf "PRI_5:%d ", (($addr >> 8) & 0xff)
+    printf "PRI_4:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        SHPR2          ##
+    ###########################
+    set $addr = $baseaddr + $SHPR2
+    printf "SCB.SHPR2   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        SHPR3          ##
+    ###########################
+    set $addr = $baseaddr + $SHPR3
+    printf "SCB.SHPR3   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "PRI_15:%d ", (($addr >> 24) & 0xff)
+    printf "PRI_14:%d ", (($addr >> 16) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        SHCRS          ##
+    ###########################
+    set $addr = $baseaddr + $SHCRS
+    printf "SCB.SHCRS   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "USGFAULTENA:%d ", (($addr >> 18) & 0x01)
+    printf "BUSFAULTENA:%d ", (($addr >> 17) & 0x01)
+    printf "MEMFAULTENA:%d ", (($addr >> 16) & 0x01)
+    printf "SVCALLPENDED:%d ", (($addr >> 15) & 0x01)
+    printf "BUSFAULTPENDED:%d ", (($addr >> 14) & 0x01)
+    printf "MEMFAULTPENDED:%d ", (($addr >> 13) & 0x01)
+    printf "USGFAULTPENDED:%d ", (($addr >> 12) & 0x01)
+    printf "SYSTICKACT:%d ", (($addr >> 11) & 0x01)
+    printf "PENDSVACT:%d ", (($addr >> 10) & 0x01)
+    printf "MONITORACT:%d ", (($addr >> 8) & 0x01)
+    printf "SVCALLACT:%d ", (($addr >> 7) & 0x01)
+    printf "USGFAULTACT:%d ", (($addr >> 3) & 0x01)
+    printf "BUSFAULTACT:%d ", (($addr >> 1) & 0x01)
+    printf "MEMFAULTACT:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        CFSR_UFSR_BFSR_MMFSR        ##
+    ###########################
+    set $addr = $baseaddr + $CFSR_UFSR_BFSR_MMFSR
+    printf "SCB.CFSR_UFSR_BFSR_MMFSR 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DIVBYZERO:%d ", (($addr >> 25) & 0x01)
+    printf "UNALIGNED:%d ", (($addr >> 24) & 0x01)
+    printf "NOCP:%d ", (($addr >> 19) & 0x01)
+    printf "INVPC:%d ", (($addr >> 18) & 0x01)
+    printf "INVSTATE:%d ", (($addr >> 17) & 0x01)
+    printf "UNDEFINSTR:%d ", (($addr >> 16) & 0x01)
+    printf "BFARVALID:%d ", (($addr >> 15) & 0x01)
+    printf "LSPERR:%d ", (($addr >> 13) & 0x01)
+    printf "STKERR:%d ", (($addr >> 12) & 0x01)
+    printf "UNSTKERR:%d ", (($addr >> 11) & 0x01)
+    printf "IMPRECISERR:%d ", (($addr >> 10) & 0x01)
+    printf "PRECISERR:%d ", (($addr >> 9) & 0x01)
+    printf "IBUSERR:%d ", (($addr >> 8) & 0x01)
+    printf "MMARVALID:%d ", (($addr >> 7) & 0x01)
+    printf "MLSPERR:%d ", (($addr >> 5) & 0x01)
+    printf "MSTKERR:%d ", (($addr >> 4) & 0x01)
+    printf "MUNSTKERR:%d ", (($addr >> 3) & 0x01)
+    printf "IACCVIOL:%d ", (($addr >> 1) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        HFSR           ##
+    ###########################
+    set $addr = $baseaddr + $HFSR
+    printf "SCB.HFSR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DEBUG_VT:%d ", (($addr >> 31) & 0x01)
+    printf "FORCED:%d ", (($addr >> 30) & 0x01)
+    printf "VECTTBL:%d ", (($addr >> 1) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        MMFAR          ##
+    ###########################
+    set $addr = $baseaddr + $MMFAR
+    printf "SCB.MMFAR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BFAR           ##
+    ###########################
+    set $addr = $baseaddr + $BFAR
+    printf "SCB.BFAR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        AFSR           ##
+    ###########################
+    set $addr = $baseaddr + $AFSR
+    printf "SCB.AFSR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+end

@@ -1,0 +1,42 @@
+####
+#### PWR
+set $CR              = 0x0
+set $CSR             = 0x4
+
+define print_pwr
+
+    set $baseaddr = 0x40007000
+    ###########################
+    ##        CR             ##
+    ###########################
+    set $addr = $baseaddr + $CR
+    printf "PWR.CR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "VOS:%d ", (($addr >> 14) & 0x03)
+    printf "ADCDC1:%d ", (($addr >> 13) & 0x01)
+    printf "FPDS:%d ", (($addr >> 9) & 0x01)
+    printf "DBP:%d ", (($addr >> 8) & 0x01)
+    printf "PLS:%d ", (($addr >> 5) & 0x07)
+    printf "PVDE:%d ", (($addr >> 4) & 0x01)
+    printf "CSBF:%d ", (($addr >> 3) & 0x01)
+    printf "CWUF:%d ", (($addr >> 2) & 0x01)
+    printf "PDDS:%d ", (($addr >> 1) & 0x01)
+    printf "LPDS:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        CSR            ##
+    ###########################
+    set $addr = $baseaddr + $CSR
+    printf "PWR.CSR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "VOSRDY:%d ", (($addr >> 14) & 0x01)
+    printf "BRE:%d ", (($addr >> 9) & 0x01)
+    printf "EWUP:%d ", (($addr >> 8) & 0x01)
+    printf "BRR:%d ", (($addr >> 3) & 0x01)
+    printf "PVDO:%d ", (($addr >> 2) & 0x01)
+    printf "SBF:%d ", (($addr >> 1) & 0x01)
+    printf "WUF:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+end

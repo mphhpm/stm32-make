@@ -1,0 +1,64 @@
+####
+#### DBG
+set $DBGMCU_IDCODE   = 0x0
+set $DBGMCU_CR       = 0x4
+set $DBGMCU_APB1_FZ  = 0x8
+set $DBGMCU_APB2_FZ  = 0xc
+
+define print_dbg
+
+    set $baseaddr = 0xe0042000
+    ###########################
+    ##        DBGMCU_IDCODE        ##
+    ###########################
+    set $addr = $baseaddr + $DBGMCU_IDCODE
+    printf "DBG.DBGMCU_IDCODE 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "REV_ID:%d ", (($addr >> 16) & 0xffff)
+    printf "DEV_ID:%d ", (($addr >> 0) & 0xfff)
+    printf "\n"
+
+    ###########################
+    ##        DBGMCU_CR        ##
+    ###########################
+    set $addr = $baseaddr + $DBGMCU_CR
+    printf "DBG.DBGMCU_CR 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "TRACE_MODE:%d ", (($addr >> 6) & 0x03)
+    printf "TRACE_IOEN:%d ", (($addr >> 5) & 0x01)
+    printf "DBG_STANDBY:%d ", (($addr >> 2) & 0x01)
+    printf "DBG_STOP:%d ", (($addr >> 1) & 0x01)
+    printf "DBG_SLEEP:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        DBGMCU_APB1_FZ        ##
+    ###########################
+    set $addr = $baseaddr + $DBGMCU_APB1_FZ
+    printf "DBG.DBGMCU_APB1_FZ 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DBG_I2C3SMBUS_TIMEOUT:%d ", (($addr >> 23) & 0x01)
+    printf "DBG_I2C2_SMBUS_TIMEOUT:%d ", (($addr >> 22) & 0x01)
+    printf "DBG_I2C1_SMBUS_TIMEOUT:%d ", (($addr >> 21) & 0x01)
+    printf "DBG_IWDEG_STOP:%d ", (($addr >> 12) & 0x01)
+    printf "DBG_WWDG_STOP:%d ", (($addr >> 11) & 0x01)
+    printf "DBG_RTC_Stop:%d ", (($addr >> 10) & 0x01)
+    printf "DBG_TIM5_STOP:%d ", (($addr >> 3) & 0x01)
+    printf "DBG_TIM4_STOP:%d ", (($addr >> 2) & 0x01)
+    printf "DBG_TIM3_STOP:%d ", (($addr >> 1) & 0x01)
+    printf "DBG_TIM2_STOP:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        DBGMCU_APB2_FZ        ##
+    ###########################
+    set $addr = $baseaddr + $DBGMCU_APB2_FZ
+    printf "DBG.DBGMCU_APB2_FZ 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DBG_TIM11_STOP:%d ", (($addr >> 18) & 0x01)
+    printf "DBG_TIM10_STOP:%d ", (($addr >> 17) & 0x01)
+    printf "DBG_TIM9_STOP:%d ", (($addr >> 16) & 0x01)
+    printf "DBG_TIM1_STOP:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+end

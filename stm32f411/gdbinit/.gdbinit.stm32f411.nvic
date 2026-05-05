@@ -1,0 +1,387 @@
+####
+#### NVIC
+set $ISER0           = 0x0
+set $ISER1           = 0x4
+set $ISER2           = 0x8
+set $ICER0           = 0x80
+set $ICER1           = 0x84
+set $ICER2           = 0x88
+set $ISPR0           = 0x100
+set $ISPR1           = 0x104
+set $ISPR2           = 0x108
+set $ICPR0           = 0x180
+set $ICPR1           = 0x184
+set $ICPR2           = 0x188
+set $IABR0           = 0x200
+set $IABR1           = 0x204
+set $IABR2           = 0x208
+set $IPR0            = 0x300
+set $IPR1            = 0x304
+set $IPR2            = 0x308
+set $IPR3            = 0x30c
+set $IPR4            = 0x310
+set $IPR5            = 0x314
+set $IPR6            = 0x318
+set $IPR7            = 0x31c
+set $IPR8            = 0x320
+set $IPR9            = 0x324
+set $IPR10           = 0x328
+set $IPR11           = 0x32c
+set $IPR12           = 0x330
+set $IPR13           = 0x334
+set $IPR14           = 0x338
+set $IPR15           = 0x33c
+set $IPR16           = 0x340
+set $IPR17           = 0x344
+set $IPR18           = 0x348
+set $IPR19           = 0x34c
+
+define print_nvic
+
+    set $baseaddr = 0xe000e100
+    ###########################
+    ##        ISER0          ##
+    ###########################
+    set $addr = $baseaddr + $ISER0
+    printf "NVIC.ISER0   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        ISER1          ##
+    ###########################
+    set $addr = $baseaddr + $ISER1
+    printf "NVIC.ISER1   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        ISER2          ##
+    ###########################
+    set $addr = $baseaddr + $ISER2
+    printf "NVIC.ISER2   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        ICER0          ##
+    ###########################
+    set $addr = $baseaddr + $ICER0
+    printf "NVIC.ICER0   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        ICER1          ##
+    ###########################
+    set $addr = $baseaddr + $ICER1
+    printf "NVIC.ICER1   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        ICER2          ##
+    ###########################
+    set $addr = $baseaddr + $ICER2
+    printf "NVIC.ICER2   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        ISPR0          ##
+    ###########################
+    set $addr = $baseaddr + $ISPR0
+    printf "NVIC.ISPR0   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        ISPR1          ##
+    ###########################
+    set $addr = $baseaddr + $ISPR1
+    printf "NVIC.ISPR1   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        ISPR2          ##
+    ###########################
+    set $addr = $baseaddr + $ISPR2
+    printf "NVIC.ISPR2   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        ICPR0          ##
+    ###########################
+    set $addr = $baseaddr + $ICPR0
+    printf "NVIC.ICPR0   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        ICPR1          ##
+    ###########################
+    set $addr = $baseaddr + $ICPR1
+    printf "NVIC.ICPR1   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        ICPR2          ##
+    ###########################
+    set $addr = $baseaddr + $ICPR2
+    printf "NVIC.ICPR2   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        IABR0          ##
+    ###########################
+    set $addr = $baseaddr + $IABR0
+    printf "NVIC.IABR0   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        IABR1          ##
+    ###########################
+    set $addr = $baseaddr + $IABR1
+    printf "NVIC.IABR1   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        IABR2          ##
+    ###########################
+    set $addr = $baseaddr + $IABR2
+    printf "NVIC.IABR2   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        IPR0           ##
+    ###########################
+    set $addr = $baseaddr + $IPR0
+    printf "NVIC.IPR0    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR1           ##
+    ###########################
+    set $addr = $baseaddr + $IPR1
+    printf "NVIC.IPR1    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR2           ##
+    ###########################
+    set $addr = $baseaddr + $IPR2
+    printf "NVIC.IPR2    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR3           ##
+    ###########################
+    set $addr = $baseaddr + $IPR3
+    printf "NVIC.IPR3    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR4           ##
+    ###########################
+    set $addr = $baseaddr + $IPR4
+    printf "NVIC.IPR4    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR5           ##
+    ###########################
+    set $addr = $baseaddr + $IPR5
+    printf "NVIC.IPR5    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR6           ##
+    ###########################
+    set $addr = $baseaddr + $IPR6
+    printf "NVIC.IPR6    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR7           ##
+    ###########################
+    set $addr = $baseaddr + $IPR7
+    printf "NVIC.IPR7    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR8           ##
+    ###########################
+    set $addr = $baseaddr + $IPR8
+    printf "NVIC.IPR8    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR9           ##
+    ###########################
+    set $addr = $baseaddr + $IPR9
+    printf "NVIC.IPR9    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR10          ##
+    ###########################
+    set $addr = $baseaddr + $IPR10
+    printf "NVIC.IPR10   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR11          ##
+    ###########################
+    set $addr = $baseaddr + $IPR11
+    printf "NVIC.IPR11   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR12          ##
+    ###########################
+    set $addr = $baseaddr + $IPR12
+    printf "NVIC.IPR12   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR13          ##
+    ###########################
+    set $addr = $baseaddr + $IPR13
+    printf "NVIC.IPR13   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR14          ##
+    ###########################
+    set $addr = $baseaddr + $IPR14
+    printf "NVIC.IPR14   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR15          ##
+    ###########################
+    set $addr = $baseaddr + $IPR15
+    printf "NVIC.IPR15   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR16          ##
+    ###########################
+    set $addr = $baseaddr + $IPR16
+    printf "NVIC.IPR16   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR17          ##
+    ###########################
+    set $addr = $baseaddr + $IPR17
+    printf "NVIC.IPR17   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR18          ##
+    ###########################
+    set $addr = $baseaddr + $IPR18
+    printf "NVIC.IPR18   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        IPR19          ##
+    ###########################
+    set $addr = $baseaddr + $IPR19
+    printf "NVIC.IPR19   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+end

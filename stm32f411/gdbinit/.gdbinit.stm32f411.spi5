@@ -1,0 +1,125 @@
+####
+#### SPI5
+set $CR1             = 0x0
+set $CR2             = 0x4
+set $SR              = 0x8
+set $DR              = 0xc
+set $CRCPR           = 0x10
+set $RXCRCR          = 0x14
+set $TXCRCR          = 0x18
+set $I2SCFGR         = 0x1c
+set $I2SPR           = 0x20
+
+define print_spi5
+
+    set $baseaddr = 0x40015000
+    ###########################
+    ##        CR1            ##
+    ###########################
+    set $addr = $baseaddr + $CR1
+    printf "SPI5.CR1     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BIDIMODE:%d ", (($addr >> 15) & 0x01)
+    printf "BIDIOE:%d ", (($addr >> 14) & 0x01)
+    printf "CRCEN:%d ", (($addr >> 13) & 0x01)
+    printf "CRCNEXT:%d ", (($addr >> 12) & 0x01)
+    printf "DFF:%d ", (($addr >> 11) & 0x01)
+    printf "RXONLY:%d ", (($addr >> 10) & 0x01)
+    printf "SSM:%d ", (($addr >> 9) & 0x01)
+    printf "SSI:%d ", (($addr >> 8) & 0x01)
+    printf "LSBFIRST:%d ", (($addr >> 7) & 0x01)
+    printf "SPE:%d ", (($addr >> 6) & 0x01)
+    printf "BR:%d ", (($addr >> 3) & 0x07)
+    printf "MSTR:%d ", (($addr >> 2) & 0x01)
+    printf "CPOL:%d ", (($addr >> 1) & 0x01)
+    printf "CPHA:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        CR2            ##
+    ###########################
+    set $addr = $baseaddr + $CR2
+    printf "SPI5.CR2     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "TXEIE:%d ", (($addr >> 7) & 0x01)
+    printf "RXNEIE:%d ", (($addr >> 6) & 0x01)
+    printf "ERRIE:%d ", (($addr >> 5) & 0x01)
+    printf "FRF:%d ", (($addr >> 4) & 0x01)
+    printf "SSOE:%d ", (($addr >> 2) & 0x01)
+    printf "TXDMAEN:%d ", (($addr >> 1) & 0x01)
+    printf "RXDMAEN:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        SR             ##
+    ###########################
+    set $addr = $baseaddr + $SR
+    printf "SPI5.SR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "TIFRFE:%d ", (($addr >> 8) & 0x01)
+    printf "BSY:%d ", (($addr >> 7) & 0x01)
+    printf "OVR:%d ", (($addr >> 6) & 0x01)
+    printf "MODF:%d ", (($addr >> 5) & 0x01)
+    printf "CRCERR:%d ", (($addr >> 4) & 0x01)
+    printf "UDR:%d ", (($addr >> 3) & 0x01)
+    printf "CHSIDE:%d ", (($addr >> 2) & 0x01)
+    printf "TXE:%d ", (($addr >> 1) & 0x01)
+    printf "RXNE:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        DR             ##
+    ###########################
+    set $addr = $baseaddr + $DR
+    printf "SPI5.DR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        CRCPR          ##
+    ###########################
+    set $addr = $baseaddr + $CRCPR
+    printf "SPI5.CRCPR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        RXCRCR         ##
+    ###########################
+    set $addr = $baseaddr + $RXCRCR
+    printf "SPI5.RXCRCR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        TXCRCR         ##
+    ###########################
+    set $addr = $baseaddr + $TXCRCR
+    printf "SPI5.TXCRCR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        I2SCFGR        ##
+    ###########################
+    set $addr = $baseaddr + $I2SCFGR
+    printf "SPI5.I2SCFGR 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "I2SMOD:%d ", (($addr >> 11) & 0x01)
+    printf "I2SE:%d ", (($addr >> 10) & 0x01)
+    printf "I2SCFG:%d ", (($addr >> 8) & 0x03)
+    printf "PCMSYNC:%d ", (($addr >> 7) & 0x01)
+    printf "I2SSTD:%d ", (($addr >> 4) & 0x03)
+    printf "CKPOL:%d ", (($addr >> 3) & 0x01)
+    printf "DATLEN:%d ", (($addr >> 1) & 0x03)
+    printf "CHLEN:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        I2SPR          ##
+    ###########################
+    set $addr = $baseaddr + $I2SPR
+    printf "SPI5.I2SPR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "MCKOE:%d ", (($addr >> 9) & 0x01)
+    printf "ODD:%d ", (($addr >> 8) & 0x01)
+    printf "I2SDIV:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+end

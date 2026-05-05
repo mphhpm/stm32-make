@@ -1,0 +1,21 @@
+####
+#### SCB_ACTRL
+set $ACTRL           = 0x0
+
+define print_scb_actrl
+
+    set $baseaddr = 0xe000e008
+    ###########################
+    ##        ACTRL          ##
+    ###########################
+    set $addr = $baseaddr + $ACTRL
+    printf "SCB_ACTRL.ACTRL   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DISOOFP:%d ", (($addr >> 9) & 0x01)
+    printf "DISFPCA:%d ", (($addr >> 8) & 0x01)
+    printf "DISFOLD:%d ", (($addr >> 2) & 0x01)
+    printf "DISDEFWBUF:%d ", (($addr >> 1) & 0x01)
+    printf "DISMCYCINT:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+end

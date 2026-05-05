@@ -1,0 +1,15 @@
+####
+#### NVIC_STIR
+set $STIR            = 0x0
+
+define print_nvic_stir
+
+    set $baseaddr = 0xe000ef00
+    ###########################
+    ##        STIR           ##
+    ###########################
+    set $addr = $baseaddr + $STIR
+    printf "NVIC_STIR.STIR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+end

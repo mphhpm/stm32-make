@@ -1,0 +1,69 @@
+####
+#### MPU
+set $MPU_TYPER       = 0x0
+set $MPU_CTRL        = 0x4
+set $MPU_RNR         = 0x8
+set $MPU_RBAR        = 0xc
+set $MPU_RASR        = 0x10
+
+define print_mpu
+
+    set $baseaddr = 0xe000ed90
+    ###########################
+    ##        MPU_TYPER        ##
+    ###########################
+    set $addr = $baseaddr + $MPU_TYPER
+    printf "MPU.MPU_TYPER 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IREGION:%d ", (($addr >> 16) & 0xff)
+    printf "DREGION:%d ", (($addr >> 8) & 0xff)
+    printf "SEPARATE:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        MPU_CTRL        ##
+    ###########################
+    set $addr = $baseaddr + $MPU_CTRL
+    printf "MPU.MPU_CTRL 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "PRIVDEFENA:%d ", (($addr >> 2) & 0x01)
+    printf "HFNMIENA:%d ", (($addr >> 1) & 0x01)
+    printf "ENABLE:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        MPU_RNR        ##
+    ###########################
+    set $addr = $baseaddr + $MPU_RNR
+    printf "MPU.MPU_RNR 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        MPU_RBAR        ##
+    ###########################
+    set $addr = $baseaddr + $MPU_RBAR
+    printf "MPU.MPU_RBAR 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "ADDR:%d ", (($addr >> 5) & 0x7ffffff)
+    printf "VALID:%d ", (($addr >> 4) & 0x01)
+    printf "REGION:%d ", (($addr >> 0) & 0x0f)
+    printf "\n"
+
+    ###########################
+    ##        MPU_RASR        ##
+    ###########################
+    set $addr = $baseaddr + $MPU_RASR
+    printf "MPU.MPU_RASR 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "XN:%d ", (($addr >> 28) & 0x01)
+    printf "AP:%d ", (($addr >> 24) & 0x07)
+    printf "TEX:%d ", (($addr >> 19) & 0x07)
+    printf "S:%d ", (($addr >> 18) & 0x01)
+    printf "C:%d ", (($addr >> 17) & 0x01)
+    printf "B:%d ", (($addr >> 16) & 0x01)
+    printf "SRD:%d ", (($addr >> 8) & 0xff)
+    printf "SIZE:%d ", (($addr >> 1) & 0x1f)
+    printf "ENABLE:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+end

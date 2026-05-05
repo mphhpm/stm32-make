@@ -1,0 +1,314 @@
+####
+#### TIM1
+set $CR1             = 0x0
+set $CR2             = 0x4
+set $SMCR            = 0x8
+set $DIER            = 0xc
+set $SR              = 0x10
+set $EGR             = 0x14
+set $CCMR1_Output    = 0x18
+set $CCMR1_Input     = 0x18
+set $CCMR2_Output    = 0x1c
+set $CCMR2_Input     = 0x1c
+set $CCER            = 0x20
+set $CNT             = 0x24
+set $PSC             = 0x28
+set $ARR             = 0x2c
+set $RCR             = 0x30
+set $CCR1            = 0x34
+set $CCR2            = 0x38
+set $CCR3            = 0x3c
+set $CCR4            = 0x40
+set $BDTR            = 0x44
+set $DCR             = 0x48
+set $DMAR            = 0x4c
+
+define print_tim1
+
+    set $baseaddr = 0x40010000
+    ###########################
+    ##        CR1            ##
+    ###########################
+    set $addr = $baseaddr + $CR1
+    printf "TIM1.CR1     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CKD:%d ", (($addr >> 8) & 0x03)
+    printf "ARPE:%d ", (($addr >> 7) & 0x01)
+    printf "CMS:%d ", (($addr >> 5) & 0x03)
+    printf "DIR:%d ", (($addr >> 4) & 0x01)
+    printf "OPM:%d ", (($addr >> 3) & 0x01)
+    printf "URS:%d ", (($addr >> 2) & 0x01)
+    printf "UDIS:%d ", (($addr >> 1) & 0x01)
+    printf "CEN:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        CR2            ##
+    ###########################
+    set $addr = $baseaddr + $CR2
+    printf "TIM1.CR2     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "OIS4:%d ", (($addr >> 14) & 0x01)
+    printf "OIS3N:%d ", (($addr >> 13) & 0x01)
+    printf "OIS3:%d ", (($addr >> 12) & 0x01)
+    printf "OIS2N:%d ", (($addr >> 11) & 0x01)
+    printf "OIS2:%d ", (($addr >> 10) & 0x01)
+    printf "OIS1N:%d ", (($addr >> 9) & 0x01)
+    printf "OIS1:%d ", (($addr >> 8) & 0x01)
+    printf "TI1S:%d ", (($addr >> 7) & 0x01)
+    printf "MMS:%d ", (($addr >> 4) & 0x07)
+    printf "CCDS:%d ", (($addr >> 3) & 0x01)
+    printf "CCUS:%d ", (($addr >> 2) & 0x01)
+    printf "CCPC:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        SMCR           ##
+    ###########################
+    set $addr = $baseaddr + $SMCR
+    printf "TIM1.SMCR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "ETP:%d ", (($addr >> 15) & 0x01)
+    printf "ECE:%d ", (($addr >> 14) & 0x01)
+    printf "ETPS:%d ", (($addr >> 12) & 0x03)
+    printf "ETF:%d ", (($addr >> 8) & 0x0f)
+    printf "MSM:%d ", (($addr >> 7) & 0x01)
+    printf "TS:%d ", (($addr >> 4) & 0x07)
+    printf "SMS:%d ", (($addr >> 0) & 0x07)
+    printf "\n"
+
+    ###########################
+    ##        DIER           ##
+    ###########################
+    set $addr = $baseaddr + $DIER
+    printf "TIM1.DIER    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "TDE:%d ", (($addr >> 14) & 0x01)
+    printf "COMDE:%d ", (($addr >> 13) & 0x01)
+    printf "CC4DE:%d ", (($addr >> 12) & 0x01)
+    printf "CC3DE:%d ", (($addr >> 11) & 0x01)
+    printf "CC2DE:%d ", (($addr >> 10) & 0x01)
+    printf "CC1DE:%d ", (($addr >> 9) & 0x01)
+    printf "UDE:%d ", (($addr >> 8) & 0x01)
+    printf "BIE:%d ", (($addr >> 7) & 0x01)
+    printf "TIE:%d ", (($addr >> 6) & 0x01)
+    printf "COMIE:%d ", (($addr >> 5) & 0x01)
+    printf "CC4IE:%d ", (($addr >> 4) & 0x01)
+    printf "CC3IE:%d ", (($addr >> 3) & 0x01)
+    printf "CC2IE:%d ", (($addr >> 2) & 0x01)
+    printf "CC1IE:%d ", (($addr >> 1) & 0x01)
+    printf "UIE:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        SR             ##
+    ###########################
+    set $addr = $baseaddr + $SR
+    printf "TIM1.SR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CC4OF:%d ", (($addr >> 12) & 0x01)
+    printf "CC3OF:%d ", (($addr >> 11) & 0x01)
+    printf "CC2OF:%d ", (($addr >> 10) & 0x01)
+    printf "CC1OF:%d ", (($addr >> 9) & 0x01)
+    printf "BIF:%d ", (($addr >> 7) & 0x01)
+    printf "TIF:%d ", (($addr >> 6) & 0x01)
+    printf "COMIF:%d ", (($addr >> 5) & 0x01)
+    printf "CC4IF:%d ", (($addr >> 4) & 0x01)
+    printf "CC3IF:%d ", (($addr >> 3) & 0x01)
+    printf "CC2IF:%d ", (($addr >> 2) & 0x01)
+    printf "CC1IF:%d ", (($addr >> 1) & 0x01)
+    printf "UIF:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        EGR            ##
+    ###########################
+    set $addr = $baseaddr + $EGR
+    printf "TIM1.EGR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BG:%d ", (($addr >> 7) & 0x01)
+    printf "TG:%d ", (($addr >> 6) & 0x01)
+    printf "COMG:%d ", (($addr >> 5) & 0x01)
+    printf "CC4G:%d ", (($addr >> 4) & 0x01)
+    printf "CC3G:%d ", (($addr >> 3) & 0x01)
+    printf "CC2G:%d ", (($addr >> 2) & 0x01)
+    printf "CC1G:%d ", (($addr >> 1) & 0x01)
+    printf "UG:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        CCMR1_Output        ##
+    ###########################
+    set $addr = $baseaddr + $CCMR1_Output
+    printf "TIM1.CCMR1_Output 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "OC2CE:%d ", (($addr >> 15) & 0x01)
+    printf "OC2M:%d ", (($addr >> 12) & 0x07)
+    printf "OC2PE:%d ", (($addr >> 11) & 0x01)
+    printf "OC2FE:%d ", (($addr >> 10) & 0x01)
+    printf "CC2S:%d ", (($addr >> 8) & 0x03)
+    printf "OC1CE:%d ", (($addr >> 7) & 0x01)
+    printf "OC1M:%d ", (($addr >> 4) & 0x07)
+    printf "OC1PE:%d ", (($addr >> 3) & 0x01)
+    printf "OC1FE:%d ", (($addr >> 2) & 0x01)
+    printf "CC1S:%d ", (($addr >> 0) & 0x03)
+    printf "\n"
+
+    ###########################
+    ##        CCMR1_Input        ##
+    ###########################
+    set $addr = $baseaddr + $CCMR1_Input
+    printf "TIM1.CCMR1_Input 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IC2F:%d ", (($addr >> 12) & 0x0f)
+    printf "IC2PCS:%d ", (($addr >> 10) & 0x03)
+    printf "CC2S:%d ", (($addr >> 8) & 0x03)
+    printf "IC1F:%d ", (($addr >> 4) & 0x0f)
+    printf "ICPCS:%d ", (($addr >> 2) & 0x03)
+    printf "CC1S:%d ", (($addr >> 0) & 0x03)
+    printf "\n"
+
+    ###########################
+    ##        CCMR2_Output        ##
+    ###########################
+    set $addr = $baseaddr + $CCMR2_Output
+    printf "TIM1.CCMR2_Output 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "OC4CE:%d ", (($addr >> 15) & 0x01)
+    printf "OC4M:%d ", (($addr >> 12) & 0x07)
+    printf "OC4PE:%d ", (($addr >> 11) & 0x01)
+    printf "OC4FE:%d ", (($addr >> 10) & 0x01)
+    printf "CC4S:%d ", (($addr >> 8) & 0x03)
+    printf "OC3CE:%d ", (($addr >> 7) & 0x01)
+    printf "OC3M:%d ", (($addr >> 4) & 0x07)
+    printf "OC3PE:%d ", (($addr >> 3) & 0x01)
+    printf "OC3FE:%d ", (($addr >> 2) & 0x01)
+    printf "CC3S:%d ", (($addr >> 0) & 0x03)
+    printf "\n"
+
+    ###########################
+    ##        CCMR2_Input        ##
+    ###########################
+    set $addr = $baseaddr + $CCMR2_Input
+    printf "TIM1.CCMR2_Input 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IC4F:%d ", (($addr >> 12) & 0x0f)
+    printf "IC4PSC:%d ", (($addr >> 10) & 0x03)
+    printf "CC4S:%d ", (($addr >> 8) & 0x03)
+    printf "IC3F:%d ", (($addr >> 4) & 0x0f)
+    printf "IC3PSC:%d ", (($addr >> 2) & 0x03)
+    printf "CC3S:%d ", (($addr >> 0) & 0x03)
+    printf "\n"
+
+    ###########################
+    ##        CCER           ##
+    ###########################
+    set $addr = $baseaddr + $CCER
+    printf "TIM1.CCER    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CC4P:%d ", (($addr >> 13) & 0x01)
+    printf "CC4E:%d ", (($addr >> 12) & 0x01)
+    printf "CC3NP:%d ", (($addr >> 11) & 0x01)
+    printf "CC3NE:%d ", (($addr >> 10) & 0x01)
+    printf "CC3P:%d ", (($addr >> 9) & 0x01)
+    printf "CC3E:%d ", (($addr >> 8) & 0x01)
+    printf "CC2NP:%d ", (($addr >> 7) & 0x01)
+    printf "CC2NE:%d ", (($addr >> 6) & 0x01)
+    printf "CC2P:%d ", (($addr >> 5) & 0x01)
+    printf "CC2E:%d ", (($addr >> 4) & 0x01)
+    printf "CC1NP:%d ", (($addr >> 3) & 0x01)
+    printf "CC1NE:%d ", (($addr >> 2) & 0x01)
+    printf "CC1P:%d ", (($addr >> 1) & 0x01)
+    printf "CC1E:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        CNT            ##
+    ###########################
+    set $addr = $baseaddr + $CNT
+    printf "TIM1.CNT     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        PSC            ##
+    ###########################
+    set $addr = $baseaddr + $PSC
+    printf "TIM1.PSC     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        ARR            ##
+    ###########################
+    set $addr = $baseaddr + $ARR
+    printf "TIM1.ARR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        RCR            ##
+    ###########################
+    set $addr = $baseaddr + $RCR
+    printf "TIM1.RCR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        CCR1           ##
+    ###########################
+    set $addr = $baseaddr + $CCR1
+    printf "TIM1.CCR1    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        CCR2           ##
+    ###########################
+    set $addr = $baseaddr + $CCR2
+    printf "TIM1.CCR2    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        CCR3           ##
+    ###########################
+    set $addr = $baseaddr + $CCR3
+    printf "TIM1.CCR3    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        CCR4           ##
+    ###########################
+    set $addr = $baseaddr + $CCR4
+    printf "TIM1.CCR4    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BDTR           ##
+    ###########################
+    set $addr = $baseaddr + $BDTR
+    printf "TIM1.BDTR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "MOE:%d ", (($addr >> 15) & 0x01)
+    printf "AOE:%d ", (($addr >> 14) & 0x01)
+    printf "BKP:%d ", (($addr >> 13) & 0x01)
+    printf "BKE:%d ", (($addr >> 12) & 0x01)
+    printf "OSSR:%d ", (($addr >> 11) & 0x01)
+    printf "OSSI:%d ", (($addr >> 10) & 0x01)
+    printf "LOCK:%d ", (($addr >> 8) & 0x03)
+    printf "DTG:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+    ###########################
+    ##        DCR            ##
+    ###########################
+    set $addr = $baseaddr + $DCR
+    printf "TIM1.DCR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DBL:%d ", (($addr >> 8) & 0x1f)
+    printf "DBA:%d ", (($addr >> 0) & 0x1f)
+    printf "\n"
+
+    ###########################
+    ##        DMAR           ##
+    ###########################
+    set $addr = $baseaddr + $DMAR
+    printf "TIM1.DMAR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+end

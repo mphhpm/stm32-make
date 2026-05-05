@@ -1,0 +1,48 @@
+####
+#### STK
+set $CTRL            = 0x0
+set $LOAD            = 0x4
+set $VAL             = 0x8
+set $CALIB           = 0xc
+
+define print_stk
+
+    set $baseaddr = 0xe000e010
+    ###########################
+    ##        CTRL           ##
+    ###########################
+    set $addr = $baseaddr + $CTRL
+    printf "STK.CTRL    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "COUNTFLAG:%d ", (($addr >> 16) & 0x01)
+    printf "CLKSOURCE:%d ", (($addr >> 2) & 0x01)
+    printf "TICKINT:%d ", (($addr >> 1) & 0x01)
+    printf "ENABLE:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        LOAD           ##
+    ###########################
+    set $addr = $baseaddr + $LOAD
+    printf "STK.LOAD    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        VAL            ##
+    ###########################
+    set $addr = $baseaddr + $VAL
+    printf "STK.VAL     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        CALIB          ##
+    ###########################
+    set $addr = $baseaddr + $CALIB
+    printf "STK.CALIB   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "NOREF:%d ", (($addr >> 31) & 0x01)
+    printf "SKEW:%d ", (($addr >> 30) & 0x01)
+    printf "TENMS:%d ", (($addr >> 0) & 0xffffff)
+    printf "\n"
+
+end

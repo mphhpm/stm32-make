@@ -1,0 +1,119 @@
+####
+#### USART1
+set $SR              = 0x0
+set $DR              = 0x4
+set $BRR             = 0x8
+set $CR1             = 0xc
+set $CR2             = 0x10
+set $CR3             = 0x14
+set $GTPR            = 0x18
+
+define print_usart1
+
+    set $baseaddr = 0x40011000
+    ###########################
+    ##        SR             ##
+    ###########################
+    set $addr = $baseaddr + $SR
+    printf "USART1.SR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CTS:%d ", (($addr >> 9) & 0x01)
+    printf "LBD:%d ", (($addr >> 8) & 0x01)
+    printf "TXE:%d ", (($addr >> 7) & 0x01)
+    printf "TC:%d ", (($addr >> 6) & 0x01)
+    printf "RXNE:%d ", (($addr >> 5) & 0x01)
+    printf "IDLE:%d ", (($addr >> 4) & 0x01)
+    printf "ORE:%d ", (($addr >> 3) & 0x01)
+    printf "NF:%d ", (($addr >> 2) & 0x01)
+    printf "FE:%d ", (($addr >> 1) & 0x01)
+    printf "PE:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        DR             ##
+    ###########################
+    set $addr = $baseaddr + $DR
+    printf "USART1.DR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "\n"
+
+    ###########################
+    ##        BRR            ##
+    ###########################
+    set $addr = $baseaddr + $BRR
+    printf "USART1.BRR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DIV_Mantissa:%d ", (($addr >> 4) & 0xfff)
+    printf "DIV_Fraction:%d ", (($addr >> 0) & 0x0f)
+    printf "\n"
+
+    ###########################
+    ##        CR1            ##
+    ###########################
+    set $addr = $baseaddr + $CR1
+    printf "USART1.CR1     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "OVER8:%d ", (($addr >> 15) & 0x01)
+    printf "UE:%d ", (($addr >> 13) & 0x01)
+    printf "M:%d ", (($addr >> 12) & 0x01)
+    printf "WAKE:%d ", (($addr >> 11) & 0x01)
+    printf "PCE:%d ", (($addr >> 10) & 0x01)
+    printf "PS:%d ", (($addr >> 9) & 0x01)
+    printf "PEIE:%d ", (($addr >> 8) & 0x01)
+    printf "TXEIE:%d ", (($addr >> 7) & 0x01)
+    printf "TCIE:%d ", (($addr >> 6) & 0x01)
+    printf "RXNEIE:%d ", (($addr >> 5) & 0x01)
+    printf "IDLEIE:%d ", (($addr >> 4) & 0x01)
+    printf "TE:%d ", (($addr >> 3) & 0x01)
+    printf "RE:%d ", (($addr >> 2) & 0x01)
+    printf "RWU:%d ", (($addr >> 1) & 0x01)
+    printf "SBK:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        CR2            ##
+    ###########################
+    set $addr = $baseaddr + $CR2
+    printf "USART1.CR2     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "LINEN:%d ", (($addr >> 14) & 0x01)
+    printf "STOP:%d ", (($addr >> 12) & 0x03)
+    printf "CLKEN:%d ", (($addr >> 11) & 0x01)
+    printf "CPOL:%d ", (($addr >> 10) & 0x01)
+    printf "CPHA:%d ", (($addr >> 9) & 0x01)
+    printf "LBCL:%d ", (($addr >> 8) & 0x01)
+    printf "LBDIE:%d ", (($addr >> 6) & 0x01)
+    printf "LBDL:%d ", (($addr >> 5) & 0x01)
+    printf "ADD:%d ", (($addr >> 0) & 0x0f)
+    printf "\n"
+
+    ###########################
+    ##        CR3            ##
+    ###########################
+    set $addr = $baseaddr + $CR3
+    printf "USART1.CR3     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "ONEBIT:%d ", (($addr >> 11) & 0x01)
+    printf "CTSIE:%d ", (($addr >> 10) & 0x01)
+    printf "CTSE:%d ", (($addr >> 9) & 0x01)
+    printf "RTSE:%d ", (($addr >> 8) & 0x01)
+    printf "DMAT:%d ", (($addr >> 7) & 0x01)
+    printf "DMAR:%d ", (($addr >> 6) & 0x01)
+    printf "SCEN:%d ", (($addr >> 5) & 0x01)
+    printf "NACK:%d ", (($addr >> 4) & 0x01)
+    printf "HDSEL:%d ", (($addr >> 3) & 0x01)
+    printf "IRLP:%d ", (($addr >> 2) & 0x01)
+    printf "IREN:%d ", (($addr >> 1) & 0x01)
+    printf "EIE:%d ", (($addr >> 0) & 0x01)
+    printf "\n"
+
+    ###########################
+    ##        GTPR           ##
+    ###########################
+    set $addr = $baseaddr + $GTPR
+    printf "USART1.GTPR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "GT:%d ", (($addr >> 8) & 0xff)
+    printf "PSC:%d ", (($addr >> 0) & 0xff)
+    printf "\n"
+
+end
