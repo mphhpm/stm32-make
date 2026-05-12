@@ -13,29 +13,34 @@ define print_wwdg
     ##        CR             ##
     ###########################
     set $addr = $baseaddr + $CR
+    set $data = *$addr
     printf "WWDG.CR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "WDGA:%d ", (($addr >> 7) & 0x01)
-    printf "T:%d ", (($addr >> 0) & 0x7f)
+    printf "WDGA[7]=%d ", (($data >> 7) & 0x01)
+    printf "T[6:0]=%d ", (($data >> 0) & 0x7f)
     printf "\n"
 
     ###########################
     ##        CFR            ##
     ###########################
     set $addr = $baseaddr + $CFR
+    set $data = *$addr
     printf "WWDG.CFR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "EWI:%d ", (($addr >> 9) & 0x01)
-    printf "WDGTB1:%d ", (($addr >> 8) & 0x01)
-    printf "WDGTB0:%d ", (($addr >> 7) & 0x01)
-    printf "W:%d ", (($addr >> 0) & 0x7f)
+    printf "EWI[9]=%d ", (($data >> 9) & 0x01)
+    printf "WDGTB1[8]=%d ", (($data >> 8) & 0x01)
+    printf "WDGTB0[7]=%d ", (($data >> 7) & 0x01)
+    printf "W[6:0]=%d ", (($data >> 0) & 0x7f)
     printf "\n"
 
     ###########################
     ##        SR             ##
     ###########################
     set $addr = $baseaddr + $SR
+    set $data = *$addr
     printf "WWDG.SR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "EWIF[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
 end

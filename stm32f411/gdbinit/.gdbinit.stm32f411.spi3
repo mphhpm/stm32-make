@@ -19,109 +19,126 @@ define print_spi3
     ##        CR1            ##
     ###########################
     set $addr = $baseaddr + $CR1
+    set $data = *$addr
     printf "SPI3.CR1     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "BIDIMODE:%d ", (($addr >> 15) & 0x01)
-    printf "BIDIOE:%d ", (($addr >> 14) & 0x01)
-    printf "CRCEN:%d ", (($addr >> 13) & 0x01)
-    printf "CRCNEXT:%d ", (($addr >> 12) & 0x01)
-    printf "DFF:%d ", (($addr >> 11) & 0x01)
-    printf "RXONLY:%d ", (($addr >> 10) & 0x01)
-    printf "SSM:%d ", (($addr >> 9) & 0x01)
-    printf "SSI:%d ", (($addr >> 8) & 0x01)
-    printf "LSBFIRST:%d ", (($addr >> 7) & 0x01)
-    printf "SPE:%d ", (($addr >> 6) & 0x01)
-    printf "BR:%d ", (($addr >> 3) & 0x07)
-    printf "MSTR:%d ", (($addr >> 2) & 0x01)
-    printf "CPOL:%d ", (($addr >> 1) & 0x01)
-    printf "CPHA:%d ", (($addr >> 0) & 0x01)
+    printf "BIDIMODE[15]=%d ", (($data >> 15) & 0x01)
+    printf "BIDIOE[14]=%d ", (($data >> 14) & 0x01)
+    printf "CRCEN[13]=%d ", (($data >> 13) & 0x01)
+    printf "CRCNEXT[12]=%d ", (($data >> 12) & 0x01)
+    printf "DFF[11]=%d ", (($data >> 11) & 0x01)
+    printf "RXONLY[10]=%d ", (($data >> 10) & 0x01)
+    printf "SSM[9]=%d ", (($data >> 9) & 0x01)
+    printf "SSI[8]=%d ", (($data >> 8) & 0x01)
+    printf "LSBFIRST[7]=%d ", (($data >> 7) & 0x01)
+    printf "SPE[6]=%d ", (($data >> 6) & 0x01)
+    printf "BR[5:3]=%d ", (($data >> 3) & 0x07)
+    printf "MSTR[2]=%d ", (($data >> 2) & 0x01)
+    printf "CPOL[1]=%d ", (($data >> 1) & 0x01)
+    printf "CPHA[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        CR2            ##
     ###########################
     set $addr = $baseaddr + $CR2
+    set $data = *$addr
     printf "SPI3.CR2     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "TXEIE:%d ", (($addr >> 7) & 0x01)
-    printf "RXNEIE:%d ", (($addr >> 6) & 0x01)
-    printf "ERRIE:%d ", (($addr >> 5) & 0x01)
-    printf "FRF:%d ", (($addr >> 4) & 0x01)
-    printf "SSOE:%d ", (($addr >> 2) & 0x01)
-    printf "TXDMAEN:%d ", (($addr >> 1) & 0x01)
-    printf "RXDMAEN:%d ", (($addr >> 0) & 0x01)
+    printf "TXEIE[7]=%d ", (($data >> 7) & 0x01)
+    printf "RXNEIE[6]=%d ", (($data >> 6) & 0x01)
+    printf "ERRIE[5]=%d ", (($data >> 5) & 0x01)
+    printf "FRF[4]=%d ", (($data >> 4) & 0x01)
+    printf "SSOE[2]=%d ", (($data >> 2) & 0x01)
+    printf "TXDMAEN[1]=%d ", (($data >> 1) & 0x01)
+    printf "RXDMAEN[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        SR             ##
     ###########################
     set $addr = $baseaddr + $SR
+    set $data = *$addr
     printf "SPI3.SR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "TIFRFE:%d ", (($addr >> 8) & 0x01)
-    printf "BSY:%d ", (($addr >> 7) & 0x01)
-    printf "OVR:%d ", (($addr >> 6) & 0x01)
-    printf "MODF:%d ", (($addr >> 5) & 0x01)
-    printf "CRCERR:%d ", (($addr >> 4) & 0x01)
-    printf "UDR:%d ", (($addr >> 3) & 0x01)
-    printf "CHSIDE:%d ", (($addr >> 2) & 0x01)
-    printf "TXE:%d ", (($addr >> 1) & 0x01)
-    printf "RXNE:%d ", (($addr >> 0) & 0x01)
+    printf "TIFRFE[8]=%d ", (($data >> 8) & 0x01)
+    printf "BSY[7]=%d ", (($data >> 7) & 0x01)
+    printf "OVR[6]=%d ", (($data >> 6) & 0x01)
+    printf "MODF[5]=%d ", (($data >> 5) & 0x01)
+    printf "CRCERR[4]=%d ", (($data >> 4) & 0x01)
+    printf "UDR[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHSIDE[2]=%d ", (($data >> 2) & 0x01)
+    printf "TXE[1]=%d ", (($data >> 1) & 0x01)
+    printf "RXNE[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        DR             ##
     ###########################
     set $addr = $baseaddr + $DR
+    set $data = *$addr
     printf "SPI3.DR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DR[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        CRCPR          ##
     ###########################
     set $addr = $baseaddr + $CRCPR
+    set $data = *$addr
     printf "SPI3.CRCPR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CRCPOLY[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        RXCRCR         ##
     ###########################
     set $addr = $baseaddr + $RXCRCR
+    set $data = *$addr
     printf "SPI3.RXCRCR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "RxCRC[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        TXCRCR         ##
     ###########################
     set $addr = $baseaddr + $TXCRCR
+    set $data = *$addr
     printf "SPI3.TXCRCR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "TxCRC[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        I2SCFGR        ##
     ###########################
     set $addr = $baseaddr + $I2SCFGR
+    set $data = *$addr
     printf "SPI3.I2SCFGR 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "I2SMOD:%d ", (($addr >> 11) & 0x01)
-    printf "I2SE:%d ", (($addr >> 10) & 0x01)
-    printf "I2SCFG:%d ", (($addr >> 8) & 0x03)
-    printf "PCMSYNC:%d ", (($addr >> 7) & 0x01)
-    printf "I2SSTD:%d ", (($addr >> 4) & 0x03)
-    printf "CKPOL:%d ", (($addr >> 3) & 0x01)
-    printf "DATLEN:%d ", (($addr >> 1) & 0x03)
-    printf "CHLEN:%d ", (($addr >> 0) & 0x01)
+    printf "I2SMOD[11]=%d ", (($data >> 11) & 0x01)
+    printf "I2SE[10]=%d ", (($data >> 10) & 0x01)
+    printf "I2SCFG[9:8]=%d ", (($data >> 8) & 0x03)
+    printf "PCMSYNC[7]=%d ", (($data >> 7) & 0x01)
+    printf "I2SSTD[5:4]=%d ", (($data >> 4) & 0x03)
+    printf "CKPOL[3]=%d ", (($data >> 3) & 0x01)
+    printf "DATLEN[2:1]=%d ", (($data >> 1) & 0x03)
+    printf "CHLEN[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        I2SPR          ##
     ###########################
     set $addr = $baseaddr + $I2SPR
+    set $data = *$addr
     printf "SPI3.I2SPR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "MCKOE:%d ", (($addr >> 9) & 0x01)
-    printf "ODD:%d ", (($addr >> 8) & 0x01)
-    printf "I2SDIV:%d ", (($addr >> 0) & 0xff)
+    printf "MCKOE[9]=%d ", (($data >> 9) & 0x01)
+    printf "ODD[8]=%d ", (($data >> 8) & 0x01)
+    printf "I2SDIV[7:0]=%d ", (($data >> 0) & 0xff)
     printf "\n"
 
 end

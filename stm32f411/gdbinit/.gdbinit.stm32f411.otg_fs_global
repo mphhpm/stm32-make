@@ -29,263 +29,286 @@ define print_otg_fs_global
     ##        FS_GOTGCTL        ##
     ###########################
     set $addr = $baseaddr + $FS_GOTGCTL
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_GOTGCTL 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "BSVLD:%d ", (($addr >> 19) & 0x01)
-    printf "ASVLD:%d ", (($addr >> 18) & 0x01)
-    printf "DBCT:%d ", (($addr >> 17) & 0x01)
-    printf "CIDSTS:%d ", (($addr >> 16) & 0x01)
-    printf "DHNPEN:%d ", (($addr >> 11) & 0x01)
-    printf "HSHNPEN:%d ", (($addr >> 10) & 0x01)
-    printf "HNPRQ:%d ", (($addr >> 9) & 0x01)
-    printf "HNGSCS:%d ", (($addr >> 8) & 0x01)
-    printf "SRQ:%d ", (($addr >> 1) & 0x01)
-    printf "SRQSCS:%d ", (($addr >> 0) & 0x01)
+    printf "BSVLD[19]=%d ", (($data >> 19) & 0x01)
+    printf "ASVLD[18]=%d ", (($data >> 18) & 0x01)
+    printf "DBCT[17]=%d ", (($data >> 17) & 0x01)
+    printf "CIDSTS[16]=%d ", (($data >> 16) & 0x01)
+    printf "DHNPEN[11]=%d ", (($data >> 11) & 0x01)
+    printf "HSHNPEN[10]=%d ", (($data >> 10) & 0x01)
+    printf "HNPRQ[9]=%d ", (($data >> 9) & 0x01)
+    printf "HNGSCS[8]=%d ", (($data >> 8) & 0x01)
+    printf "SRQ[1]=%d ", (($data >> 1) & 0x01)
+    printf "SRQSCS[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_GOTGINT        ##
     ###########################
     set $addr = $baseaddr + $FS_GOTGINT
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_GOTGINT 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DBCDNE:%d ", (($addr >> 19) & 0x01)
-    printf "ADTOCHG:%d ", (($addr >> 18) & 0x01)
-    printf "HNGDET:%d ", (($addr >> 17) & 0x01)
-    printf "HNSSCHG:%d ", (($addr >> 9) & 0x01)
-    printf "SRSSCHG:%d ", (($addr >> 8) & 0x01)
-    printf "SEDET:%d ", (($addr >> 2) & 0x01)
+    printf "DBCDNE[19]=%d ", (($data >> 19) & 0x01)
+    printf "ADTOCHG[18]=%d ", (($data >> 18) & 0x01)
+    printf "HNGDET[17]=%d ", (($data >> 17) & 0x01)
+    printf "HNSSCHG[9]=%d ", (($data >> 9) & 0x01)
+    printf "SRSSCHG[8]=%d ", (($data >> 8) & 0x01)
+    printf "SEDET[2]=%d ", (($data >> 2) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_GAHBCFG        ##
     ###########################
     set $addr = $baseaddr + $FS_GAHBCFG
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_GAHBCFG 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "PTXFELVL:%d ", (($addr >> 8) & 0x01)
-    printf "TXFELVL:%d ", (($addr >> 7) & 0x01)
-    printf "GINT:%d ", (($addr >> 0) & 0x01)
+    printf "PTXFELVL[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXFELVL[7]=%d ", (($data >> 7) & 0x01)
+    printf "GINT[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_GUSBCFG        ##
     ###########################
     set $addr = $baseaddr + $FS_GUSBCFG
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_GUSBCFG 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CTXPKT:%d ", (($addr >> 31) & 0x01)
-    printf "FDMOD:%d ", (($addr >> 30) & 0x01)
-    printf "FHMOD:%d ", (($addr >> 29) & 0x01)
-    printf "TRDT:%d ", (($addr >> 10) & 0x0f)
-    printf "HNPCAP:%d ", (($addr >> 9) & 0x01)
-    printf "SRPCAP:%d ", (($addr >> 8) & 0x01)
-    printf "PHYSEL:%d ", (($addr >> 6) & 0x01)
-    printf "TOCAL:%d ", (($addr >> 0) & 0x07)
+    printf "CTXPKT[31]=%d ", (($data >> 31) & 0x01)
+    printf "FDMOD[30]=%d ", (($data >> 30) & 0x01)
+    printf "FHMOD[29]=%d ", (($data >> 29) & 0x01)
+    printf "TRDT[13:10]=%d ", (($data >> 10) & 0x0f)
+    printf "HNPCAP[9]=%d ", (($data >> 9) & 0x01)
+    printf "SRPCAP[8]=%d ", (($data >> 8) & 0x01)
+    printf "PHYSEL[6]=%d ", (($data >> 6) & 0x01)
+    printf "TOCAL[2:0]=%d ", (($data >> 0) & 0x07)
     printf "\n"
 
     ###########################
     ##        FS_GRSTCTL        ##
     ###########################
     set $addr = $baseaddr + $FS_GRSTCTL
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_GRSTCTL 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "AHBIDL:%d ", (($addr >> 31) & 0x01)
-    printf "TXFNUM:%d ", (($addr >> 6) & 0x1f)
-    printf "TXFFLSH:%d ", (($addr >> 5) & 0x01)
-    printf "RXFFLSH:%d ", (($addr >> 4) & 0x01)
-    printf "FCRST:%d ", (($addr >> 2) & 0x01)
-    printf "HSRST:%d ", (($addr >> 1) & 0x01)
-    printf "CSRST:%d ", (($addr >> 0) & 0x01)
+    printf "AHBIDL[31]=%d ", (($data >> 31) & 0x01)
+    printf "TXFNUM[10:6]=%d ", (($data >> 6) & 0x1f)
+    printf "TXFFLSH[5]=%d ", (($data >> 5) & 0x01)
+    printf "RXFFLSH[4]=%d ", (($data >> 4) & 0x01)
+    printf "FCRST[2]=%d ", (($data >> 2) & 0x01)
+    printf "HSRST[1]=%d ", (($data >> 1) & 0x01)
+    printf "CSRST[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_GINTSTS        ##
     ###########################
     set $addr = $baseaddr + $FS_GINTSTS
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_GINTSTS 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "WKUPINT:%d ", (($addr >> 31) & 0x01)
-    printf "SRQINT:%d ", (($addr >> 30) & 0x01)
-    printf "DISCINT:%d ", (($addr >> 29) & 0x01)
-    printf "CIDSCHG:%d ", (($addr >> 28) & 0x01)
-    printf "PTXFE:%d ", (($addr >> 26) & 0x01)
-    printf "HCINT:%d ", (($addr >> 25) & 0x01)
-    printf "HPRTINT:%d ", (($addr >> 24) & 0x01)
-    printf "IPXFR_INCOMPISOOUT:%d ", (($addr >> 21) & 0x01)
-    printf "IISOIXFR:%d ", (($addr >> 20) & 0x01)
-    printf "OEPINT:%d ", (($addr >> 19) & 0x01)
-    printf "IEPINT:%d ", (($addr >> 18) & 0x01)
-    printf "EOPF:%d ", (($addr >> 15) & 0x01)
-    printf "ISOODRP:%d ", (($addr >> 14) & 0x01)
-    printf "ENUMDNE:%d ", (($addr >> 13) & 0x01)
-    printf "USBRST:%d ", (($addr >> 12) & 0x01)
-    printf "USBSUSP:%d ", (($addr >> 11) & 0x01)
-    printf "ESUSP:%d ", (($addr >> 10) & 0x01)
-    printf "GOUTNAKEFF:%d ", (($addr >> 7) & 0x01)
-    printf "GINAKEFF:%d ", (($addr >> 6) & 0x01)
-    printf "NPTXFE:%d ", (($addr >> 5) & 0x01)
-    printf "RXFLVL:%d ", (($addr >> 4) & 0x01)
-    printf "SOF:%d ", (($addr >> 3) & 0x01)
-    printf "OTGINT:%d ", (($addr >> 2) & 0x01)
-    printf "MMIS:%d ", (($addr >> 1) & 0x01)
-    printf "CMOD:%d ", (($addr >> 0) & 0x01)
+    printf "WKUPINT[31]=%d ", (($data >> 31) & 0x01)
+    printf "SRQINT[30]=%d ", (($data >> 30) & 0x01)
+    printf "DISCINT[29]=%d ", (($data >> 29) & 0x01)
+    printf "CIDSCHG[28]=%d ", (($data >> 28) & 0x01)
+    printf "PTXFE[26]=%d ", (($data >> 26) & 0x01)
+    printf "HCINT[25]=%d ", (($data >> 25) & 0x01)
+    printf "HPRTINT[24]=%d ", (($data >> 24) & 0x01)
+    printf "IPXFR_INCOMPISOOUT[21]=%d ", (($data >> 21) & 0x01)
+    printf "IISOIXFR[20]=%d ", (($data >> 20) & 0x01)
+    printf "OEPINT[19]=%d ", (($data >> 19) & 0x01)
+    printf "IEPINT[18]=%d ", (($data >> 18) & 0x01)
+    printf "EOPF[15]=%d ", (($data >> 15) & 0x01)
+    printf "ISOODRP[14]=%d ", (($data >> 14) & 0x01)
+    printf "ENUMDNE[13]=%d ", (($data >> 13) & 0x01)
+    printf "USBRST[12]=%d ", (($data >> 12) & 0x01)
+    printf "USBSUSP[11]=%d ", (($data >> 11) & 0x01)
+    printf "ESUSP[10]=%d ", (($data >> 10) & 0x01)
+    printf "GOUTNAKEFF[7]=%d ", (($data >> 7) & 0x01)
+    printf "GINAKEFF[6]=%d ", (($data >> 6) & 0x01)
+    printf "NPTXFE[5]=%d ", (($data >> 5) & 0x01)
+    printf "RXFLVL[4]=%d ", (($data >> 4) & 0x01)
+    printf "SOF[3]=%d ", (($data >> 3) & 0x01)
+    printf "OTGINT[2]=%d ", (($data >> 2) & 0x01)
+    printf "MMIS[1]=%d ", (($data >> 1) & 0x01)
+    printf "CMOD[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_GINTMSK        ##
     ###########################
     set $addr = $baseaddr + $FS_GINTMSK
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_GINTMSK 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "WUIM:%d ", (($addr >> 31) & 0x01)
-    printf "SRQIM:%d ", (($addr >> 30) & 0x01)
-    printf "DISCINT:%d ", (($addr >> 29) & 0x01)
-    printf "CIDSCHGM:%d ", (($addr >> 28) & 0x01)
-    printf "PTXFEM:%d ", (($addr >> 26) & 0x01)
-    printf "HCIM:%d ", (($addr >> 25) & 0x01)
-    printf "PRTIM:%d ", (($addr >> 24) & 0x01)
-    printf "IPXFRM_IISOOXFRM:%d ", (($addr >> 21) & 0x01)
-    printf "IISOIXFRM:%d ", (($addr >> 20) & 0x01)
-    printf "OEPINT:%d ", (($addr >> 19) & 0x01)
-    printf "IEPINT:%d ", (($addr >> 18) & 0x01)
-    printf "EPMISM:%d ", (($addr >> 17) & 0x01)
-    printf "EOPFM:%d ", (($addr >> 15) & 0x01)
-    printf "ISOODRPM:%d ", (($addr >> 14) & 0x01)
-    printf "ENUMDNEM:%d ", (($addr >> 13) & 0x01)
-    printf "USBRST:%d ", (($addr >> 12) & 0x01)
-    printf "USBSUSPM:%d ", (($addr >> 11) & 0x01)
-    printf "ESUSPM:%d ", (($addr >> 10) & 0x01)
-    printf "GONAKEFFM:%d ", (($addr >> 7) & 0x01)
-    printf "GINAKEFFM:%d ", (($addr >> 6) & 0x01)
-    printf "NPTXFEM:%d ", (($addr >> 5) & 0x01)
-    printf "RXFLVLM:%d ", (($addr >> 4) & 0x01)
-    printf "SOFM:%d ", (($addr >> 3) & 0x01)
-    printf "OTGINT:%d ", (($addr >> 2) & 0x01)
-    printf "MMISM:%d ", (($addr >> 1) & 0x01)
+    printf "WUIM[31]=%d ", (($data >> 31) & 0x01)
+    printf "SRQIM[30]=%d ", (($data >> 30) & 0x01)
+    printf "DISCINT[29]=%d ", (($data >> 29) & 0x01)
+    printf "CIDSCHGM[28]=%d ", (($data >> 28) & 0x01)
+    printf "PTXFEM[26]=%d ", (($data >> 26) & 0x01)
+    printf "HCIM[25]=%d ", (($data >> 25) & 0x01)
+    printf "PRTIM[24]=%d ", (($data >> 24) & 0x01)
+    printf "IPXFRM_IISOOXFRM[21]=%d ", (($data >> 21) & 0x01)
+    printf "IISOIXFRM[20]=%d ", (($data >> 20) & 0x01)
+    printf "OEPINT[19]=%d ", (($data >> 19) & 0x01)
+    printf "IEPINT[18]=%d ", (($data >> 18) & 0x01)
+    printf "EPMISM[17]=%d ", (($data >> 17) & 0x01)
+    printf "EOPFM[15]=%d ", (($data >> 15) & 0x01)
+    printf "ISOODRPM[14]=%d ", (($data >> 14) & 0x01)
+    printf "ENUMDNEM[13]=%d ", (($data >> 13) & 0x01)
+    printf "USBRST[12]=%d ", (($data >> 12) & 0x01)
+    printf "USBSUSPM[11]=%d ", (($data >> 11) & 0x01)
+    printf "ESUSPM[10]=%d ", (($data >> 10) & 0x01)
+    printf "GONAKEFFM[7]=%d ", (($data >> 7) & 0x01)
+    printf "GINAKEFFM[6]=%d ", (($data >> 6) & 0x01)
+    printf "NPTXFEM[5]=%d ", (($data >> 5) & 0x01)
+    printf "RXFLVLM[4]=%d ", (($data >> 4) & 0x01)
+    printf "SOFM[3]=%d ", (($data >> 3) & 0x01)
+    printf "OTGINT[2]=%d ", (($data >> 2) & 0x01)
+    printf "MMISM[1]=%d ", (($data >> 1) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_GRXSTSR_Device        ##
     ###########################
     set $addr = $baseaddr + $FS_GRXSTSR_Device
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_GRXSTSR_Device 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "FRMNUM:%d ", (($addr >> 21) & 0x0f)
-    printf "PKTSTS:%d ", (($addr >> 17) & 0x0f)
-    printf "DPID:%d ", (($addr >> 15) & 0x03)
-    printf "BCNT:%d ", (($addr >> 4) & 0x7ff)
-    printf "EPNUM:%d ", (($addr >> 0) & 0x0f)
+    printf "FRMNUM[24:21]=%d ", (($data >> 21) & 0x0f)
+    printf "PKTSTS[20:17]=%d ", (($data >> 17) & 0x0f)
+    printf "DPID[16:15]=%d ", (($data >> 15) & 0x03)
+    printf "BCNT[14:4]=%d ", (($data >> 4) & 0x7ff)
+    printf "EPNUM[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        FS_GRXSTSR_Host        ##
     ###########################
     set $addr = $baseaddr + $FS_GRXSTSR_Host
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_GRXSTSR_Host 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "FRMNUM:%d ", (($addr >> 21) & 0x0f)
-    printf "PKTSTS:%d ", (($addr >> 17) & 0x0f)
-    printf "DPID:%d ", (($addr >> 15) & 0x03)
-    printf "BCNT:%d ", (($addr >> 4) & 0x7ff)
-    printf "EPNUM:%d ", (($addr >> 0) & 0x0f)
+    printf "FRMNUM[24:21]=%d ", (($data >> 21) & 0x0f)
+    printf "PKTSTS[20:17]=%d ", (($data >> 17) & 0x0f)
+    printf "DPID[16:15]=%d ", (($data >> 15) & 0x03)
+    printf "BCNT[14:4]=%d ", (($data >> 4) & 0x7ff)
+    printf "EPNUM[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        FS_GRXFSIZ        ##
     ###########################
     set $addr = $baseaddr + $FS_GRXFSIZ
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_GRXFSIZ 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "RXFD[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        FS_GNPTXFSIZ_Device        ##
     ###########################
     set $addr = $baseaddr + $FS_GNPTXFSIZ_Device
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_GNPTXFSIZ_Device 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "TX0FD:%d ", (($addr >> 16) & 0xffff)
-    printf "TX0FSA:%d ", (($addr >> 0) & 0xffff)
+    printf "TX0FD[31:16]=%d ", (($data >> 16) & 0xffff)
+    printf "TX0FSA[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        FS_GNPTXFSIZ_Host        ##
     ###########################
     set $addr = $baseaddr + $FS_GNPTXFSIZ_Host
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_GNPTXFSIZ_Host 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "NPTXFD:%d ", (($addr >> 16) & 0xffff)
-    printf "NPTXFSA:%d ", (($addr >> 0) & 0xffff)
+    printf "NPTXFD[31:16]=%d ", (($data >> 16) & 0xffff)
+    printf "NPTXFSA[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        FS_GNPTXSTS        ##
     ###########################
     set $addr = $baseaddr + $FS_GNPTXSTS
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_GNPTXSTS 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "NPTXQTOP:%d ", (($addr >> 24) & 0x7f)
-    printf "NPTQXSAV:%d ", (($addr >> 16) & 0xff)
-    printf "NPTXFSAV:%d ", (($addr >> 0) & 0xffff)
+    printf "NPTXQTOP[30:24]=%d ", (($data >> 24) & 0x7f)
+    printf "NPTQXSAV[23:16]=%d ", (($data >> 16) & 0xff)
+    printf "NPTXFSAV[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        FS_GCCFG        ##
     ###########################
     set $addr = $baseaddr + $FS_GCCFG
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_GCCFG 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "SOFOUTEN:%d ", (($addr >> 20) & 0x01)
-    printf "VBUSBSEN:%d ", (($addr >> 19) & 0x01)
-    printf "VBUSASEN:%d ", (($addr >> 18) & 0x01)
-    printf "PWRDWN:%d ", (($addr >> 16) & 0x01)
+    printf "SOFOUTEN[20]=%d ", (($data >> 20) & 0x01)
+    printf "VBUSBSEN[19]=%d ", (($data >> 19) & 0x01)
+    printf "VBUSASEN[18]=%d ", (($data >> 18) & 0x01)
+    printf "PWRDWN[16]=%d ", (($data >> 16) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_CID         ##
     ###########################
     set $addr = $baseaddr + $FS_CID
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_CID  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "PRODUCT_ID[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        FS_HPTXFSIZ        ##
     ###########################
     set $addr = $baseaddr + $FS_HPTXFSIZ
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_HPTXFSIZ 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "PTXFSIZ:%d ", (($addr >> 16) & 0xffff)
-    printf "PTXSA:%d ", (($addr >> 0) & 0xffff)
+    printf "PTXFSIZ[31:16]=%d ", (($data >> 16) & 0xffff)
+    printf "PTXSA[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        FS_DIEPTXF1        ##
     ###########################
     set $addr = $baseaddr + $FS_DIEPTXF1
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_DIEPTXF1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "INEPTXFD:%d ", (($addr >> 16) & 0xffff)
-    printf "INEPTXSA:%d ", (($addr >> 0) & 0xffff)
+    printf "INEPTXFD[31:16]=%d ", (($data >> 16) & 0xffff)
+    printf "INEPTXSA[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        FS_DIEPTXF2        ##
     ###########################
     set $addr = $baseaddr + $FS_DIEPTXF2
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_DIEPTXF2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "INEPTXFD:%d ", (($addr >> 16) & 0xffff)
-    printf "INEPTXSA:%d ", (($addr >> 0) & 0xffff)
+    printf "INEPTXFD[31:16]=%d ", (($data >> 16) & 0xffff)
+    printf "INEPTXSA[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        FS_DIEPTXF3        ##
     ###########################
     set $addr = $baseaddr + $FS_DIEPTXF3
+    set $data = *$addr
     printf "OTG_FS_GLOBAL.FS_DIEPTXF3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "INEPTXFD:%d ", (($addr >> 16) & 0xffff)
-    printf "INEPTXSA:%d ", (($addr >> 0) & 0xffff)
+    printf "INEPTXFD[31:16]=%d ", (($data >> 16) & 0xffff)
+    printf "INEPTXSA[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
 end

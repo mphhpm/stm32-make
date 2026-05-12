@@ -49,406 +49,493 @@ define print_rtc
     ##        TR             ##
     ###########################
     set $addr = $baseaddr + $TR
+    set $data = *$addr
     printf "RTC.TR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "PM:%d ", (($addr >> 22) & 0x01)
-    printf "HT:%d ", (($addr >> 20) & 0x03)
-    printf "HU:%d ", (($addr >> 16) & 0x0f)
-    printf "MNT:%d ", (($addr >> 12) & 0x07)
-    printf "MNU:%d ", (($addr >> 8) & 0x0f)
-    printf "ST:%d ", (($addr >> 4) & 0x07)
-    printf "SU:%d ", (($addr >> 0) & 0x0f)
+    printf "PM[22]=%d ", (($data >> 22) & 0x01)
+    printf "HT[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "HU[19:16]=%d ", (($data >> 16) & 0x0f)
+    printf "MNT[14:12]=%d ", (($data >> 12) & 0x07)
+    printf "MNU[11:8]=%d ", (($data >> 8) & 0x0f)
+    printf "ST[6:4]=%d ", (($data >> 4) & 0x07)
+    printf "SU[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        DR             ##
     ###########################
     set $addr = $baseaddr + $DR
+    set $data = *$addr
     printf "RTC.DR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "YT:%d ", (($addr >> 20) & 0x0f)
-    printf "YU:%d ", (($addr >> 16) & 0x0f)
-    printf "WDU:%d ", (($addr >> 13) & 0x07)
-    printf "MT:%d ", (($addr >> 12) & 0x01)
-    printf "MU:%d ", (($addr >> 8) & 0x0f)
-    printf "DT:%d ", (($addr >> 4) & 0x03)
-    printf "DU:%d ", (($addr >> 0) & 0x0f)
+    printf "YT[23:20]=%d ", (($data >> 20) & 0x0f)
+    printf "YU[19:16]=%d ", (($data >> 16) & 0x0f)
+    printf "WDU[15:13]=%d ", (($data >> 13) & 0x07)
+    printf "MT[12]=%d ", (($data >> 12) & 0x01)
+    printf "MU[11:8]=%d ", (($data >> 8) & 0x0f)
+    printf "DT[5:4]=%d ", (($data >> 4) & 0x03)
+    printf "DU[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        CR             ##
     ###########################
     set $addr = $baseaddr + $CR
+    set $data = *$addr
     printf "RTC.CR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "COE:%d ", (($addr >> 23) & 0x01)
-    printf "OSEL:%d ", (($addr >> 21) & 0x03)
-    printf "POL:%d ", (($addr >> 20) & 0x01)
-    printf "COSEL:%d ", (($addr >> 19) & 0x01)
-    printf "BKP:%d ", (($addr >> 18) & 0x01)
-    printf "SUB1H:%d ", (($addr >> 17) & 0x01)
-    printf "ADD1H:%d ", (($addr >> 16) & 0x01)
-    printf "TSIE:%d ", (($addr >> 15) & 0x01)
-    printf "WUTIE:%d ", (($addr >> 14) & 0x01)
-    printf "ALRBIE:%d ", (($addr >> 13) & 0x01)
-    printf "ALRAIE:%d ", (($addr >> 12) & 0x01)
-    printf "TSE:%d ", (($addr >> 11) & 0x01)
-    printf "WUTE:%d ", (($addr >> 10) & 0x01)
-    printf "ALRBE:%d ", (($addr >> 9) & 0x01)
-    printf "ALRAE:%d ", (($addr >> 8) & 0x01)
-    printf "DCE:%d ", (($addr >> 7) & 0x01)
-    printf "FMT:%d ", (($addr >> 6) & 0x01)
-    printf "BYPSHAD:%d ", (($addr >> 5) & 0x01)
-    printf "REFCKON:%d ", (($addr >> 4) & 0x01)
-    printf "TSEDGE:%d ", (($addr >> 3) & 0x01)
-    printf "WCKSEL:%d ", (($addr >> 0) & 0x07)
+    printf "COE[23]=%d ", (($data >> 23) & 0x01)
+    printf "OSEL[22:21]=%d ", (($data >> 21) & 0x03)
+    printf "POL[20]=%d ", (($data >> 20) & 0x01)
+    printf "COSEL[19]=%d ", (($data >> 19) & 0x01)
+    printf "BKP[18]=%d ", (($data >> 18) & 0x01)
+    printf "SUB1H[17]=%d ", (($data >> 17) & 0x01)
+    printf "ADD1H[16]=%d ", (($data >> 16) & 0x01)
+    printf "TSIE[15]=%d ", (($data >> 15) & 0x01)
+    printf "WUTIE[14]=%d ", (($data >> 14) & 0x01)
+    printf "ALRBIE[13]=%d ", (($data >> 13) & 0x01)
+    printf "ALRAIE[12]=%d ", (($data >> 12) & 0x01)
+    printf "TSE[11]=%d ", (($data >> 11) & 0x01)
+    printf "WUTE[10]=%d ", (($data >> 10) & 0x01)
+    printf "ALRBE[9]=%d ", (($data >> 9) & 0x01)
+    printf "ALRAE[8]=%d ", (($data >> 8) & 0x01)
+    printf "DCE[7]=%d ", (($data >> 7) & 0x01)
+    printf "FMT[6]=%d ", (($data >> 6) & 0x01)
+    printf "BYPSHAD[5]=%d ", (($data >> 5) & 0x01)
+    printf "REFCKON[4]=%d ", (($data >> 4) & 0x01)
+    printf "TSEDGE[3]=%d ", (($data >> 3) & 0x01)
+    printf "WCKSEL[2:0]=%d ", (($data >> 0) & 0x07)
     printf "\n"
 
     ###########################
     ##        ISR            ##
     ###########################
     set $addr = $baseaddr + $ISR
+    set $data = *$addr
     printf "RTC.ISR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "RECALPF:%d ", (($addr >> 16) & 0x01)
-    printf "TAMP2F:%d ", (($addr >> 14) & 0x01)
-    printf "TAMP1F:%d ", (($addr >> 13) & 0x01)
-    printf "TSOVF:%d ", (($addr >> 12) & 0x01)
-    printf "TSF:%d ", (($addr >> 11) & 0x01)
-    printf "WUTF:%d ", (($addr >> 10) & 0x01)
-    printf "ALRBF:%d ", (($addr >> 9) & 0x01)
-    printf "ALRAF:%d ", (($addr >> 8) & 0x01)
-    printf "INIT:%d ", (($addr >> 7) & 0x01)
-    printf "INITF:%d ", (($addr >> 6) & 0x01)
-    printf "RSF:%d ", (($addr >> 5) & 0x01)
-    printf "INITS:%d ", (($addr >> 4) & 0x01)
-    printf "SHPF:%d ", (($addr >> 3) & 0x01)
-    printf "WUTWF:%d ", (($addr >> 2) & 0x01)
-    printf "ALRBWF:%d ", (($addr >> 1) & 0x01)
-    printf "ALRAWF:%d ", (($addr >> 0) & 0x01)
+    printf "RECALPF[16]=%d ", (($data >> 16) & 0x01)
+    printf "TAMP2F[14]=%d ", (($data >> 14) & 0x01)
+    printf "TAMP1F[13]=%d ", (($data >> 13) & 0x01)
+    printf "TSOVF[12]=%d ", (($data >> 12) & 0x01)
+    printf "TSF[11]=%d ", (($data >> 11) & 0x01)
+    printf "WUTF[10]=%d ", (($data >> 10) & 0x01)
+    printf "ALRBF[9]=%d ", (($data >> 9) & 0x01)
+    printf "ALRAF[8]=%d ", (($data >> 8) & 0x01)
+    printf "INIT[7]=%d ", (($data >> 7) & 0x01)
+    printf "INITF[6]=%d ", (($data >> 6) & 0x01)
+    printf "RSF[5]=%d ", (($data >> 5) & 0x01)
+    printf "INITS[4]=%d ", (($data >> 4) & 0x01)
+    printf "SHPF[3]=%d ", (($data >> 3) & 0x01)
+    printf "WUTWF[2]=%d ", (($data >> 2) & 0x01)
+    printf "ALRBWF[1]=%d ", (($data >> 1) & 0x01)
+    printf "ALRAWF[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        PRER           ##
     ###########################
     set $addr = $baseaddr + $PRER
+    set $data = *$addr
     printf "RTC.PRER    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "PREDIV_A:%d ", (($addr >> 16) & 0x7f)
-    printf "PREDIV_S:%d ", (($addr >> 0) & 0x7fff)
+    printf "PREDIV_A[22:16]=%d ", (($data >> 16) & 0x7f)
+    printf "PREDIV_S[14:0]=%d ", (($data >> 0) & 0x7fff)
     printf "\n"
 
     ###########################
     ##        WUTR           ##
     ###########################
     set $addr = $baseaddr + $WUTR
+    set $data = *$addr
     printf "RTC.WUTR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "WUT[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        CALIBR         ##
     ###########################
     set $addr = $baseaddr + $CALIBR
+    set $data = *$addr
     printf "RTC.CALIBR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DCS:%d ", (($addr >> 7) & 0x01)
-    printf "DC:%d ", (($addr >> 0) & 0x1f)
+    printf "DCS[7]=%d ", (($data >> 7) & 0x01)
+    printf "DC[4:0]=%d ", (($data >> 0) & 0x1f)
     printf "\n"
 
     ###########################
     ##        ALRMAR         ##
     ###########################
     set $addr = $baseaddr + $ALRMAR
+    set $data = *$addr
     printf "RTC.ALRMAR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "MSK4:%d ", (($addr >> 31) & 0x01)
-    printf "WDSEL:%d ", (($addr >> 30) & 0x01)
-    printf "DT:%d ", (($addr >> 28) & 0x03)
-    printf "DU:%d ", (($addr >> 24) & 0x0f)
-    printf "MSK3:%d ", (($addr >> 23) & 0x01)
-    printf "PM:%d ", (($addr >> 22) & 0x01)
-    printf "HT:%d ", (($addr >> 20) & 0x03)
-    printf "HU:%d ", (($addr >> 16) & 0x0f)
-    printf "MSK2:%d ", (($addr >> 15) & 0x01)
-    printf "MNT:%d ", (($addr >> 12) & 0x07)
-    printf "MNU:%d ", (($addr >> 8) & 0x0f)
-    printf "MSK1:%d ", (($addr >> 7) & 0x01)
-    printf "ST:%d ", (($addr >> 4) & 0x07)
-    printf "SU:%d ", (($addr >> 0) & 0x0f)
+    printf "MSK4[31]=%d ", (($data >> 31) & 0x01)
+    printf "WDSEL[30]=%d ", (($data >> 30) & 0x01)
+    printf "DT[29:28]=%d ", (($data >> 28) & 0x03)
+    printf "DU[27:24]=%d ", (($data >> 24) & 0x0f)
+    printf "MSK3[23]=%d ", (($data >> 23) & 0x01)
+    printf "PM[22]=%d ", (($data >> 22) & 0x01)
+    printf "HT[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "HU[19:16]=%d ", (($data >> 16) & 0x0f)
+    printf "MSK2[15]=%d ", (($data >> 15) & 0x01)
+    printf "MNT[14:12]=%d ", (($data >> 12) & 0x07)
+    printf "MNU[11:8]=%d ", (($data >> 8) & 0x0f)
+    printf "MSK1[7]=%d ", (($data >> 7) & 0x01)
+    printf "ST[6:4]=%d ", (($data >> 4) & 0x07)
+    printf "SU[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        ALRMBR         ##
     ###########################
     set $addr = $baseaddr + $ALRMBR
+    set $data = *$addr
     printf "RTC.ALRMBR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "MSK4:%d ", (($addr >> 31) & 0x01)
-    printf "WDSEL:%d ", (($addr >> 30) & 0x01)
-    printf "DT:%d ", (($addr >> 28) & 0x03)
-    printf "DU:%d ", (($addr >> 24) & 0x0f)
-    printf "MSK3:%d ", (($addr >> 23) & 0x01)
-    printf "PM:%d ", (($addr >> 22) & 0x01)
-    printf "HT:%d ", (($addr >> 20) & 0x03)
-    printf "HU:%d ", (($addr >> 16) & 0x0f)
-    printf "MSK2:%d ", (($addr >> 15) & 0x01)
-    printf "MNT:%d ", (($addr >> 12) & 0x07)
-    printf "MNU:%d ", (($addr >> 8) & 0x0f)
-    printf "MSK1:%d ", (($addr >> 7) & 0x01)
-    printf "ST:%d ", (($addr >> 4) & 0x07)
-    printf "SU:%d ", (($addr >> 0) & 0x0f)
+    printf "MSK4[31]=%d ", (($data >> 31) & 0x01)
+    printf "WDSEL[30]=%d ", (($data >> 30) & 0x01)
+    printf "DT[29:28]=%d ", (($data >> 28) & 0x03)
+    printf "DU[27:24]=%d ", (($data >> 24) & 0x0f)
+    printf "MSK3[23]=%d ", (($data >> 23) & 0x01)
+    printf "PM[22]=%d ", (($data >> 22) & 0x01)
+    printf "HT[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "HU[19:16]=%d ", (($data >> 16) & 0x0f)
+    printf "MSK2[15]=%d ", (($data >> 15) & 0x01)
+    printf "MNT[14:12]=%d ", (($data >> 12) & 0x07)
+    printf "MNU[11:8]=%d ", (($data >> 8) & 0x0f)
+    printf "MSK1[7]=%d ", (($data >> 7) & 0x01)
+    printf "ST[6:4]=%d ", (($data >> 4) & 0x07)
+    printf "SU[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        WPR            ##
     ###########################
     set $addr = $baseaddr + $WPR
+    set $data = *$addr
     printf "RTC.WPR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "KEY[7:0]=%d ", (($data >> 0) & 0xff)
     printf "\n"
 
     ###########################
     ##        SSR            ##
     ###########################
     set $addr = $baseaddr + $SSR
+    set $data = *$addr
     printf "RTC.SSR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "SS[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        SHIFTR         ##
     ###########################
     set $addr = $baseaddr + $SHIFTR
+    set $data = *$addr
     printf "RTC.SHIFTR  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "ADD1S:%d ", (($addr >> 31) & 0x01)
-    printf "SUBFS:%d ", (($addr >> 0) & 0x7fff)
+    printf "ADD1S[31]=%d ", (($data >> 31) & 0x01)
+    printf "SUBFS[14:0]=%d ", (($data >> 0) & 0x7fff)
     printf "\n"
 
     ###########################
     ##        TSTR           ##
     ###########################
     set $addr = $baseaddr + $TSTR
+    set $data = *$addr
     printf "RTC.TSTR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "PM:%d ", (($addr >> 22) & 0x01)
-    printf "HT:%d ", (($addr >> 20) & 0x03)
-    printf "HU:%d ", (($addr >> 16) & 0x0f)
-    printf "MNT:%d ", (($addr >> 12) & 0x07)
-    printf "MNU:%d ", (($addr >> 8) & 0x0f)
-    printf "ST:%d ", (($addr >> 4) & 0x07)
-    printf "SU:%d ", (($addr >> 0) & 0x0f)
+    printf "PM[22]=%d ", (($data >> 22) & 0x01)
+    printf "HT[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "HU[19:16]=%d ", (($data >> 16) & 0x0f)
+    printf "MNT[14:12]=%d ", (($data >> 12) & 0x07)
+    printf "MNU[11:8]=%d ", (($data >> 8) & 0x0f)
+    printf "ST[6:4]=%d ", (($data >> 4) & 0x07)
+    printf "SU[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        TSDR           ##
     ###########################
     set $addr = $baseaddr + $TSDR
+    set $data = *$addr
     printf "RTC.TSDR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "WDU:%d ", (($addr >> 13) & 0x07)
-    printf "MT:%d ", (($addr >> 12) & 0x01)
-    printf "MU:%d ", (($addr >> 8) & 0x0f)
-    printf "DT:%d ", (($addr >> 4) & 0x03)
-    printf "DU:%d ", (($addr >> 0) & 0x0f)
+    printf "WDU[15:13]=%d ", (($data >> 13) & 0x07)
+    printf "MT[12]=%d ", (($data >> 12) & 0x01)
+    printf "MU[11:8]=%d ", (($data >> 8) & 0x0f)
+    printf "DT[5:4]=%d ", (($data >> 4) & 0x03)
+    printf "DU[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        TSSSR          ##
     ###########################
     set $addr = $baseaddr + $TSSSR
+    set $data = *$addr
     printf "RTC.TSSSR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "SS[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        CALR           ##
     ###########################
     set $addr = $baseaddr + $CALR
+    set $data = *$addr
     printf "RTC.CALR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CALP:%d ", (($addr >> 15) & 0x01)
-    printf "CALW8:%d ", (($addr >> 14) & 0x01)
-    printf "CALW16:%d ", (($addr >> 13) & 0x01)
-    printf "CALM:%d ", (($addr >> 0) & 0x1ff)
+    printf "CALP[15]=%d ", (($data >> 15) & 0x01)
+    printf "CALW8[14]=%d ", (($data >> 14) & 0x01)
+    printf "CALW16[13]=%d ", (($data >> 13) & 0x01)
+    printf "CALM[8:0]=%d ", (($data >> 0) & 0x1ff)
     printf "\n"
 
     ###########################
     ##        TAFCR          ##
     ###########################
     set $addr = $baseaddr + $TAFCR
+    set $data = *$addr
     printf "RTC.TAFCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "ALARMOUTTYPE:%d ", (($addr >> 18) & 0x01)
-    printf "TSINSEL:%d ", (($addr >> 17) & 0x01)
-    printf "TAMP1INSEL:%d ", (($addr >> 16) & 0x01)
-    printf "TAMPPUDIS:%d ", (($addr >> 15) & 0x01)
-    printf "TAMPPRCH:%d ", (($addr >> 13) & 0x03)
-    printf "TAMPFLT:%d ", (($addr >> 11) & 0x03)
-    printf "TAMPFREQ:%d ", (($addr >> 8) & 0x07)
-    printf "TAMPTS:%d ", (($addr >> 7) & 0x01)
-    printf "TAMP2TRG:%d ", (($addr >> 4) & 0x01)
-    printf "TAMP2E:%d ", (($addr >> 3) & 0x01)
-    printf "TAMPIE:%d ", (($addr >> 2) & 0x01)
-    printf "TAMP1TRG:%d ", (($addr >> 1) & 0x01)
-    printf "TAMP1E:%d ", (($addr >> 0) & 0x01)
+    printf "ALARMOUTTYPE[18]=%d ", (($data >> 18) & 0x01)
+    printf "TSINSEL[17]=%d ", (($data >> 17) & 0x01)
+    printf "TAMP1INSEL[16]=%d ", (($data >> 16) & 0x01)
+    printf "TAMPPUDIS[15]=%d ", (($data >> 15) & 0x01)
+    printf "TAMPPRCH[14:13]=%d ", (($data >> 13) & 0x03)
+    printf "TAMPFLT[12:11]=%d ", (($data >> 11) & 0x03)
+    printf "TAMPFREQ[10:8]=%d ", (($data >> 8) & 0x07)
+    printf "TAMPTS[7]=%d ", (($data >> 7) & 0x01)
+    printf "TAMP2TRG[4]=%d ", (($data >> 4) & 0x01)
+    printf "TAMP2E[3]=%d ", (($data >> 3) & 0x01)
+    printf "TAMPIE[2]=%d ", (($data >> 2) & 0x01)
+    printf "TAMP1TRG[1]=%d ", (($data >> 1) & 0x01)
+    printf "TAMP1E[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        ALRMASSR        ##
     ###########################
     set $addr = $baseaddr + $ALRMASSR
+    set $data = *$addr
     printf "RTC.ALRMASSR 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "MASKSS:%d ", (($addr >> 24) & 0x0f)
-    printf "SS:%d ", (($addr >> 0) & 0x7fff)
+    printf "MASKSS[27:24]=%d ", (($data >> 24) & 0x0f)
+    printf "SS[14:0]=%d ", (($data >> 0) & 0x7fff)
     printf "\n"
 
     ###########################
     ##        ALRMBSSR        ##
     ###########################
     set $addr = $baseaddr + $ALRMBSSR
+    set $data = *$addr
     printf "RTC.ALRMBSSR 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "MASKSS:%d ", (($addr >> 24) & 0x0f)
-    printf "SS:%d ", (($addr >> 0) & 0x7fff)
+    printf "MASKSS[27:24]=%d ", (($data >> 24) & 0x0f)
+    printf "SS[14:0]=%d ", (($data >> 0) & 0x7fff)
     printf "\n"
 
     ###########################
     ##        BKP0R          ##
     ###########################
     set $addr = $baseaddr + $BKP0R
+    set $data = *$addr
     printf "RTC.BKP0R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP1R          ##
     ###########################
     set $addr = $baseaddr + $BKP1R
+    set $data = *$addr
     printf "RTC.BKP1R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP2R          ##
     ###########################
     set $addr = $baseaddr + $BKP2R
+    set $data = *$addr
     printf "RTC.BKP2R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP3R          ##
     ###########################
     set $addr = $baseaddr + $BKP3R
+    set $data = *$addr
     printf "RTC.BKP3R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP4R          ##
     ###########################
     set $addr = $baseaddr + $BKP4R
+    set $data = *$addr
     printf "RTC.BKP4R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP5R          ##
     ###########################
     set $addr = $baseaddr + $BKP5R
+    set $data = *$addr
     printf "RTC.BKP5R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP6R          ##
     ###########################
     set $addr = $baseaddr + $BKP6R
+    set $data = *$addr
     printf "RTC.BKP6R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP7R          ##
     ###########################
     set $addr = $baseaddr + $BKP7R
+    set $data = *$addr
     printf "RTC.BKP7R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP8R          ##
     ###########################
     set $addr = $baseaddr + $BKP8R
+    set $data = *$addr
     printf "RTC.BKP8R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP9R          ##
     ###########################
     set $addr = $baseaddr + $BKP9R
+    set $data = *$addr
     printf "RTC.BKP9R   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP10R         ##
     ###########################
     set $addr = $baseaddr + $BKP10R
+    set $data = *$addr
     printf "RTC.BKP10R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP11R         ##
     ###########################
     set $addr = $baseaddr + $BKP11R
+    set $data = *$addr
     printf "RTC.BKP11R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP12R         ##
     ###########################
     set $addr = $baseaddr + $BKP12R
+    set $data = *$addr
     printf "RTC.BKP12R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP13R         ##
     ###########################
     set $addr = $baseaddr + $BKP13R
+    set $data = *$addr
     printf "RTC.BKP13R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP14R         ##
     ###########################
     set $addr = $baseaddr + $BKP14R
+    set $data = *$addr
     printf "RTC.BKP14R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP15R         ##
     ###########################
     set $addr = $baseaddr + $BKP15R
+    set $data = *$addr
     printf "RTC.BKP15R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP16R         ##
     ###########################
     set $addr = $baseaddr + $BKP16R
+    set $data = *$addr
     printf "RTC.BKP16R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP17R         ##
     ###########################
     set $addr = $baseaddr + $BKP17R
+    set $data = *$addr
     printf "RTC.BKP17R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP18R         ##
     ###########################
     set $addr = $baseaddr + $BKP18R
+    set $data = *$addr
     printf "RTC.BKP18R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        BKP19R         ##
     ###########################
     set $addr = $baseaddr + $BKP19R
+    set $data = *$addr
     printf "RTC.BKP19R  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "BKP[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
 end

@@ -13,21 +13,30 @@ define print_crc
     ##        DR             ##
     ###########################
     set $addr = $baseaddr + $DR
+    set $data = *$addr
     printf "CRC.DR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DR[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        IDR            ##
     ###########################
     set $addr = $baseaddr + $IDR
+    set $data = *$addr
     printf "CRC.IDR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "IDR[7:0]=%d ", (($data >> 0) & 0xff)
     printf "\n"
 
     ###########################
     ##        CR             ##
     ###########################
     set $addr = $baseaddr + $CR
+    set $data = *$addr
     printf "CRC.CR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CR[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
 end

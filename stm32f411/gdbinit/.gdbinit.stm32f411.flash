@@ -16,76 +16,86 @@ define print_flash
     ##        ACR            ##
     ###########################
     set $addr = $baseaddr + $ACR
+    set $data = *$addr
     printf "FLASH.ACR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DCRST:%d ", (($addr >> 12) & 0x01)
-    printf "ICRST:%d ", (($addr >> 11) & 0x01)
-    printf "DCEN:%d ", (($addr >> 10) & 0x01)
-    printf "ICEN:%d ", (($addr >> 9) & 0x01)
-    printf "PRFTEN:%d ", (($addr >> 8) & 0x01)
-    printf "LATENCY:%d ", (($addr >> 0) & 0x07)
+    printf "DCRST[12]=%d ", (($data >> 12) & 0x01)
+    printf "ICRST[11]=%d ", (($data >> 11) & 0x01)
+    printf "DCEN[10]=%d ", (($data >> 10) & 0x01)
+    printf "ICEN[9]=%d ", (($data >> 9) & 0x01)
+    printf "PRFTEN[8]=%d ", (($data >> 8) & 0x01)
+    printf "LATENCY[2:0]=%d ", (($data >> 0) & 0x07)
     printf "\n"
 
     ###########################
     ##        KEYR           ##
     ###########################
     set $addr = $baseaddr + $KEYR
+    set $data = *$addr
     printf "FLASH.KEYR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "KEY[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        OPTKEYR        ##
     ###########################
     set $addr = $baseaddr + $OPTKEYR
+    set $data = *$addr
     printf "FLASH.OPTKEYR 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "OPTKEY[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        SR             ##
     ###########################
     set $addr = $baseaddr + $SR
+    set $data = *$addr
     printf "FLASH.SR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "BSY:%d ", (($addr >> 16) & 0x01)
-    printf "PGSERR:%d ", (($addr >> 7) & 0x01)
-    printf "PGPERR:%d ", (($addr >> 6) & 0x01)
-    printf "PGAERR:%d ", (($addr >> 5) & 0x01)
-    printf "WRPERR:%d ", (($addr >> 4) & 0x01)
-    printf "OPERR:%d ", (($addr >> 1) & 0x01)
-    printf "EOP:%d ", (($addr >> 0) & 0x01)
+    printf "BSY[16]=%d ", (($data >> 16) & 0x01)
+    printf "PGSERR[7]=%d ", (($data >> 7) & 0x01)
+    printf "PGPERR[6]=%d ", (($data >> 6) & 0x01)
+    printf "PGAERR[5]=%d ", (($data >> 5) & 0x01)
+    printf "WRPERR[4]=%d ", (($data >> 4) & 0x01)
+    printf "OPERR[1]=%d ", (($data >> 1) & 0x01)
+    printf "EOP[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        CR             ##
     ###########################
     set $addr = $baseaddr + $CR
+    set $data = *$addr
     printf "FLASH.CR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "LOCK:%d ", (($addr >> 31) & 0x01)
-    printf "ERRIE:%d ", (($addr >> 25) & 0x01)
-    printf "EOPIE:%d ", (($addr >> 24) & 0x01)
-    printf "STRT:%d ", (($addr >> 16) & 0x01)
-    printf "PSIZE:%d ", (($addr >> 8) & 0x03)
-    printf "SNB:%d ", (($addr >> 3) & 0x0f)
-    printf "MER:%d ", (($addr >> 2) & 0x01)
-    printf "SER:%d ", (($addr >> 1) & 0x01)
-    printf "PG:%d ", (($addr >> 0) & 0x01)
+    printf "LOCK[31]=%d ", (($data >> 31) & 0x01)
+    printf "ERRIE[25]=%d ", (($data >> 25) & 0x01)
+    printf "EOPIE[24]=%d ", (($data >> 24) & 0x01)
+    printf "STRT[16]=%d ", (($data >> 16) & 0x01)
+    printf "PSIZE[9:8]=%d ", (($data >> 8) & 0x03)
+    printf "SNB[6:3]=%d ", (($data >> 3) & 0x0f)
+    printf "MER[2]=%d ", (($data >> 2) & 0x01)
+    printf "SER[1]=%d ", (($data >> 1) & 0x01)
+    printf "PG[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        OPTCR          ##
     ###########################
     set $addr = $baseaddr + $OPTCR
+    set $data = *$addr
     printf "FLASH.OPTCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "nWRP:%d ", (($addr >> 16) & 0xfff)
-    printf "RDP:%d ", (($addr >> 8) & 0xff)
-    printf "nRST_STDBY:%d ", (($addr >> 7) & 0x01)
-    printf "nRST_STOP:%d ", (($addr >> 6) & 0x01)
-    printf "WDG_SW:%d ", (($addr >> 5) & 0x01)
-    printf "BOR_LEV:%d ", (($addr >> 2) & 0x03)
-    printf "OPTSTRT:%d ", (($addr >> 1) & 0x01)
-    printf "OPTLOCK:%d ", (($addr >> 0) & 0x01)
+    printf "nWRP[27:16]=%d ", (($data >> 16) & 0xfff)
+    printf "RDP[15:8]=%d ", (($data >> 8) & 0xff)
+    printf "nRST_STDBY[7]=%d ", (($data >> 7) & 0x01)
+    printf "nRST_STOP[6]=%d ", (($data >> 6) & 0x01)
+    printf "WDG_SW[5]=%d ", (($data >> 5) & 0x01)
+    printf "BOR_LEV[3:2]=%d ", (($data >> 2) & 0x03)
+    printf "OPTSTRT[1]=%d ", (($data >> 1) & 0x01)
+    printf "OPTLOCK[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
 end

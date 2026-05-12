@@ -17,72 +17,83 @@ define print_syscfg
     ##        MEMRM          ##
     ###########################
     set $addr = $baseaddr + $MEMRM
+    set $data = *$addr
     printf "SYSCFG.MEMRM   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "MEM_MODE[1:0]=%d ", (($data >> 0) & 0x03)
     printf "\n"
 
     ###########################
     ##        PMC            ##
     ###########################
     set $addr = $baseaddr + $PMC
+    set $data = *$addr
     printf "SYSCFG.PMC     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "ADC1DC2[16]=%d ", (($data >> 16) & 0x01)
     printf "\n"
 
     ###########################
     ##        EXTICR1        ##
     ###########################
     set $addr = $baseaddr + $EXTICR1
+    set $data = *$addr
     printf "SYSCFG.EXTICR1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "EXTI3:%d ", (($addr >> 12) & 0x0f)
-    printf "EXTI2:%d ", (($addr >> 8) & 0x0f)
-    printf "EXTI1:%d ", (($addr >> 4) & 0x0f)
-    printf "EXTI0:%d ", (($addr >> 0) & 0x0f)
+    printf "EXTI3[15:12]=%d ", (($data >> 12) & 0x0f)
+    printf "EXTI2[11:8]=%d ", (($data >> 8) & 0x0f)
+    printf "EXTI1[7:4]=%d ", (($data >> 4) & 0x0f)
+    printf "EXTI0[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        EXTICR2        ##
     ###########################
     set $addr = $baseaddr + $EXTICR2
+    set $data = *$addr
     printf "SYSCFG.EXTICR2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "EXTI7:%d ", (($addr >> 12) & 0x0f)
-    printf "EXTI6:%d ", (($addr >> 8) & 0x0f)
-    printf "EXTI5:%d ", (($addr >> 4) & 0x0f)
-    printf "EXTI4:%d ", (($addr >> 0) & 0x0f)
+    printf "EXTI7[15:12]=%d ", (($data >> 12) & 0x0f)
+    printf "EXTI6[11:8]=%d ", (($data >> 8) & 0x0f)
+    printf "EXTI5[7:4]=%d ", (($data >> 4) & 0x0f)
+    printf "EXTI4[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        EXTICR3        ##
     ###########################
     set $addr = $baseaddr + $EXTICR3
+    set $data = *$addr
     printf "SYSCFG.EXTICR3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "EXTI11:%d ", (($addr >> 12) & 0x0f)
-    printf "EXTI10:%d ", (($addr >> 8) & 0x0f)
-    printf "EXTI9:%d ", (($addr >> 4) & 0x0f)
-    printf "EXTI8:%d ", (($addr >> 0) & 0x0f)
+    printf "EXTI11[15:12]=%d ", (($data >> 12) & 0x0f)
+    printf "EXTI10[11:8]=%d ", (($data >> 8) & 0x0f)
+    printf "EXTI9[7:4]=%d ", (($data >> 4) & 0x0f)
+    printf "EXTI8[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        EXTICR4        ##
     ###########################
     set $addr = $baseaddr + $EXTICR4
+    set $data = *$addr
     printf "SYSCFG.EXTICR4 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "EXTI15:%d ", (($addr >> 12) & 0x0f)
-    printf "EXTI14:%d ", (($addr >> 8) & 0x0f)
-    printf "EXTI13:%d ", (($addr >> 4) & 0x0f)
-    printf "EXTI12:%d ", (($addr >> 0) & 0x0f)
+    printf "EXTI15[15:12]=%d ", (($data >> 12) & 0x0f)
+    printf "EXTI14[11:8]=%d ", (($data >> 8) & 0x0f)
+    printf "EXTI13[7:4]=%d ", (($data >> 4) & 0x0f)
+    printf "EXTI12[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        CMPCR          ##
     ###########################
     set $addr = $baseaddr + $CMPCR
+    set $data = *$addr
     printf "SYSCFG.CMPCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "READY:%d ", (($addr >> 8) & 0x01)
-    printf "CMP_PD:%d ", (($addr >> 0) & 0x01)
+    printf "READY[8]=%d ", (($data >> 8) & 0x01)
+    printf "CMP_PD[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
 end

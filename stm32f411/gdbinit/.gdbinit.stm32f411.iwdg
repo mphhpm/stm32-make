@@ -14,31 +14,41 @@ define print_iwdg
     ##        KR             ##
     ###########################
     set $addr = $baseaddr + $KR
+    set $data = *$addr
     printf "IWDG.KR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "KEY[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        PR             ##
     ###########################
     set $addr = $baseaddr + $PR
+    set $data = *$addr
     printf "IWDG.PR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "PR[2:0]=%d ", (($data >> 0) & 0x07)
     printf "\n"
 
     ###########################
     ##        RLR            ##
     ###########################
     set $addr = $baseaddr + $RLR
+    set $data = *$addr
     printf "IWDG.RLR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "RL[11:0]=%d ", (($data >> 0) & 0xfff)
     printf "\n"
 
     ###########################
     ##        SR             ##
     ###########################
     set $addr = $baseaddr + $SR
+    set $data = *$addr
     printf "IWDG.SR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "RVU:%d ", (($addr >> 1) & 0x01)
-    printf "PVU:%d ", (($addr >> 0) & 0x01)
+    printf "RVU[1]=%d ", (($data >> 1) & 0x01)
+    printf "PVU[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
 end

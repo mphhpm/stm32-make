@@ -20,241 +20,251 @@ define print_gpioc
     ##        MODER          ##
     ###########################
     set $addr = $baseaddr + $MODER
+    set $data = *$addr
     printf "GPIOC.MODER   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "MODER15:%d ", (($addr >> 30) & 0x03)
-    printf "MODER14:%d ", (($addr >> 28) & 0x03)
-    printf "MODER13:%d ", (($addr >> 26) & 0x03)
-    printf "MODER12:%d ", (($addr >> 24) & 0x03)
-    printf "MODER11:%d ", (($addr >> 22) & 0x03)
-    printf "MODER10:%d ", (($addr >> 20) & 0x03)
-    printf "MODER9:%d ", (($addr >> 18) & 0x03)
-    printf "MODER8:%d ", (($addr >> 16) & 0x03)
-    printf "MODER7:%d ", (($addr >> 14) & 0x03)
-    printf "MODER6:%d ", (($addr >> 12) & 0x03)
-    printf "MODER5:%d ", (($addr >> 10) & 0x03)
-    printf "MODER4:%d ", (($addr >> 8) & 0x03)
-    printf "MODER3:%d ", (($addr >> 6) & 0x03)
-    printf "MODER2:%d ", (($addr >> 4) & 0x03)
-    printf "MODER1:%d ", (($addr >> 2) & 0x03)
-    printf "MODER0:%d ", (($addr >> 0) & 0x03)
+    printf "MODER15[31:30]=%d ", (($data >> 30) & 0x03)
+    printf "MODER14[29:28]=%d ", (($data >> 28) & 0x03)
+    printf "MODER13[27:26]=%d ", (($data >> 26) & 0x03)
+    printf "MODER12[25:24]=%d ", (($data >> 24) & 0x03)
+    printf "MODER11[23:22]=%d ", (($data >> 22) & 0x03)
+    printf "MODER10[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "MODER9[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "MODER8[17:16]=%d ", (($data >> 16) & 0x03)
+    printf "MODER7[15:14]=%d ", (($data >> 14) & 0x03)
+    printf "MODER6[13:12]=%d ", (($data >> 12) & 0x03)
+    printf "MODER5[11:10]=%d ", (($data >> 10) & 0x03)
+    printf "MODER4[9:8]=%d ", (($data >> 8) & 0x03)
+    printf "MODER3[7:6]=%d ", (($data >> 6) & 0x03)
+    printf "MODER2[5:4]=%d ", (($data >> 4) & 0x03)
+    printf "MODER1[3:2]=%d ", (($data >> 2) & 0x03)
+    printf "MODER0[1:0]=%d ", (($data >> 0) & 0x03)
     printf "\n"
 
     ###########################
     ##        OTYPER         ##
     ###########################
     set $addr = $baseaddr + $OTYPER
+    set $data = *$addr
     printf "GPIOC.OTYPER  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "OT15:%d ", (($addr >> 15) & 0x01)
-    printf "OT14:%d ", (($addr >> 14) & 0x01)
-    printf "OT13:%d ", (($addr >> 13) & 0x01)
-    printf "OT12:%d ", (($addr >> 12) & 0x01)
-    printf "OT11:%d ", (($addr >> 11) & 0x01)
-    printf "OT10:%d ", (($addr >> 10) & 0x01)
-    printf "OT9:%d ", (($addr >> 9) & 0x01)
-    printf "OT8:%d ", (($addr >> 8) & 0x01)
-    printf "OT7:%d ", (($addr >> 7) & 0x01)
-    printf "OT6:%d ", (($addr >> 6) & 0x01)
-    printf "OT5:%d ", (($addr >> 5) & 0x01)
-    printf "OT4:%d ", (($addr >> 4) & 0x01)
-    printf "OT3:%d ", (($addr >> 3) & 0x01)
-    printf "OT2:%d ", (($addr >> 2) & 0x01)
-    printf "OT1:%d ", (($addr >> 1) & 0x01)
-    printf "OT0:%d ", (($addr >> 0) & 0x01)
+    printf "OT15[15]=%d ", (($data >> 15) & 0x01)
+    printf "OT14[14]=%d ", (($data >> 14) & 0x01)
+    printf "OT13[13]=%d ", (($data >> 13) & 0x01)
+    printf "OT12[12]=%d ", (($data >> 12) & 0x01)
+    printf "OT11[11]=%d ", (($data >> 11) & 0x01)
+    printf "OT10[10]=%d ", (($data >> 10) & 0x01)
+    printf "OT9[9]=%d ", (($data >> 9) & 0x01)
+    printf "OT8[8]=%d ", (($data >> 8) & 0x01)
+    printf "OT7[7]=%d ", (($data >> 7) & 0x01)
+    printf "OT6[6]=%d ", (($data >> 6) & 0x01)
+    printf "OT5[5]=%d ", (($data >> 5) & 0x01)
+    printf "OT4[4]=%d ", (($data >> 4) & 0x01)
+    printf "OT3[3]=%d ", (($data >> 3) & 0x01)
+    printf "OT2[2]=%d ", (($data >> 2) & 0x01)
+    printf "OT1[1]=%d ", (($data >> 1) & 0x01)
+    printf "OT0[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        OSPEEDR        ##
     ###########################
     set $addr = $baseaddr + $OSPEEDR
+    set $data = *$addr
     printf "GPIOC.OSPEEDR 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "OSPEEDR15:%d ", (($addr >> 30) & 0x03)
-    printf "OSPEEDR14:%d ", (($addr >> 28) & 0x03)
-    printf "OSPEEDR13:%d ", (($addr >> 26) & 0x03)
-    printf "OSPEEDR12:%d ", (($addr >> 24) & 0x03)
-    printf "OSPEEDR11:%d ", (($addr >> 22) & 0x03)
-    printf "OSPEEDR10:%d ", (($addr >> 20) & 0x03)
-    printf "OSPEEDR9:%d ", (($addr >> 18) & 0x03)
-    printf "OSPEEDR8:%d ", (($addr >> 16) & 0x03)
-    printf "OSPEEDR7:%d ", (($addr >> 14) & 0x03)
-    printf "OSPEEDR6:%d ", (($addr >> 12) & 0x03)
-    printf "OSPEEDR5:%d ", (($addr >> 10) & 0x03)
-    printf "OSPEEDR4:%d ", (($addr >> 8) & 0x03)
-    printf "OSPEEDR3:%d ", (($addr >> 6) & 0x03)
-    printf "OSPEEDR2:%d ", (($addr >> 4) & 0x03)
-    printf "OSPEEDR1:%d ", (($addr >> 2) & 0x03)
-    printf "OSPEEDR0:%d ", (($addr >> 0) & 0x03)
+    printf "OSPEEDR15[31:30]=%d ", (($data >> 30) & 0x03)
+    printf "OSPEEDR14[29:28]=%d ", (($data >> 28) & 0x03)
+    printf "OSPEEDR13[27:26]=%d ", (($data >> 26) & 0x03)
+    printf "OSPEEDR12[25:24]=%d ", (($data >> 24) & 0x03)
+    printf "OSPEEDR11[23:22]=%d ", (($data >> 22) & 0x03)
+    printf "OSPEEDR10[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "OSPEEDR9[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "OSPEEDR8[17:16]=%d ", (($data >> 16) & 0x03)
+    printf "OSPEEDR7[15:14]=%d ", (($data >> 14) & 0x03)
+    printf "OSPEEDR6[13:12]=%d ", (($data >> 12) & 0x03)
+    printf "OSPEEDR5[11:10]=%d ", (($data >> 10) & 0x03)
+    printf "OSPEEDR4[9:8]=%d ", (($data >> 8) & 0x03)
+    printf "OSPEEDR3[7:6]=%d ", (($data >> 6) & 0x03)
+    printf "OSPEEDR2[5:4]=%d ", (($data >> 4) & 0x03)
+    printf "OSPEEDR1[3:2]=%d ", (($data >> 2) & 0x03)
+    printf "OSPEEDR0[1:0]=%d ", (($data >> 0) & 0x03)
     printf "\n"
 
     ###########################
     ##        PUPDR          ##
     ###########################
     set $addr = $baseaddr + $PUPDR
+    set $data = *$addr
     printf "GPIOC.PUPDR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "PUPDR15:%d ", (($addr >> 30) & 0x03)
-    printf "PUPDR14:%d ", (($addr >> 28) & 0x03)
-    printf "PUPDR13:%d ", (($addr >> 26) & 0x03)
-    printf "PUPDR12:%d ", (($addr >> 24) & 0x03)
-    printf "PUPDR11:%d ", (($addr >> 22) & 0x03)
-    printf "PUPDR10:%d ", (($addr >> 20) & 0x03)
-    printf "PUPDR9:%d ", (($addr >> 18) & 0x03)
-    printf "PUPDR8:%d ", (($addr >> 16) & 0x03)
-    printf "PUPDR7:%d ", (($addr >> 14) & 0x03)
-    printf "PUPDR6:%d ", (($addr >> 12) & 0x03)
-    printf "PUPDR5:%d ", (($addr >> 10) & 0x03)
-    printf "PUPDR4:%d ", (($addr >> 8) & 0x03)
-    printf "PUPDR3:%d ", (($addr >> 6) & 0x03)
-    printf "PUPDR2:%d ", (($addr >> 4) & 0x03)
-    printf "PUPDR1:%d ", (($addr >> 2) & 0x03)
-    printf "PUPDR0:%d ", (($addr >> 0) & 0x03)
+    printf "PUPDR15[31:30]=%d ", (($data >> 30) & 0x03)
+    printf "PUPDR14[29:28]=%d ", (($data >> 28) & 0x03)
+    printf "PUPDR13[27:26]=%d ", (($data >> 26) & 0x03)
+    printf "PUPDR12[25:24]=%d ", (($data >> 24) & 0x03)
+    printf "PUPDR11[23:22]=%d ", (($data >> 22) & 0x03)
+    printf "PUPDR10[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "PUPDR9[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "PUPDR8[17:16]=%d ", (($data >> 16) & 0x03)
+    printf "PUPDR7[15:14]=%d ", (($data >> 14) & 0x03)
+    printf "PUPDR6[13:12]=%d ", (($data >> 12) & 0x03)
+    printf "PUPDR5[11:10]=%d ", (($data >> 10) & 0x03)
+    printf "PUPDR4[9:8]=%d ", (($data >> 8) & 0x03)
+    printf "PUPDR3[7:6]=%d ", (($data >> 6) & 0x03)
+    printf "PUPDR2[5:4]=%d ", (($data >> 4) & 0x03)
+    printf "PUPDR1[3:2]=%d ", (($data >> 2) & 0x03)
+    printf "PUPDR0[1:0]=%d ", (($data >> 0) & 0x03)
     printf "\n"
 
     ###########################
     ##        IDR            ##
     ###########################
     set $addr = $baseaddr + $IDR
+    set $data = *$addr
     printf "GPIOC.IDR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IDR15:%d ", (($addr >> 15) & 0x01)
-    printf "IDR14:%d ", (($addr >> 14) & 0x01)
-    printf "IDR13:%d ", (($addr >> 13) & 0x01)
-    printf "IDR12:%d ", (($addr >> 12) & 0x01)
-    printf "IDR11:%d ", (($addr >> 11) & 0x01)
-    printf "IDR10:%d ", (($addr >> 10) & 0x01)
-    printf "IDR9:%d ", (($addr >> 9) & 0x01)
-    printf "IDR8:%d ", (($addr >> 8) & 0x01)
-    printf "IDR7:%d ", (($addr >> 7) & 0x01)
-    printf "IDR6:%d ", (($addr >> 6) & 0x01)
-    printf "IDR5:%d ", (($addr >> 5) & 0x01)
-    printf "IDR4:%d ", (($addr >> 4) & 0x01)
-    printf "IDR3:%d ", (($addr >> 3) & 0x01)
-    printf "IDR2:%d ", (($addr >> 2) & 0x01)
-    printf "IDR1:%d ", (($addr >> 1) & 0x01)
-    printf "IDR0:%d ", (($addr >> 0) & 0x01)
+    printf "IDR15[15]=%d ", (($data >> 15) & 0x01)
+    printf "IDR14[14]=%d ", (($data >> 14) & 0x01)
+    printf "IDR13[13]=%d ", (($data >> 13) & 0x01)
+    printf "IDR12[12]=%d ", (($data >> 12) & 0x01)
+    printf "IDR11[11]=%d ", (($data >> 11) & 0x01)
+    printf "IDR10[10]=%d ", (($data >> 10) & 0x01)
+    printf "IDR9[9]=%d ", (($data >> 9) & 0x01)
+    printf "IDR8[8]=%d ", (($data >> 8) & 0x01)
+    printf "IDR7[7]=%d ", (($data >> 7) & 0x01)
+    printf "IDR6[6]=%d ", (($data >> 6) & 0x01)
+    printf "IDR5[5]=%d ", (($data >> 5) & 0x01)
+    printf "IDR4[4]=%d ", (($data >> 4) & 0x01)
+    printf "IDR3[3]=%d ", (($data >> 3) & 0x01)
+    printf "IDR2[2]=%d ", (($data >> 2) & 0x01)
+    printf "IDR1[1]=%d ", (($data >> 1) & 0x01)
+    printf "IDR0[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        ODR            ##
     ###########################
     set $addr = $baseaddr + $ODR
+    set $data = *$addr
     printf "GPIOC.ODR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "ODR15:%d ", (($addr >> 15) & 0x01)
-    printf "ODR14:%d ", (($addr >> 14) & 0x01)
-    printf "ODR13:%d ", (($addr >> 13) & 0x01)
-    printf "ODR12:%d ", (($addr >> 12) & 0x01)
-    printf "ODR11:%d ", (($addr >> 11) & 0x01)
-    printf "ODR10:%d ", (($addr >> 10) & 0x01)
-    printf "ODR9:%d ", (($addr >> 9) & 0x01)
-    printf "ODR8:%d ", (($addr >> 8) & 0x01)
-    printf "ODR7:%d ", (($addr >> 7) & 0x01)
-    printf "ODR6:%d ", (($addr >> 6) & 0x01)
-    printf "ODR5:%d ", (($addr >> 5) & 0x01)
-    printf "ODR4:%d ", (($addr >> 4) & 0x01)
-    printf "ODR3:%d ", (($addr >> 3) & 0x01)
-    printf "ODR2:%d ", (($addr >> 2) & 0x01)
-    printf "ODR1:%d ", (($addr >> 1) & 0x01)
-    printf "ODR0:%d ", (($addr >> 0) & 0x01)
+    printf "ODR15[15]=%d ", (($data >> 15) & 0x01)
+    printf "ODR14[14]=%d ", (($data >> 14) & 0x01)
+    printf "ODR13[13]=%d ", (($data >> 13) & 0x01)
+    printf "ODR12[12]=%d ", (($data >> 12) & 0x01)
+    printf "ODR11[11]=%d ", (($data >> 11) & 0x01)
+    printf "ODR10[10]=%d ", (($data >> 10) & 0x01)
+    printf "ODR9[9]=%d ", (($data >> 9) & 0x01)
+    printf "ODR8[8]=%d ", (($data >> 8) & 0x01)
+    printf "ODR7[7]=%d ", (($data >> 7) & 0x01)
+    printf "ODR6[6]=%d ", (($data >> 6) & 0x01)
+    printf "ODR5[5]=%d ", (($data >> 5) & 0x01)
+    printf "ODR4[4]=%d ", (($data >> 4) & 0x01)
+    printf "ODR3[3]=%d ", (($data >> 3) & 0x01)
+    printf "ODR2[2]=%d ", (($data >> 2) & 0x01)
+    printf "ODR1[1]=%d ", (($data >> 1) & 0x01)
+    printf "ODR0[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        BSRR           ##
     ###########################
     set $addr = $baseaddr + $BSRR
+    set $data = *$addr
     printf "GPIOC.BSRR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "BR15:%d ", (($addr >> 31) & 0x01)
-    printf "BR14:%d ", (($addr >> 30) & 0x01)
-    printf "BR13:%d ", (($addr >> 29) & 0x01)
-    printf "BR12:%d ", (($addr >> 28) & 0x01)
-    printf "BR11:%d ", (($addr >> 27) & 0x01)
-    printf "BR10:%d ", (($addr >> 26) & 0x01)
-    printf "BR9:%d ", (($addr >> 25) & 0x01)
-    printf "BR8:%d ", (($addr >> 24) & 0x01)
-    printf "BR7:%d ", (($addr >> 23) & 0x01)
-    printf "BR6:%d ", (($addr >> 22) & 0x01)
-    printf "BR5:%d ", (($addr >> 21) & 0x01)
-    printf "BR4:%d ", (($addr >> 20) & 0x01)
-    printf "BR3:%d ", (($addr >> 19) & 0x01)
-    printf "BR2:%d ", (($addr >> 18) & 0x01)
-    printf "BR1:%d ", (($addr >> 17) & 0x01)
-    printf "BR0:%d ", (($addr >> 16) & 0x01)
-    printf "BS15:%d ", (($addr >> 15) & 0x01)
-    printf "BS14:%d ", (($addr >> 14) & 0x01)
-    printf "BS13:%d ", (($addr >> 13) & 0x01)
-    printf "BS12:%d ", (($addr >> 12) & 0x01)
-    printf "BS11:%d ", (($addr >> 11) & 0x01)
-    printf "BS10:%d ", (($addr >> 10) & 0x01)
-    printf "BS9:%d ", (($addr >> 9) & 0x01)
-    printf "BS8:%d ", (($addr >> 8) & 0x01)
-    printf "BS7:%d ", (($addr >> 7) & 0x01)
-    printf "BS6:%d ", (($addr >> 6) & 0x01)
-    printf "BS5:%d ", (($addr >> 5) & 0x01)
-    printf "BS4:%d ", (($addr >> 4) & 0x01)
-    printf "BS3:%d ", (($addr >> 3) & 0x01)
-    printf "BS2:%d ", (($addr >> 2) & 0x01)
-    printf "BS1:%d ", (($addr >> 1) & 0x01)
-    printf "BS0:%d ", (($addr >> 0) & 0x01)
+    printf "BR15[31]=%d ", (($data >> 31) & 0x01)
+    printf "BR14[30]=%d ", (($data >> 30) & 0x01)
+    printf "BR13[29]=%d ", (($data >> 29) & 0x01)
+    printf "BR12[28]=%d ", (($data >> 28) & 0x01)
+    printf "BR11[27]=%d ", (($data >> 27) & 0x01)
+    printf "BR10[26]=%d ", (($data >> 26) & 0x01)
+    printf "BR9[25]=%d ", (($data >> 25) & 0x01)
+    printf "BR8[24]=%d ", (($data >> 24) & 0x01)
+    printf "BR7[23]=%d ", (($data >> 23) & 0x01)
+    printf "BR6[22]=%d ", (($data >> 22) & 0x01)
+    printf "BR5[21]=%d ", (($data >> 21) & 0x01)
+    printf "BR4[20]=%d ", (($data >> 20) & 0x01)
+    printf "BR3[19]=%d ", (($data >> 19) & 0x01)
+    printf "BR2[18]=%d ", (($data >> 18) & 0x01)
+    printf "BR1[17]=%d ", (($data >> 17) & 0x01)
+    printf "BR0[16]=%d ", (($data >> 16) & 0x01)
+    printf "BS15[15]=%d ", (($data >> 15) & 0x01)
+    printf "BS14[14]=%d ", (($data >> 14) & 0x01)
+    printf "BS13[13]=%d ", (($data >> 13) & 0x01)
+    printf "BS12[12]=%d ", (($data >> 12) & 0x01)
+    printf "BS11[11]=%d ", (($data >> 11) & 0x01)
+    printf "BS10[10]=%d ", (($data >> 10) & 0x01)
+    printf "BS9[9]=%d ", (($data >> 9) & 0x01)
+    printf "BS8[8]=%d ", (($data >> 8) & 0x01)
+    printf "BS7[7]=%d ", (($data >> 7) & 0x01)
+    printf "BS6[6]=%d ", (($data >> 6) & 0x01)
+    printf "BS5[5]=%d ", (($data >> 5) & 0x01)
+    printf "BS4[4]=%d ", (($data >> 4) & 0x01)
+    printf "BS3[3]=%d ", (($data >> 3) & 0x01)
+    printf "BS2[2]=%d ", (($data >> 2) & 0x01)
+    printf "BS1[1]=%d ", (($data >> 1) & 0x01)
+    printf "BS0[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        LCKR           ##
     ###########################
     set $addr = $baseaddr + $LCKR
+    set $data = *$addr
     printf "GPIOC.LCKR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "LCKK:%d ", (($addr >> 16) & 0x01)
-    printf "LCK15:%d ", (($addr >> 15) & 0x01)
-    printf "LCK14:%d ", (($addr >> 14) & 0x01)
-    printf "LCK13:%d ", (($addr >> 13) & 0x01)
-    printf "LCK12:%d ", (($addr >> 12) & 0x01)
-    printf "LCK11:%d ", (($addr >> 11) & 0x01)
-    printf "LCK10:%d ", (($addr >> 10) & 0x01)
-    printf "LCK9:%d ", (($addr >> 9) & 0x01)
-    printf "LCK8:%d ", (($addr >> 8) & 0x01)
-    printf "LCK7:%d ", (($addr >> 7) & 0x01)
-    printf "LCK6:%d ", (($addr >> 6) & 0x01)
-    printf "LCK5:%d ", (($addr >> 5) & 0x01)
-    printf "LCK4:%d ", (($addr >> 4) & 0x01)
-    printf "LCK3:%d ", (($addr >> 3) & 0x01)
-    printf "LCK2:%d ", (($addr >> 2) & 0x01)
-    printf "LCK1:%d ", (($addr >> 1) & 0x01)
-    printf "LCK0:%d ", (($addr >> 0) & 0x01)
+    printf "LCKK[16]=%d ", (($data >> 16) & 0x01)
+    printf "LCK15[15]=%d ", (($data >> 15) & 0x01)
+    printf "LCK14[14]=%d ", (($data >> 14) & 0x01)
+    printf "LCK13[13]=%d ", (($data >> 13) & 0x01)
+    printf "LCK12[12]=%d ", (($data >> 12) & 0x01)
+    printf "LCK11[11]=%d ", (($data >> 11) & 0x01)
+    printf "LCK10[10]=%d ", (($data >> 10) & 0x01)
+    printf "LCK9[9]=%d ", (($data >> 9) & 0x01)
+    printf "LCK8[8]=%d ", (($data >> 8) & 0x01)
+    printf "LCK7[7]=%d ", (($data >> 7) & 0x01)
+    printf "LCK6[6]=%d ", (($data >> 6) & 0x01)
+    printf "LCK5[5]=%d ", (($data >> 5) & 0x01)
+    printf "LCK4[4]=%d ", (($data >> 4) & 0x01)
+    printf "LCK3[3]=%d ", (($data >> 3) & 0x01)
+    printf "LCK2[2]=%d ", (($data >> 2) & 0x01)
+    printf "LCK1[1]=%d ", (($data >> 1) & 0x01)
+    printf "LCK0[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        AFRL           ##
     ###########################
     set $addr = $baseaddr + $AFRL
+    set $data = *$addr
     printf "GPIOC.AFRL    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "AFRL7:%d ", (($addr >> 28) & 0x0f)
-    printf "AFRL6:%d ", (($addr >> 24) & 0x0f)
-    printf "AFRL5:%d ", (($addr >> 20) & 0x0f)
-    printf "AFRL4:%d ", (($addr >> 16) & 0x0f)
-    printf "AFRL3:%d ", (($addr >> 12) & 0x0f)
-    printf "AFRL2:%d ", (($addr >> 8) & 0x0f)
-    printf "AFRL1:%d ", (($addr >> 4) & 0x0f)
-    printf "AFRL0:%d ", (($addr >> 0) & 0x0f)
+    printf "AFRL7[31:28]=%d ", (($data >> 28) & 0x0f)
+    printf "AFRL6[27:24]=%d ", (($data >> 24) & 0x0f)
+    printf "AFRL5[23:20]=%d ", (($data >> 20) & 0x0f)
+    printf "AFRL4[19:16]=%d ", (($data >> 16) & 0x0f)
+    printf "AFRL3[15:12]=%d ", (($data >> 12) & 0x0f)
+    printf "AFRL2[11:8]=%d ", (($data >> 8) & 0x0f)
+    printf "AFRL1[7:4]=%d ", (($data >> 4) & 0x0f)
+    printf "AFRL0[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        AFRH           ##
     ###########################
     set $addr = $baseaddr + $AFRH
+    set $data = *$addr
     printf "GPIOC.AFRH    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "AFRH15:%d ", (($addr >> 28) & 0x0f)
-    printf "AFRH14:%d ", (($addr >> 24) & 0x0f)
-    printf "AFRH13:%d ", (($addr >> 20) & 0x0f)
-    printf "AFRH12:%d ", (($addr >> 16) & 0x0f)
-    printf "AFRH11:%d ", (($addr >> 12) & 0x0f)
-    printf "AFRH10:%d ", (($addr >> 8) & 0x0f)
-    printf "AFRH9:%d ", (($addr >> 4) & 0x0f)
-    printf "AFRH8:%d ", (($addr >> 0) & 0x0f)
+    printf "AFRH15[31:28]=%d ", (($data >> 28) & 0x0f)
+    printf "AFRH14[27:24]=%d ", (($data >> 24) & 0x0f)
+    printf "AFRH13[23:20]=%d ", (($data >> 20) & 0x0f)
+    printf "AFRH12[19:16]=%d ", (($data >> 16) & 0x0f)
+    printf "AFRH11[15:12]=%d ", (($data >> 12) & 0x0f)
+    printf "AFRH10[11:8]=%d ", (($data >> 8) & 0x0f)
+    printf "AFRH9[7:4]=%d ", (($data >> 4) & 0x0f)
+    printf "AFRH8[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
 end

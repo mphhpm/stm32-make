@@ -19,121 +19,134 @@ define print_i2c3
     ##        CR1            ##
     ###########################
     set $addr = $baseaddr + $CR1
+    set $data = *$addr
     printf "I2C3.CR1     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "SWRST:%d ", (($addr >> 15) & 0x01)
-    printf "ALERT:%d ", (($addr >> 13) & 0x01)
-    printf "PEC:%d ", (($addr >> 12) & 0x01)
-    printf "POS:%d ", (($addr >> 11) & 0x01)
-    printf "ACK:%d ", (($addr >> 10) & 0x01)
-    printf "STOP:%d ", (($addr >> 9) & 0x01)
-    printf "START:%d ", (($addr >> 8) & 0x01)
-    printf "NOSTRETCH:%d ", (($addr >> 7) & 0x01)
-    printf "ENGC:%d ", (($addr >> 6) & 0x01)
-    printf "ENPEC:%d ", (($addr >> 5) & 0x01)
-    printf "ENARP:%d ", (($addr >> 4) & 0x01)
-    printf "SMBTYPE:%d ", (($addr >> 3) & 0x01)
-    printf "SMBUS:%d ", (($addr >> 1) & 0x01)
-    printf "PE:%d ", (($addr >> 0) & 0x01)
+    printf "SWRST[15]=%d ", (($data >> 15) & 0x01)
+    printf "ALERT[13]=%d ", (($data >> 13) & 0x01)
+    printf "PEC[12]=%d ", (($data >> 12) & 0x01)
+    printf "POS[11]=%d ", (($data >> 11) & 0x01)
+    printf "ACK[10]=%d ", (($data >> 10) & 0x01)
+    printf "STOP[9]=%d ", (($data >> 9) & 0x01)
+    printf "START[8]=%d ", (($data >> 8) & 0x01)
+    printf "NOSTRETCH[7]=%d ", (($data >> 7) & 0x01)
+    printf "ENGC[6]=%d ", (($data >> 6) & 0x01)
+    printf "ENPEC[5]=%d ", (($data >> 5) & 0x01)
+    printf "ENARP[4]=%d ", (($data >> 4) & 0x01)
+    printf "SMBTYPE[3]=%d ", (($data >> 3) & 0x01)
+    printf "SMBUS[1]=%d ", (($data >> 1) & 0x01)
+    printf "PE[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        CR2            ##
     ###########################
     set $addr = $baseaddr + $CR2
+    set $data = *$addr
     printf "I2C3.CR2     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "LAST:%d ", (($addr >> 12) & 0x01)
-    printf "DMAEN:%d ", (($addr >> 11) & 0x01)
-    printf "ITBUFEN:%d ", (($addr >> 10) & 0x01)
-    printf "ITEVTEN:%d ", (($addr >> 9) & 0x01)
-    printf "ITERREN:%d ", (($addr >> 8) & 0x01)
-    printf "FREQ:%d ", (($addr >> 0) & 0x3f)
+    printf "LAST[12]=%d ", (($data >> 12) & 0x01)
+    printf "DMAEN[11]=%d ", (($data >> 11) & 0x01)
+    printf "ITBUFEN[10]=%d ", (($data >> 10) & 0x01)
+    printf "ITEVTEN[9]=%d ", (($data >> 9) & 0x01)
+    printf "ITERREN[8]=%d ", (($data >> 8) & 0x01)
+    printf "FREQ[5:0]=%d ", (($data >> 0) & 0x3f)
     printf "\n"
 
     ###########################
     ##        OAR1           ##
     ###########################
     set $addr = $baseaddr + $OAR1
+    set $data = *$addr
     printf "I2C3.OAR1    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "ADDMODE:%d ", (($addr >> 15) & 0x01)
-    printf "ADD10:%d ", (($addr >> 8) & 0x03)
-    printf "ADD7:%d ", (($addr >> 1) & 0x7f)
-    printf "ADD0:%d ", (($addr >> 0) & 0x01)
+    printf "ADDMODE[15]=%d ", (($data >> 15) & 0x01)
+    printf "ADD10[9:8]=%d ", (($data >> 8) & 0x03)
+    printf "ADD7[7:1]=%d ", (($data >> 1) & 0x7f)
+    printf "ADD0[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        OAR2           ##
     ###########################
     set $addr = $baseaddr + $OAR2
+    set $data = *$addr
     printf "I2C3.OAR2    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "ADD2:%d ", (($addr >> 1) & 0x7f)
-    printf "ENDUAL:%d ", (($addr >> 0) & 0x01)
+    printf "ADD2[7:1]=%d ", (($data >> 1) & 0x7f)
+    printf "ENDUAL[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        DR             ##
     ###########################
     set $addr = $baseaddr + $DR
+    set $data = *$addr
     printf "I2C3.DR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DR[7:0]=%d ", (($data >> 0) & 0xff)
     printf "\n"
 
     ###########################
     ##        SR1            ##
     ###########################
     set $addr = $baseaddr + $SR1
+    set $data = *$addr
     printf "I2C3.SR1     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "SMBALERT:%d ", (($addr >> 15) & 0x01)
-    printf "TIMEOUT:%d ", (($addr >> 14) & 0x01)
-    printf "PECERR:%d ", (($addr >> 12) & 0x01)
-    printf "OVR:%d ", (($addr >> 11) & 0x01)
-    printf "AF:%d ", (($addr >> 10) & 0x01)
-    printf "ARLO:%d ", (($addr >> 9) & 0x01)
-    printf "BERR:%d ", (($addr >> 8) & 0x01)
-    printf "TxE:%d ", (($addr >> 7) & 0x01)
-    printf "RxNE:%d ", (($addr >> 6) & 0x01)
-    printf "STOPF:%d ", (($addr >> 4) & 0x01)
-    printf "ADD10:%d ", (($addr >> 3) & 0x01)
-    printf "BTF:%d ", (($addr >> 2) & 0x01)
-    printf "ADDR:%d ", (($addr >> 1) & 0x01)
-    printf "SB:%d ", (($addr >> 0) & 0x01)
+    printf "SMBALERT[15]=%d ", (($data >> 15) & 0x01)
+    printf "TIMEOUT[14]=%d ", (($data >> 14) & 0x01)
+    printf "PECERR[12]=%d ", (($data >> 12) & 0x01)
+    printf "OVR[11]=%d ", (($data >> 11) & 0x01)
+    printf "AF[10]=%d ", (($data >> 10) & 0x01)
+    printf "ARLO[9]=%d ", (($data >> 9) & 0x01)
+    printf "BERR[8]=%d ", (($data >> 8) & 0x01)
+    printf "TxE[7]=%d ", (($data >> 7) & 0x01)
+    printf "RxNE[6]=%d ", (($data >> 6) & 0x01)
+    printf "STOPF[4]=%d ", (($data >> 4) & 0x01)
+    printf "ADD10[3]=%d ", (($data >> 3) & 0x01)
+    printf "BTF[2]=%d ", (($data >> 2) & 0x01)
+    printf "ADDR[1]=%d ", (($data >> 1) & 0x01)
+    printf "SB[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        SR2            ##
     ###########################
     set $addr = $baseaddr + $SR2
+    set $data = *$addr
     printf "I2C3.SR2     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "PEC:%d ", (($addr >> 8) & 0xff)
-    printf "DUALF:%d ", (($addr >> 7) & 0x01)
-    printf "SMBHOST:%d ", (($addr >> 6) & 0x01)
-    printf "SMBDEFAULT:%d ", (($addr >> 5) & 0x01)
-    printf "GENCALL:%d ", (($addr >> 4) & 0x01)
-    printf "TRA:%d ", (($addr >> 2) & 0x01)
-    printf "BUSY:%d ", (($addr >> 1) & 0x01)
-    printf "MSL:%d ", (($addr >> 0) & 0x01)
+    printf "PEC[15:8]=%d ", (($data >> 8) & 0xff)
+    printf "DUALF[7]=%d ", (($data >> 7) & 0x01)
+    printf "SMBHOST[6]=%d ", (($data >> 6) & 0x01)
+    printf "SMBDEFAULT[5]=%d ", (($data >> 5) & 0x01)
+    printf "GENCALL[4]=%d ", (($data >> 4) & 0x01)
+    printf "TRA[2]=%d ", (($data >> 2) & 0x01)
+    printf "BUSY[1]=%d ", (($data >> 1) & 0x01)
+    printf "MSL[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        CCR            ##
     ###########################
     set $addr = $baseaddr + $CCR
+    set $data = *$addr
     printf "I2C3.CCR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "F_S:%d ", (($addr >> 15) & 0x01)
-    printf "DUTY:%d ", (($addr >> 14) & 0x01)
-    printf "CCR:%d ", (($addr >> 0) & 0xfff)
+    printf "F_S[15]=%d ", (($data >> 15) & 0x01)
+    printf "DUTY[14]=%d ", (($data >> 14) & 0x01)
+    printf "CCR[11:0]=%d ", (($data >> 0) & 0xfff)
     printf "\n"
 
     ###########################
     ##        TRISE          ##
     ###########################
     set $addr = $baseaddr + $TRISE
+    set $data = *$addr
     printf "I2C3.TRISE   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "TRISE[5:0]=%d ", (($data >> 0) & 0x3f)
     printf "\n"
 
 end

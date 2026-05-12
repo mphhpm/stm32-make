@@ -48,494 +48,546 @@ define print_otg_fs_device
     ##        FS_DCFG        ##
     ###########################
     set $addr = $baseaddr + $FS_DCFG
+    set $data = *$addr
     printf "OTG_FS_DEVICE.FS_DCFG 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "PFIVL:%d ", (($addr >> 11) & 0x03)
-    printf "DAD:%d ", (($addr >> 4) & 0x7f)
-    printf "NZLSOHSK:%d ", (($addr >> 2) & 0x01)
-    printf "DSPD:%d ", (($addr >> 0) & 0x03)
+    printf "PFIVL[12:11]=%d ", (($data >> 11) & 0x03)
+    printf "DAD[10:4]=%d ", (($data >> 4) & 0x7f)
+    printf "NZLSOHSK[2]=%d ", (($data >> 2) & 0x01)
+    printf "DSPD[1:0]=%d ", (($data >> 0) & 0x03)
     printf "\n"
 
     ###########################
     ##        FS_DCTL        ##
     ###########################
     set $addr = $baseaddr + $FS_DCTL
+    set $data = *$addr
     printf "OTG_FS_DEVICE.FS_DCTL 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "POPRGDNE:%d ", (($addr >> 11) & 0x01)
-    printf "CGONAK:%d ", (($addr >> 10) & 0x01)
-    printf "SGONAK:%d ", (($addr >> 9) & 0x01)
-    printf "CGINAK:%d ", (($addr >> 8) & 0x01)
-    printf "SGINAK:%d ", (($addr >> 7) & 0x01)
-    printf "TCTL:%d ", (($addr >> 4) & 0x07)
-    printf "GONSTS:%d ", (($addr >> 3) & 0x01)
-    printf "GINSTS:%d ", (($addr >> 2) & 0x01)
-    printf "SDIS:%d ", (($addr >> 1) & 0x01)
-    printf "RWUSIG:%d ", (($addr >> 0) & 0x01)
+    printf "POPRGDNE[11]=%d ", (($data >> 11) & 0x01)
+    printf "CGONAK[10]=%d ", (($data >> 10) & 0x01)
+    printf "SGONAK[9]=%d ", (($data >> 9) & 0x01)
+    printf "CGINAK[8]=%d ", (($data >> 8) & 0x01)
+    printf "SGINAK[7]=%d ", (($data >> 7) & 0x01)
+    printf "TCTL[6:4]=%d ", (($data >> 4) & 0x07)
+    printf "GONSTS[3]=%d ", (($data >> 3) & 0x01)
+    printf "GINSTS[2]=%d ", (($data >> 2) & 0x01)
+    printf "SDIS[1]=%d ", (($data >> 1) & 0x01)
+    printf "RWUSIG[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_DSTS        ##
     ###########################
     set $addr = $baseaddr + $FS_DSTS
+    set $data = *$addr
     printf "OTG_FS_DEVICE.FS_DSTS 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "FNSOF:%d ", (($addr >> 8) & 0x3fff)
-    printf "EERR:%d ", (($addr >> 3) & 0x01)
-    printf "ENUMSPD:%d ", (($addr >> 1) & 0x03)
-    printf "SUSPSTS:%d ", (($addr >> 0) & 0x01)
+    printf "FNSOF[21:8]=%d ", (($data >> 8) & 0x3fff)
+    printf "EERR[3]=%d ", (($data >> 3) & 0x01)
+    printf "ENUMSPD[2:1]=%d ", (($data >> 1) & 0x03)
+    printf "SUSPSTS[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_DIEPMSK        ##
     ###########################
     set $addr = $baseaddr + $FS_DIEPMSK
+    set $data = *$addr
     printf "OTG_FS_DEVICE.FS_DIEPMSK 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "INEPNEM:%d ", (($addr >> 6) & 0x01)
-    printf "INEPNMM:%d ", (($addr >> 5) & 0x01)
-    printf "ITTXFEMSK:%d ", (($addr >> 4) & 0x01)
-    printf "TOM:%d ", (($addr >> 3) & 0x01)
-    printf "EPDM:%d ", (($addr >> 1) & 0x01)
-    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "INEPNEM[6]=%d ", (($data >> 6) & 0x01)
+    printf "INEPNMM[5]=%d ", (($data >> 5) & 0x01)
+    printf "ITTXFEMSK[4]=%d ", (($data >> 4) & 0x01)
+    printf "TOM[3]=%d ", (($data >> 3) & 0x01)
+    printf "EPDM[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRCM[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_DOEPMSK        ##
     ###########################
     set $addr = $baseaddr + $FS_DOEPMSK
+    set $data = *$addr
     printf "OTG_FS_DEVICE.FS_DOEPMSK 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "OTEPDM:%d ", (($addr >> 4) & 0x01)
-    printf "STUPM:%d ", (($addr >> 3) & 0x01)
-    printf "EPDM:%d ", (($addr >> 1) & 0x01)
-    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "OTEPDM[4]=%d ", (($data >> 4) & 0x01)
+    printf "STUPM[3]=%d ", (($data >> 3) & 0x01)
+    printf "EPDM[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRCM[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_DAINT        ##
     ###########################
     set $addr = $baseaddr + $FS_DAINT
+    set $data = *$addr
     printf "OTG_FS_DEVICE.FS_DAINT 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "OEPINT:%d ", (($addr >> 16) & 0xffff)
-    printf "IEPINT:%d ", (($addr >> 0) & 0xffff)
+    printf "OEPINT[31:16]=%d ", (($data >> 16) & 0xffff)
+    printf "IEPINT[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        FS_DAINTMSK        ##
     ###########################
     set $addr = $baseaddr + $FS_DAINTMSK
+    set $data = *$addr
     printf "OTG_FS_DEVICE.FS_DAINTMSK 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "OEPINT:%d ", (($addr >> 16) & 0xffff)
-    printf "IEPM:%d ", (($addr >> 0) & 0xffff)
+    printf "OEPINT[31:16]=%d ", (($data >> 16) & 0xffff)
+    printf "IEPM[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        DVBUSDIS        ##
     ###########################
     set $addr = $baseaddr + $DVBUSDIS
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DVBUSDIS 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "VBUSDT[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        DVBUSPULSE        ##
     ###########################
     set $addr = $baseaddr + $DVBUSPULSE
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DVBUSPULSE 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DVBUSP[11:0]=%d ", (($data >> 0) & 0xfff)
     printf "\n"
 
     ###########################
     ##        DIEPEMPMSK        ##
     ###########################
     set $addr = $baseaddr + $DIEPEMPMSK
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DIEPEMPMSK 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "INEPTXFEM[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        FS_DIEPCTL0        ##
     ###########################
     set $addr = $baseaddr + $FS_DIEPCTL0
+    set $data = *$addr
     printf "OTG_FS_DEVICE.FS_DIEPCTL0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "EPENA:%d ", (($addr >> 31) & 0x01)
-    printf "EPDIS:%d ", (($addr >> 30) & 0x01)
-    printf "SNAK:%d ", (($addr >> 27) & 0x01)
-    printf "CNAK:%d ", (($addr >> 26) & 0x01)
-    printf "TXFNUM:%d ", (($addr >> 22) & 0x0f)
-    printf "STALL:%d ", (($addr >> 21) & 0x01)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "NAKSTS:%d ", (($addr >> 17) & 0x01)
-    printf "USBAEP:%d ", (($addr >> 15) & 0x01)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x03)
+    printf "EPENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "EPDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "SNAK[27]=%d ", (($data >> 27) & 0x01)
+    printf "CNAK[26]=%d ", (($data >> 26) & 0x01)
+    printf "TXFNUM[25:22]=%d ", (($data >> 22) & 0x0f)
+    printf "STALL[21]=%d ", (($data >> 21) & 0x01)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "NAKSTS[17]=%d ", (($data >> 17) & 0x01)
+    printf "USBAEP[15]=%d ", (($data >> 15) & 0x01)
+    printf "MPSIZ[1:0]=%d ", (($data >> 0) & 0x03)
     printf "\n"
 
     ###########################
     ##        DIEPINT0        ##
     ###########################
     set $addr = $baseaddr + $DIEPINT0
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DIEPINT0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "TXFE:%d ", (($addr >> 7) & 0x01)
-    printf "INEPNE:%d ", (($addr >> 6) & 0x01)
-    printf "ITTXFE:%d ", (($addr >> 4) & 0x01)
-    printf "TOC:%d ", (($addr >> 3) & 0x01)
-    printf "EPDISD:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "TXFE[7]=%d ", (($data >> 7) & 0x01)
+    printf "INEPNE[6]=%d ", (($data >> 6) & 0x01)
+    printf "ITTXFE[4]=%d ", (($data >> 4) & 0x01)
+    printf "TOC[3]=%d ", (($data >> 3) & 0x01)
+    printf "EPDISD[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        DIEPTSIZ0        ##
     ###########################
     set $addr = $baseaddr + $DIEPTSIZ0
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DIEPTSIZ0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x03)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7f)
+    printf "PKTCNT[20:19]=%d ", (($data >> 19) & 0x03)
+    printf "XFRSIZ[6:0]=%d ", (($data >> 0) & 0x7f)
     printf "\n"
 
     ###########################
     ##        DTXFSTS0        ##
     ###########################
     set $addr = $baseaddr + $DTXFSTS0
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DTXFSTS0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "INEPTFSAV[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        DIEPCTL1        ##
     ###########################
     set $addr = $baseaddr + $DIEPCTL1
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DIEPCTL1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "EPENA:%d ", (($addr >> 31) & 0x01)
-    printf "EPDIS:%d ", (($addr >> 30) & 0x01)
-    printf "SODDFRM_SD1PID:%d ", (($addr >> 29) & 0x01)
-    printf "SD0PID_SEVNFRM:%d ", (($addr >> 28) & 0x01)
-    printf "SNAK:%d ", (($addr >> 27) & 0x01)
-    printf "CNAK:%d ", (($addr >> 26) & 0x01)
-    printf "TXFNUM:%d ", (($addr >> 22) & 0x0f)
-    printf "Stall:%d ", (($addr >> 21) & 0x01)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "NAKSTS:%d ", (($addr >> 17) & 0x01)
-    printf "EONUM_DPID:%d ", (($addr >> 16) & 0x01)
-    printf "USBAEP:%d ", (($addr >> 15) & 0x01)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "EPENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "EPDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "SODDFRM_SD1PID[29]=%d ", (($data >> 29) & 0x01)
+    printf "SD0PID_SEVNFRM[28]=%d ", (($data >> 28) & 0x01)
+    printf "SNAK[27]=%d ", (($data >> 27) & 0x01)
+    printf "CNAK[26]=%d ", (($data >> 26) & 0x01)
+    printf "TXFNUM[25:22]=%d ", (($data >> 22) & 0x0f)
+    printf "Stall[21]=%d ", (($data >> 21) & 0x01)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "NAKSTS[17]=%d ", (($data >> 17) & 0x01)
+    printf "EONUM_DPID[16]=%d ", (($data >> 16) & 0x01)
+    printf "USBAEP[15]=%d ", (($data >> 15) & 0x01)
+    printf "MPSIZ[10:0]=%d ", (($data >> 0) & 0x7ff)
     printf "\n"
 
     ###########################
     ##        DIEPINT1        ##
     ###########################
     set $addr = $baseaddr + $DIEPINT1
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DIEPINT1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "TXFE:%d ", (($addr >> 7) & 0x01)
-    printf "INEPNE:%d ", (($addr >> 6) & 0x01)
-    printf "ITTXFE:%d ", (($addr >> 4) & 0x01)
-    printf "TOC:%d ", (($addr >> 3) & 0x01)
-    printf "EPDISD:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "TXFE[7]=%d ", (($data >> 7) & 0x01)
+    printf "INEPNE[6]=%d ", (($data >> 6) & 0x01)
+    printf "ITTXFE[4]=%d ", (($data >> 4) & 0x01)
+    printf "TOC[3]=%d ", (($data >> 3) & 0x01)
+    printf "EPDISD[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        DIEPTSIZ1        ##
     ###########################
     set $addr = $baseaddr + $DIEPTSIZ1
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DIEPTSIZ1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "MCNT:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "MCNT[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[28:19]=%d ", (($data >> 19) & 0x3ff)
+    printf "XFRSIZ[18:0]=%d ", (($data >> 0) & 0x7ffff)
     printf "\n"
 
     ###########################
     ##        DTXFSTS1        ##
     ###########################
     set $addr = $baseaddr + $DTXFSTS1
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DTXFSTS1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "INEPTFSAV[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        DIEPCTL2        ##
     ###########################
     set $addr = $baseaddr + $DIEPCTL2
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DIEPCTL2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "EPENA:%d ", (($addr >> 31) & 0x01)
-    printf "EPDIS:%d ", (($addr >> 30) & 0x01)
-    printf "SODDFRM:%d ", (($addr >> 29) & 0x01)
-    printf "SD0PID_SEVNFRM:%d ", (($addr >> 28) & 0x01)
-    printf "SNAK:%d ", (($addr >> 27) & 0x01)
-    printf "CNAK:%d ", (($addr >> 26) & 0x01)
-    printf "TXFNUM:%d ", (($addr >> 22) & 0x0f)
-    printf "Stall:%d ", (($addr >> 21) & 0x01)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "NAKSTS:%d ", (($addr >> 17) & 0x01)
-    printf "EONUM_DPID:%d ", (($addr >> 16) & 0x01)
-    printf "USBAEP:%d ", (($addr >> 15) & 0x01)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "EPENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "EPDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "SODDFRM[29]=%d ", (($data >> 29) & 0x01)
+    printf "SD0PID_SEVNFRM[28]=%d ", (($data >> 28) & 0x01)
+    printf "SNAK[27]=%d ", (($data >> 27) & 0x01)
+    printf "CNAK[26]=%d ", (($data >> 26) & 0x01)
+    printf "TXFNUM[25:22]=%d ", (($data >> 22) & 0x0f)
+    printf "Stall[21]=%d ", (($data >> 21) & 0x01)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "NAKSTS[17]=%d ", (($data >> 17) & 0x01)
+    printf "EONUM_DPID[16]=%d ", (($data >> 16) & 0x01)
+    printf "USBAEP[15]=%d ", (($data >> 15) & 0x01)
+    printf "MPSIZ[10:0]=%d ", (($data >> 0) & 0x7ff)
     printf "\n"
 
     ###########################
     ##        DIEPINT2        ##
     ###########################
     set $addr = $baseaddr + $DIEPINT2
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DIEPINT2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "TXFE:%d ", (($addr >> 7) & 0x01)
-    printf "INEPNE:%d ", (($addr >> 6) & 0x01)
-    printf "ITTXFE:%d ", (($addr >> 4) & 0x01)
-    printf "TOC:%d ", (($addr >> 3) & 0x01)
-    printf "EPDISD:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "TXFE[7]=%d ", (($data >> 7) & 0x01)
+    printf "INEPNE[6]=%d ", (($data >> 6) & 0x01)
+    printf "ITTXFE[4]=%d ", (($data >> 4) & 0x01)
+    printf "TOC[3]=%d ", (($data >> 3) & 0x01)
+    printf "EPDISD[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        DIEPTSIZ2        ##
     ###########################
     set $addr = $baseaddr + $DIEPTSIZ2
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DIEPTSIZ2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "MCNT:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "MCNT[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[28:19]=%d ", (($data >> 19) & 0x3ff)
+    printf "XFRSIZ[18:0]=%d ", (($data >> 0) & 0x7ffff)
     printf "\n"
 
     ###########################
     ##        DTXFSTS2        ##
     ###########################
     set $addr = $baseaddr + $DTXFSTS2
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DTXFSTS2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "INEPTFSAV[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        DIEPCTL3        ##
     ###########################
     set $addr = $baseaddr + $DIEPCTL3
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DIEPCTL3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "EPENA:%d ", (($addr >> 31) & 0x01)
-    printf "EPDIS:%d ", (($addr >> 30) & 0x01)
-    printf "SODDFRM:%d ", (($addr >> 29) & 0x01)
-    printf "SD0PID_SEVNFRM:%d ", (($addr >> 28) & 0x01)
-    printf "SNAK:%d ", (($addr >> 27) & 0x01)
-    printf "CNAK:%d ", (($addr >> 26) & 0x01)
-    printf "TXFNUM:%d ", (($addr >> 22) & 0x0f)
-    printf "Stall:%d ", (($addr >> 21) & 0x01)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "NAKSTS:%d ", (($addr >> 17) & 0x01)
-    printf "EONUM_DPID:%d ", (($addr >> 16) & 0x01)
-    printf "USBAEP:%d ", (($addr >> 15) & 0x01)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "EPENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "EPDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "SODDFRM[29]=%d ", (($data >> 29) & 0x01)
+    printf "SD0PID_SEVNFRM[28]=%d ", (($data >> 28) & 0x01)
+    printf "SNAK[27]=%d ", (($data >> 27) & 0x01)
+    printf "CNAK[26]=%d ", (($data >> 26) & 0x01)
+    printf "TXFNUM[25:22]=%d ", (($data >> 22) & 0x0f)
+    printf "Stall[21]=%d ", (($data >> 21) & 0x01)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "NAKSTS[17]=%d ", (($data >> 17) & 0x01)
+    printf "EONUM_DPID[16]=%d ", (($data >> 16) & 0x01)
+    printf "USBAEP[15]=%d ", (($data >> 15) & 0x01)
+    printf "MPSIZ[10:0]=%d ", (($data >> 0) & 0x7ff)
     printf "\n"
 
     ###########################
     ##        DIEPINT3        ##
     ###########################
     set $addr = $baseaddr + $DIEPINT3
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DIEPINT3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "TXFE:%d ", (($addr >> 7) & 0x01)
-    printf "INEPNE:%d ", (($addr >> 6) & 0x01)
-    printf "ITTXFE:%d ", (($addr >> 4) & 0x01)
-    printf "TOC:%d ", (($addr >> 3) & 0x01)
-    printf "EPDISD:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "TXFE[7]=%d ", (($data >> 7) & 0x01)
+    printf "INEPNE[6]=%d ", (($data >> 6) & 0x01)
+    printf "ITTXFE[4]=%d ", (($data >> 4) & 0x01)
+    printf "TOC[3]=%d ", (($data >> 3) & 0x01)
+    printf "EPDISD[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        DIEPTSIZ3        ##
     ###########################
     set $addr = $baseaddr + $DIEPTSIZ3
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DIEPTSIZ3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "MCNT:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "MCNT[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[28:19]=%d ", (($data >> 19) & 0x3ff)
+    printf "XFRSIZ[18:0]=%d ", (($data >> 0) & 0x7ffff)
     printf "\n"
 
     ###########################
     ##        DTXFSTS3        ##
     ###########################
     set $addr = $baseaddr + $DTXFSTS3
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DTXFSTS3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "INEPTFSAV[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        DOEPCTL0        ##
     ###########################
     set $addr = $baseaddr + $DOEPCTL0
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DOEPCTL0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "EPENA:%d ", (($addr >> 31) & 0x01)
-    printf "EPDIS:%d ", (($addr >> 30) & 0x01)
-    printf "SNAK:%d ", (($addr >> 27) & 0x01)
-    printf "CNAK:%d ", (($addr >> 26) & 0x01)
-    printf "Stall:%d ", (($addr >> 21) & 0x01)
-    printf "SNPM:%d ", (($addr >> 20) & 0x01)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "NAKSTS:%d ", (($addr >> 17) & 0x01)
-    printf "USBAEP:%d ", (($addr >> 15) & 0x01)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x03)
+    printf "EPENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "EPDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "SNAK[27]=%d ", (($data >> 27) & 0x01)
+    printf "CNAK[26]=%d ", (($data >> 26) & 0x01)
+    printf "Stall[21]=%d ", (($data >> 21) & 0x01)
+    printf "SNPM[20]=%d ", (($data >> 20) & 0x01)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "NAKSTS[17]=%d ", (($data >> 17) & 0x01)
+    printf "USBAEP[15]=%d ", (($data >> 15) & 0x01)
+    printf "MPSIZ[1:0]=%d ", (($data >> 0) & 0x03)
     printf "\n"
 
     ###########################
     ##        DOEPINT0        ##
     ###########################
     set $addr = $baseaddr + $DOEPINT0
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DOEPINT0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "B2BSTUP:%d ", (($addr >> 6) & 0x01)
-    printf "OTEPDIS:%d ", (($addr >> 4) & 0x01)
-    printf "STUP:%d ", (($addr >> 3) & 0x01)
-    printf "EPDISD:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "B2BSTUP[6]=%d ", (($data >> 6) & 0x01)
+    printf "OTEPDIS[4]=%d ", (($data >> 4) & 0x01)
+    printf "STUP[3]=%d ", (($data >> 3) & 0x01)
+    printf "EPDISD[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        DOEPTSIZ0        ##
     ###########################
     set $addr = $baseaddr + $DOEPTSIZ0
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DOEPTSIZ0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "STUPCNT:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x01)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7f)
+    printf "STUPCNT[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[19]=%d ", (($data >> 19) & 0x01)
+    printf "XFRSIZ[6:0]=%d ", (($data >> 0) & 0x7f)
     printf "\n"
 
     ###########################
     ##        DOEPCTL1        ##
     ###########################
     set $addr = $baseaddr + $DOEPCTL1
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DOEPCTL1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "EPENA:%d ", (($addr >> 31) & 0x01)
-    printf "EPDIS:%d ", (($addr >> 30) & 0x01)
-    printf "SODDFRM:%d ", (($addr >> 29) & 0x01)
-    printf "SD0PID_SEVNFRM:%d ", (($addr >> 28) & 0x01)
-    printf "SNAK:%d ", (($addr >> 27) & 0x01)
-    printf "CNAK:%d ", (($addr >> 26) & 0x01)
-    printf "Stall:%d ", (($addr >> 21) & 0x01)
-    printf "SNPM:%d ", (($addr >> 20) & 0x01)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "NAKSTS:%d ", (($addr >> 17) & 0x01)
-    printf "EONUM_DPID:%d ", (($addr >> 16) & 0x01)
-    printf "USBAEP:%d ", (($addr >> 15) & 0x01)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "EPENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "EPDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "SODDFRM[29]=%d ", (($data >> 29) & 0x01)
+    printf "SD0PID_SEVNFRM[28]=%d ", (($data >> 28) & 0x01)
+    printf "SNAK[27]=%d ", (($data >> 27) & 0x01)
+    printf "CNAK[26]=%d ", (($data >> 26) & 0x01)
+    printf "Stall[21]=%d ", (($data >> 21) & 0x01)
+    printf "SNPM[20]=%d ", (($data >> 20) & 0x01)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "NAKSTS[17]=%d ", (($data >> 17) & 0x01)
+    printf "EONUM_DPID[16]=%d ", (($data >> 16) & 0x01)
+    printf "USBAEP[15]=%d ", (($data >> 15) & 0x01)
+    printf "MPSIZ[10:0]=%d ", (($data >> 0) & 0x7ff)
     printf "\n"
 
     ###########################
     ##        DOEPINT1        ##
     ###########################
     set $addr = $baseaddr + $DOEPINT1
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DOEPINT1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "B2BSTUP:%d ", (($addr >> 6) & 0x01)
-    printf "OTEPDIS:%d ", (($addr >> 4) & 0x01)
-    printf "STUP:%d ", (($addr >> 3) & 0x01)
-    printf "EPDISD:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "B2BSTUP[6]=%d ", (($data >> 6) & 0x01)
+    printf "OTEPDIS[4]=%d ", (($data >> 4) & 0x01)
+    printf "STUP[3]=%d ", (($data >> 3) & 0x01)
+    printf "EPDISD[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        DOEPTSIZ1        ##
     ###########################
     set $addr = $baseaddr + $DOEPTSIZ1
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DOEPTSIZ1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "RXDPID_STUPCNT:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "RXDPID_STUPCNT[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[28:19]=%d ", (($data >> 19) & 0x3ff)
+    printf "XFRSIZ[18:0]=%d ", (($data >> 0) & 0x7ffff)
     printf "\n"
 
     ###########################
     ##        DOEPCTL2        ##
     ###########################
     set $addr = $baseaddr + $DOEPCTL2
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DOEPCTL2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "EPENA:%d ", (($addr >> 31) & 0x01)
-    printf "EPDIS:%d ", (($addr >> 30) & 0x01)
-    printf "SODDFRM:%d ", (($addr >> 29) & 0x01)
-    printf "SD0PID_SEVNFRM:%d ", (($addr >> 28) & 0x01)
-    printf "SNAK:%d ", (($addr >> 27) & 0x01)
-    printf "CNAK:%d ", (($addr >> 26) & 0x01)
-    printf "Stall:%d ", (($addr >> 21) & 0x01)
-    printf "SNPM:%d ", (($addr >> 20) & 0x01)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "NAKSTS:%d ", (($addr >> 17) & 0x01)
-    printf "EONUM_DPID:%d ", (($addr >> 16) & 0x01)
-    printf "USBAEP:%d ", (($addr >> 15) & 0x01)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "EPENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "EPDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "SODDFRM[29]=%d ", (($data >> 29) & 0x01)
+    printf "SD0PID_SEVNFRM[28]=%d ", (($data >> 28) & 0x01)
+    printf "SNAK[27]=%d ", (($data >> 27) & 0x01)
+    printf "CNAK[26]=%d ", (($data >> 26) & 0x01)
+    printf "Stall[21]=%d ", (($data >> 21) & 0x01)
+    printf "SNPM[20]=%d ", (($data >> 20) & 0x01)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "NAKSTS[17]=%d ", (($data >> 17) & 0x01)
+    printf "EONUM_DPID[16]=%d ", (($data >> 16) & 0x01)
+    printf "USBAEP[15]=%d ", (($data >> 15) & 0x01)
+    printf "MPSIZ[10:0]=%d ", (($data >> 0) & 0x7ff)
     printf "\n"
 
     ###########################
     ##        DOEPINT2        ##
     ###########################
     set $addr = $baseaddr + $DOEPINT2
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DOEPINT2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "B2BSTUP:%d ", (($addr >> 6) & 0x01)
-    printf "OTEPDIS:%d ", (($addr >> 4) & 0x01)
-    printf "STUP:%d ", (($addr >> 3) & 0x01)
-    printf "EPDISD:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "B2BSTUP[6]=%d ", (($data >> 6) & 0x01)
+    printf "OTEPDIS[4]=%d ", (($data >> 4) & 0x01)
+    printf "STUP[3]=%d ", (($data >> 3) & 0x01)
+    printf "EPDISD[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        DOEPTSIZ2        ##
     ###########################
     set $addr = $baseaddr + $DOEPTSIZ2
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DOEPTSIZ2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "RXDPID_STUPCNT:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "RXDPID_STUPCNT[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[28:19]=%d ", (($data >> 19) & 0x3ff)
+    printf "XFRSIZ[18:0]=%d ", (($data >> 0) & 0x7ffff)
     printf "\n"
 
     ###########################
     ##        DOEPCTL3        ##
     ###########################
     set $addr = $baseaddr + $DOEPCTL3
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DOEPCTL3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "EPENA:%d ", (($addr >> 31) & 0x01)
-    printf "EPDIS:%d ", (($addr >> 30) & 0x01)
-    printf "SODDFRM:%d ", (($addr >> 29) & 0x01)
-    printf "SD0PID_SEVNFRM:%d ", (($addr >> 28) & 0x01)
-    printf "SNAK:%d ", (($addr >> 27) & 0x01)
-    printf "CNAK:%d ", (($addr >> 26) & 0x01)
-    printf "Stall:%d ", (($addr >> 21) & 0x01)
-    printf "SNPM:%d ", (($addr >> 20) & 0x01)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "NAKSTS:%d ", (($addr >> 17) & 0x01)
-    printf "EONUM_DPID:%d ", (($addr >> 16) & 0x01)
-    printf "USBAEP:%d ", (($addr >> 15) & 0x01)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "EPENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "EPDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "SODDFRM[29]=%d ", (($data >> 29) & 0x01)
+    printf "SD0PID_SEVNFRM[28]=%d ", (($data >> 28) & 0x01)
+    printf "SNAK[27]=%d ", (($data >> 27) & 0x01)
+    printf "CNAK[26]=%d ", (($data >> 26) & 0x01)
+    printf "Stall[21]=%d ", (($data >> 21) & 0x01)
+    printf "SNPM[20]=%d ", (($data >> 20) & 0x01)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "NAKSTS[17]=%d ", (($data >> 17) & 0x01)
+    printf "EONUM_DPID[16]=%d ", (($data >> 16) & 0x01)
+    printf "USBAEP[15]=%d ", (($data >> 15) & 0x01)
+    printf "MPSIZ[10:0]=%d ", (($data >> 0) & 0x7ff)
     printf "\n"
 
     ###########################
     ##        DOEPINT3        ##
     ###########################
     set $addr = $baseaddr + $DOEPINT3
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DOEPINT3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "B2BSTUP:%d ", (($addr >> 6) & 0x01)
-    printf "OTEPDIS:%d ", (($addr >> 4) & 0x01)
-    printf "STUP:%d ", (($addr >> 3) & 0x01)
-    printf "EPDISD:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "B2BSTUP[6]=%d ", (($data >> 6) & 0x01)
+    printf "OTEPDIS[4]=%d ", (($data >> 4) & 0x01)
+    printf "STUP[3]=%d ", (($data >> 3) & 0x01)
+    printf "EPDISD[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        DOEPTSIZ3        ##
     ###########################
     set $addr = $baseaddr + $DOEPTSIZ3
+    set $data = *$addr
     printf "OTG_FS_DEVICE.DOEPTSIZ3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "RXDPID_STUPCNT:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "RXDPID_STUPCNT[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[28:19]=%d ", (($data >> 19) & 0x3ff)
+    printf "XFRSIZ[18:0]=%d ", (($data >> 0) & 0x7ffff)
     printf "\n"
 
 end

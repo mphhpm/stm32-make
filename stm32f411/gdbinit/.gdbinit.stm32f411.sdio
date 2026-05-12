@@ -28,218 +28,260 @@ define print_sdio
     ##        POWER          ##
     ###########################
     set $addr = $baseaddr + $POWER
+    set $data = *$addr
     printf "SDIO.POWER   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "PWRCTRL[1:0]=%d ", (($data >> 0) & 0x03)
     printf "\n"
 
     ###########################
     ##        CLKCR          ##
     ###########################
     set $addr = $baseaddr + $CLKCR
+    set $data = *$addr
     printf "SDIO.CLKCR   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "HWFC_EN:%d ", (($addr >> 14) & 0x01)
-    printf "NEGEDGE:%d ", (($addr >> 13) & 0x01)
-    printf "WIDBUS:%d ", (($addr >> 11) & 0x03)
-    printf "BYPASS:%d ", (($addr >> 10) & 0x01)
-    printf "PWRSAV:%d ", (($addr >> 9) & 0x01)
-    printf "CLKEN:%d ", (($addr >> 8) & 0x01)
-    printf "CLKDIV:%d ", (($addr >> 0) & 0xff)
+    printf "HWFC_EN[14]=%d ", (($data >> 14) & 0x01)
+    printf "NEGEDGE[13]=%d ", (($data >> 13) & 0x01)
+    printf "WIDBUS[12:11]=%d ", (($data >> 11) & 0x03)
+    printf "BYPASS[10]=%d ", (($data >> 10) & 0x01)
+    printf "PWRSAV[9]=%d ", (($data >> 9) & 0x01)
+    printf "CLKEN[8]=%d ", (($data >> 8) & 0x01)
+    printf "CLKDIV[7:0]=%d ", (($data >> 0) & 0xff)
     printf "\n"
 
     ###########################
     ##        ARG            ##
     ###########################
     set $addr = $baseaddr + $ARG
+    set $data = *$addr
     printf "SDIO.ARG     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CMDARG[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        CMD            ##
     ###########################
     set $addr = $baseaddr + $CMD
+    set $data = *$addr
     printf "SDIO.CMD     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CE_ATACMD:%d ", (($addr >> 14) & 0x01)
-    printf "nIEN:%d ", (($addr >> 13) & 0x01)
-    printf "ENCMDcompl:%d ", (($addr >> 12) & 0x01)
-    printf "SDIOSuspend:%d ", (($addr >> 11) & 0x01)
-    printf "CPSMEN:%d ", (($addr >> 10) & 0x01)
-    printf "WAITPEND:%d ", (($addr >> 9) & 0x01)
-    printf "WAITINT:%d ", (($addr >> 8) & 0x01)
-    printf "WAITRESP:%d ", (($addr >> 6) & 0x03)
-    printf "CMDINDEX:%d ", (($addr >> 0) & 0x3f)
+    printf "CE_ATACMD[14]=%d ", (($data >> 14) & 0x01)
+    printf "nIEN[13]=%d ", (($data >> 13) & 0x01)
+    printf "ENCMDcompl[12]=%d ", (($data >> 12) & 0x01)
+    printf "SDIOSuspend[11]=%d ", (($data >> 11) & 0x01)
+    printf "CPSMEN[10]=%d ", (($data >> 10) & 0x01)
+    printf "WAITPEND[9]=%d ", (($data >> 9) & 0x01)
+    printf "WAITINT[8]=%d ", (($data >> 8) & 0x01)
+    printf "WAITRESP[7:6]=%d ", (($data >> 6) & 0x03)
+    printf "CMDINDEX[5:0]=%d ", (($data >> 0) & 0x3f)
     printf "\n"
 
     ###########################
     ##        RESPCMD        ##
     ###########################
     set $addr = $baseaddr + $RESPCMD
+    set $data = *$addr
     printf "SDIO.RESPCMD 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "RESPCMD[5:0]=%d ", (($data >> 0) & 0x3f)
     printf "\n"
 
     ###########################
     ##        RESP1          ##
     ###########################
     set $addr = $baseaddr + $RESP1
+    set $data = *$addr
     printf "SDIO.RESP1   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CARDSTATUS1[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        RESP2          ##
     ###########################
     set $addr = $baseaddr + $RESP2
+    set $data = *$addr
     printf "SDIO.RESP2   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CARDSTATUS2[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        RESP3          ##
     ###########################
     set $addr = $baseaddr + $RESP3
+    set $data = *$addr
     printf "SDIO.RESP3   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CARDSTATUS3[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        RESP4          ##
     ###########################
     set $addr = $baseaddr + $RESP4
+    set $data = *$addr
     printf "SDIO.RESP4   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "CARDSTATUS4[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        DTIMER         ##
     ###########################
     set $addr = $baseaddr + $DTIMER
+    set $data = *$addr
     printf "SDIO.DTIMER  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DATATIME[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
     ###########################
     ##        DLEN           ##
     ###########################
     set $addr = $baseaddr + $DLEN
+    set $data = *$addr
     printf "SDIO.DLEN    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DATALENGTH[24:0]=%d ", (($data >> 0) & 0x1ffffff)
     printf "\n"
 
     ###########################
     ##        DCTRL          ##
     ###########################
     set $addr = $baseaddr + $DCTRL
+    set $data = *$addr
     printf "SDIO.DCTRL   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "SDIOEN:%d ", (($addr >> 11) & 0x01)
-    printf "RWMOD:%d ", (($addr >> 10) & 0x01)
-    printf "RWSTOP:%d ", (($addr >> 9) & 0x01)
-    printf "RWSTART:%d ", (($addr >> 8) & 0x01)
-    printf "DBLOCKSIZE:%d ", (($addr >> 4) & 0x0f)
-    printf "DMAEN:%d ", (($addr >> 3) & 0x01)
-    printf "DTMODE:%d ", (($addr >> 2) & 0x01)
-    printf "DTDIR:%d ", (($addr >> 1) & 0x01)
-    printf "DTEN:%d ", (($addr >> 0) & 0x01)
+    printf "SDIOEN[11]=%d ", (($data >> 11) & 0x01)
+    printf "RWMOD[10]=%d ", (($data >> 10) & 0x01)
+    printf "RWSTOP[9]=%d ", (($data >> 9) & 0x01)
+    printf "RWSTART[8]=%d ", (($data >> 8) & 0x01)
+    printf "DBLOCKSIZE[7:4]=%d ", (($data >> 4) & 0x0f)
+    printf "DMAEN[3]=%d ", (($data >> 3) & 0x01)
+    printf "DTMODE[2]=%d ", (($data >> 2) & 0x01)
+    printf "DTDIR[1]=%d ", (($data >> 1) & 0x01)
+    printf "DTEN[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        DCOUNT         ##
     ###########################
     set $addr = $baseaddr + $DCOUNT
+    set $data = *$addr
     printf "SDIO.DCOUNT  0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DATACOUNT[24:0]=%d ", (($data >> 0) & 0x1ffffff)
     printf "\n"
 
     ###########################
     ##        STA            ##
     ###########################
     set $addr = $baseaddr + $STA
+    set $data = *$addr
     printf "SDIO.STA     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CEATAEND:%d ", (($addr >> 23) & 0x01)
-    printf "SDIOIT:%d ", (($addr >> 22) & 0x01)
-    printf "RXDAVL:%d ", (($addr >> 21) & 0x01)
-    printf "TXDAVL:%d ", (($addr >> 20) & 0x01)
-    printf "RXFIFOE:%d ", (($addr >> 19) & 0x01)
-    printf "TXFIFOE:%d ", (($addr >> 18) & 0x01)
-    printf "RXFIFOF:%d ", (($addr >> 17) & 0x01)
-    printf "TXFIFOF:%d ", (($addr >> 16) & 0x01)
-    printf "RXFIFOHF:%d ", (($addr >> 15) & 0x01)
-    printf "TXFIFOHE:%d ", (($addr >> 14) & 0x01)
-    printf "RXACT:%d ", (($addr >> 13) & 0x01)
-    printf "TXACT:%d ", (($addr >> 12) & 0x01)
-    printf "CMDACT:%d ", (($addr >> 11) & 0x01)
-    printf "DBCKEND:%d ", (($addr >> 10) & 0x01)
-    printf "STBITERR:%d ", (($addr >> 9) & 0x01)
-    printf "DATAEND:%d ", (($addr >> 8) & 0x01)
-    printf "CMDSENT:%d ", (($addr >> 7) & 0x01)
-    printf "CMDREND:%d ", (($addr >> 6) & 0x01)
-    printf "RXOVERR:%d ", (($addr >> 5) & 0x01)
-    printf "TXUNDERR:%d ", (($addr >> 4) & 0x01)
-    printf "DTIMEOUT:%d ", (($addr >> 3) & 0x01)
-    printf "CTIMEOUT:%d ", (($addr >> 2) & 0x01)
-    printf "DCRCFAIL:%d ", (($addr >> 1) & 0x01)
-    printf "CCRCFAIL:%d ", (($addr >> 0) & 0x01)
+    printf "CEATAEND[23]=%d ", (($data >> 23) & 0x01)
+    printf "SDIOIT[22]=%d ", (($data >> 22) & 0x01)
+    printf "RXDAVL[21]=%d ", (($data >> 21) & 0x01)
+    printf "TXDAVL[20]=%d ", (($data >> 20) & 0x01)
+    printf "RXFIFOE[19]=%d ", (($data >> 19) & 0x01)
+    printf "TXFIFOE[18]=%d ", (($data >> 18) & 0x01)
+    printf "RXFIFOF[17]=%d ", (($data >> 17) & 0x01)
+    printf "TXFIFOF[16]=%d ", (($data >> 16) & 0x01)
+    printf "RXFIFOHF[15]=%d ", (($data >> 15) & 0x01)
+    printf "TXFIFOHE[14]=%d ", (($data >> 14) & 0x01)
+    printf "RXACT[13]=%d ", (($data >> 13) & 0x01)
+    printf "TXACT[12]=%d ", (($data >> 12) & 0x01)
+    printf "CMDACT[11]=%d ", (($data >> 11) & 0x01)
+    printf "DBCKEND[10]=%d ", (($data >> 10) & 0x01)
+    printf "STBITERR[9]=%d ", (($data >> 9) & 0x01)
+    printf "DATAEND[8]=%d ", (($data >> 8) & 0x01)
+    printf "CMDSENT[7]=%d ", (($data >> 7) & 0x01)
+    printf "CMDREND[6]=%d ", (($data >> 6) & 0x01)
+    printf "RXOVERR[5]=%d ", (($data >> 5) & 0x01)
+    printf "TXUNDERR[4]=%d ", (($data >> 4) & 0x01)
+    printf "DTIMEOUT[3]=%d ", (($data >> 3) & 0x01)
+    printf "CTIMEOUT[2]=%d ", (($data >> 2) & 0x01)
+    printf "DCRCFAIL[1]=%d ", (($data >> 1) & 0x01)
+    printf "CCRCFAIL[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        ICR            ##
     ###########################
     set $addr = $baseaddr + $ICR
+    set $data = *$addr
     printf "SDIO.ICR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CEATAENDC:%d ", (($addr >> 23) & 0x01)
-    printf "SDIOITC:%d ", (($addr >> 22) & 0x01)
-    printf "DBCKENDC:%d ", (($addr >> 10) & 0x01)
-    printf "STBITERRC:%d ", (($addr >> 9) & 0x01)
-    printf "DATAENDC:%d ", (($addr >> 8) & 0x01)
-    printf "CMDSENTC:%d ", (($addr >> 7) & 0x01)
-    printf "CMDRENDC:%d ", (($addr >> 6) & 0x01)
-    printf "RXOVERRC:%d ", (($addr >> 5) & 0x01)
-    printf "TXUNDERRC:%d ", (($addr >> 4) & 0x01)
-    printf "DTIMEOUTC:%d ", (($addr >> 3) & 0x01)
-    printf "CTIMEOUTC:%d ", (($addr >> 2) & 0x01)
-    printf "DCRCFAILC:%d ", (($addr >> 1) & 0x01)
-    printf "CCRCFAILC:%d ", (($addr >> 0) & 0x01)
+    printf "CEATAENDC[23]=%d ", (($data >> 23) & 0x01)
+    printf "SDIOITC[22]=%d ", (($data >> 22) & 0x01)
+    printf "DBCKENDC[10]=%d ", (($data >> 10) & 0x01)
+    printf "STBITERRC[9]=%d ", (($data >> 9) & 0x01)
+    printf "DATAENDC[8]=%d ", (($data >> 8) & 0x01)
+    printf "CMDSENTC[7]=%d ", (($data >> 7) & 0x01)
+    printf "CMDRENDC[6]=%d ", (($data >> 6) & 0x01)
+    printf "RXOVERRC[5]=%d ", (($data >> 5) & 0x01)
+    printf "TXUNDERRC[4]=%d ", (($data >> 4) & 0x01)
+    printf "DTIMEOUTC[3]=%d ", (($data >> 3) & 0x01)
+    printf "CTIMEOUTC[2]=%d ", (($data >> 2) & 0x01)
+    printf "DCRCFAILC[1]=%d ", (($data >> 1) & 0x01)
+    printf "CCRCFAILC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        MASK           ##
     ###########################
     set $addr = $baseaddr + $MASK
+    set $data = *$addr
     printf "SDIO.MASK    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CEATAENDIE:%d ", (($addr >> 23) & 0x01)
-    printf "SDIOITIE:%d ", (($addr >> 22) & 0x01)
-    printf "RXDAVLIE:%d ", (($addr >> 21) & 0x01)
-    printf "TXDAVLIE:%d ", (($addr >> 20) & 0x01)
-    printf "RXFIFOEIE:%d ", (($addr >> 19) & 0x01)
-    printf "TXFIFOEIE:%d ", (($addr >> 18) & 0x01)
-    printf "RXFIFOFIE:%d ", (($addr >> 17) & 0x01)
-    printf "TXFIFOFIE:%d ", (($addr >> 16) & 0x01)
-    printf "RXFIFOHFIE:%d ", (($addr >> 15) & 0x01)
-    printf "TXFIFOHEIE:%d ", (($addr >> 14) & 0x01)
-    printf "RXACTIE:%d ", (($addr >> 13) & 0x01)
-    printf "TXACTIE:%d ", (($addr >> 12) & 0x01)
-    printf "CMDACTIE:%d ", (($addr >> 11) & 0x01)
-    printf "DBCKENDIE:%d ", (($addr >> 10) & 0x01)
-    printf "STBITERRIE:%d ", (($addr >> 9) & 0x01)
-    printf "DATAENDIE:%d ", (($addr >> 8) & 0x01)
-    printf "CMDSENTIE:%d ", (($addr >> 7) & 0x01)
-    printf "CMDRENDIE:%d ", (($addr >> 6) & 0x01)
-    printf "RXOVERRIE:%d ", (($addr >> 5) & 0x01)
-    printf "TXUNDERRIE:%d ", (($addr >> 4) & 0x01)
-    printf "DTIMEOUTIE:%d ", (($addr >> 3) & 0x01)
-    printf "CTIMEOUTIE:%d ", (($addr >> 2) & 0x01)
-    printf "DCRCFAILIE:%d ", (($addr >> 1) & 0x01)
-    printf "CCRCFAILIE:%d ", (($addr >> 0) & 0x01)
+    printf "CEATAENDIE[23]=%d ", (($data >> 23) & 0x01)
+    printf "SDIOITIE[22]=%d ", (($data >> 22) & 0x01)
+    printf "RXDAVLIE[21]=%d ", (($data >> 21) & 0x01)
+    printf "TXDAVLIE[20]=%d ", (($data >> 20) & 0x01)
+    printf "RXFIFOEIE[19]=%d ", (($data >> 19) & 0x01)
+    printf "TXFIFOEIE[18]=%d ", (($data >> 18) & 0x01)
+    printf "RXFIFOFIE[17]=%d ", (($data >> 17) & 0x01)
+    printf "TXFIFOFIE[16]=%d ", (($data >> 16) & 0x01)
+    printf "RXFIFOHFIE[15]=%d ", (($data >> 15) & 0x01)
+    printf "TXFIFOHEIE[14]=%d ", (($data >> 14) & 0x01)
+    printf "RXACTIE[13]=%d ", (($data >> 13) & 0x01)
+    printf "TXACTIE[12]=%d ", (($data >> 12) & 0x01)
+    printf "CMDACTIE[11]=%d ", (($data >> 11) & 0x01)
+    printf "DBCKENDIE[10]=%d ", (($data >> 10) & 0x01)
+    printf "STBITERRIE[9]=%d ", (($data >> 9) & 0x01)
+    printf "DATAENDIE[8]=%d ", (($data >> 8) & 0x01)
+    printf "CMDSENTIE[7]=%d ", (($data >> 7) & 0x01)
+    printf "CMDRENDIE[6]=%d ", (($data >> 6) & 0x01)
+    printf "RXOVERRIE[5]=%d ", (($data >> 5) & 0x01)
+    printf "TXUNDERRIE[4]=%d ", (($data >> 4) & 0x01)
+    printf "DTIMEOUTIE[3]=%d ", (($data >> 3) & 0x01)
+    printf "CTIMEOUTIE[2]=%d ", (($data >> 2) & 0x01)
+    printf "DCRCFAILIE[1]=%d ", (($data >> 1) & 0x01)
+    printf "CCRCFAILIE[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FIFOCNT        ##
     ###########################
     set $addr = $baseaddr + $FIFOCNT
+    set $data = *$addr
     printf "SDIO.FIFOCNT 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "FIFOCOUNT[23:0]=%d ", (($data >> 0) & 0xffffff)
     printf "\n"
 
     ###########################
     ##        FIFO           ##
     ###########################
     set $addr = $baseaddr + $FIFO
+    set $data = *$addr
     printf "SDIO.FIFO    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "FIFOData[31:0]=%d ", (($data >> 0) & 0x00)
     printf "\n"
 
 end

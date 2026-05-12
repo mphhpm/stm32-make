@@ -49,585 +49,630 @@ define print_otg_fs_host
     ##        FS_HCFG        ##
     ###########################
     set $addr = $baseaddr + $FS_HCFG
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCFG 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "FSLSS:%d ", (($addr >> 2) & 0x01)
-    printf "FSLSPCS:%d ", (($addr >> 0) & 0x03)
+    printf "FSLSS[2]=%d ", (($data >> 2) & 0x01)
+    printf "FSLSPCS[1:0]=%d ", (($data >> 0) & 0x03)
     printf "\n"
 
     ###########################
     ##        HFIR           ##
     ###########################
     set $addr = $baseaddr + $HFIR
+    set $data = *$addr
     printf "OTG_FS_HOST.HFIR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "FRIVL[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        FS_HFNUM        ##
     ###########################
     set $addr = $baseaddr + $FS_HFNUM
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HFNUM 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "FTREM:%d ", (($addr >> 16) & 0xffff)
-    printf "FRNUM:%d ", (($addr >> 0) & 0xffff)
+    printf "FTREM[31:16]=%d ", (($data >> 16) & 0xffff)
+    printf "FRNUM[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        FS_HPTXSTS        ##
     ###########################
     set $addr = $baseaddr + $FS_HPTXSTS
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HPTXSTS 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "PTXQTOP:%d ", (($addr >> 24) & 0xff)
-    printf "PTXQSAV:%d ", (($addr >> 16) & 0xff)
-    printf "PTXFSAVL:%d ", (($addr >> 0) & 0xffff)
+    printf "PTXQTOP[31:24]=%d ", (($data >> 24) & 0xff)
+    printf "PTXQSAV[23:16]=%d ", (($data >> 16) & 0xff)
+    printf "PTXFSAVL[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        HAINT          ##
     ###########################
     set $addr = $baseaddr + $HAINT
+    set $data = *$addr
     printf "OTG_FS_HOST.HAINT   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "HAINT[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        HAINTMSK        ##
     ###########################
     set $addr = $baseaddr + $HAINTMSK
+    set $data = *$addr
     printf "OTG_FS_HOST.HAINTMSK 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "HAINTM[15:0]=%d ", (($data >> 0) & 0xffff)
     printf "\n"
 
     ###########################
     ##        FS_HPRT        ##
     ###########################
     set $addr = $baseaddr + $FS_HPRT
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HPRT 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "PSPD:%d ", (($addr >> 17) & 0x03)
-    printf "PTCTL:%d ", (($addr >> 13) & 0x0f)
-    printf "PPWR:%d ", (($addr >> 12) & 0x01)
-    printf "PLSTS:%d ", (($addr >> 10) & 0x03)
-    printf "PRST:%d ", (($addr >> 8) & 0x01)
-    printf "PSUSP:%d ", (($addr >> 7) & 0x01)
-    printf "PRES:%d ", (($addr >> 6) & 0x01)
-    printf "POCCHNG:%d ", (($addr >> 5) & 0x01)
-    printf "POCA:%d ", (($addr >> 4) & 0x01)
-    printf "PENCHNG:%d ", (($addr >> 3) & 0x01)
-    printf "PENA:%d ", (($addr >> 2) & 0x01)
-    printf "PCDET:%d ", (($addr >> 1) & 0x01)
-    printf "PCSTS:%d ", (($addr >> 0) & 0x01)
+    printf "PSPD[18:17]=%d ", (($data >> 17) & 0x03)
+    printf "PTCTL[16:13]=%d ", (($data >> 13) & 0x0f)
+    printf "PPWR[12]=%d ", (($data >> 12) & 0x01)
+    printf "PLSTS[11:10]=%d ", (($data >> 10) & 0x03)
+    printf "PRST[8]=%d ", (($data >> 8) & 0x01)
+    printf "PSUSP[7]=%d ", (($data >> 7) & 0x01)
+    printf "PRES[6]=%d ", (($data >> 6) & 0x01)
+    printf "POCCHNG[5]=%d ", (($data >> 5) & 0x01)
+    printf "POCA[4]=%d ", (($data >> 4) & 0x01)
+    printf "PENCHNG[3]=%d ", (($data >> 3) & 0x01)
+    printf "PENA[2]=%d ", (($data >> 2) & 0x01)
+    printf "PCDET[1]=%d ", (($data >> 1) & 0x01)
+    printf "PCSTS[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCCHAR0        ##
     ###########################
     set $addr = $baseaddr + $FS_HCCHAR0
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCCHAR0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CHENA:%d ", (($addr >> 31) & 0x01)
-    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
-    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
-    printf "DAD:%d ", (($addr >> 22) & 0x7f)
-    printf "MCNT:%d ", (($addr >> 20) & 0x03)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
-    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
-    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "CHENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "CHDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "ODDFRM[29]=%d ", (($data >> 29) & 0x01)
+    printf "DAD[28:22]=%d ", (($data >> 22) & 0x7f)
+    printf "MCNT[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "LSDEV[17]=%d ", (($data >> 17) & 0x01)
+    printf "EPDIR[15]=%d ", (($data >> 15) & 0x01)
+    printf "EPNUM[14:11]=%d ", (($data >> 11) & 0x0f)
+    printf "MPSIZ[10:0]=%d ", (($data >> 0) & 0x7ff)
     printf "\n"
 
     ###########################
     ##        FS_HCINT0        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINT0
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINT0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERR:%d ", (($addr >> 10) & 0x01)
-    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
-    printf "BBERR:%d ", (($addr >> 8) & 0x01)
-    printf "TXERR:%d ", (($addr >> 7) & 0x01)
-    printf "ACK:%d ", (($addr >> 5) & 0x01)
-    printf "NAK:%d ", (($addr >> 4) & 0x01)
-    printf "STALL:%d ", (($addr >> 3) & 0x01)
-    printf "CHH:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "DTERR[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMOR[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERR[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERR[7]=%d ", (($data >> 7) & 0x01)
+    printf "ACK[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAK[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALL[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHH[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCINTMSK0        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINTMSK0
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINTMSK0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
-    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
-    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
-    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
-    printf "NYET:%d ", (($addr >> 6) & 0x01)
-    printf "ACKM:%d ", (($addr >> 5) & 0x01)
-    printf "NAKM:%d ", (($addr >> 4) & 0x01)
-    printf "STALLM:%d ", (($addr >> 3) & 0x01)
-    printf "CHHM:%d ", (($addr >> 1) & 0x01)
-    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "DTERRM[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMORM[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERRM[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERRM[7]=%d ", (($data >> 7) & 0x01)
+    printf "NYET[6]=%d ", (($data >> 6) & 0x01)
+    printf "ACKM[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAKM[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALLM[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHHM[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRCM[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCTSIZ0        ##
     ###########################
     set $addr = $baseaddr + $FS_HCTSIZ0
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCTSIZ0 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DPID:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "DPID[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[28:19]=%d ", (($data >> 19) & 0x3ff)
+    printf "XFRSIZ[18:0]=%d ", (($data >> 0) & 0x7ffff)
     printf "\n"
 
     ###########################
     ##        FS_HCCHAR1        ##
     ###########################
     set $addr = $baseaddr + $FS_HCCHAR1
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCCHAR1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CHENA:%d ", (($addr >> 31) & 0x01)
-    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
-    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
-    printf "DAD:%d ", (($addr >> 22) & 0x7f)
-    printf "MCNT:%d ", (($addr >> 20) & 0x03)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
-    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
-    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "CHENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "CHDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "ODDFRM[29]=%d ", (($data >> 29) & 0x01)
+    printf "DAD[28:22]=%d ", (($data >> 22) & 0x7f)
+    printf "MCNT[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "LSDEV[17]=%d ", (($data >> 17) & 0x01)
+    printf "EPDIR[15]=%d ", (($data >> 15) & 0x01)
+    printf "EPNUM[14:11]=%d ", (($data >> 11) & 0x0f)
+    printf "MPSIZ[10:0]=%d ", (($data >> 0) & 0x7ff)
     printf "\n"
 
     ###########################
     ##        FS_HCINT1        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINT1
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINT1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERR:%d ", (($addr >> 10) & 0x01)
-    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
-    printf "BBERR:%d ", (($addr >> 8) & 0x01)
-    printf "TXERR:%d ", (($addr >> 7) & 0x01)
-    printf "ACK:%d ", (($addr >> 5) & 0x01)
-    printf "NAK:%d ", (($addr >> 4) & 0x01)
-    printf "STALL:%d ", (($addr >> 3) & 0x01)
-    printf "CHH:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "DTERR[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMOR[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERR[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERR[7]=%d ", (($data >> 7) & 0x01)
+    printf "ACK[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAK[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALL[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHH[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCINTMSK1        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINTMSK1
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINTMSK1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
-    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
-    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
-    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
-    printf "NYET:%d ", (($addr >> 6) & 0x01)
-    printf "ACKM:%d ", (($addr >> 5) & 0x01)
-    printf "NAKM:%d ", (($addr >> 4) & 0x01)
-    printf "STALLM:%d ", (($addr >> 3) & 0x01)
-    printf "CHHM:%d ", (($addr >> 1) & 0x01)
-    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "DTERRM[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMORM[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERRM[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERRM[7]=%d ", (($data >> 7) & 0x01)
+    printf "NYET[6]=%d ", (($data >> 6) & 0x01)
+    printf "ACKM[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAKM[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALLM[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHHM[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRCM[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCTSIZ1        ##
     ###########################
     set $addr = $baseaddr + $FS_HCTSIZ1
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCTSIZ1 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DPID:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "DPID[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[28:19]=%d ", (($data >> 19) & 0x3ff)
+    printf "XFRSIZ[18:0]=%d ", (($data >> 0) & 0x7ffff)
     printf "\n"
 
     ###########################
     ##        FS_HCCHAR2        ##
     ###########################
     set $addr = $baseaddr + $FS_HCCHAR2
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCCHAR2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CHENA:%d ", (($addr >> 31) & 0x01)
-    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
-    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
-    printf "DAD:%d ", (($addr >> 22) & 0x7f)
-    printf "MCNT:%d ", (($addr >> 20) & 0x03)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
-    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
-    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "CHENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "CHDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "ODDFRM[29]=%d ", (($data >> 29) & 0x01)
+    printf "DAD[28:22]=%d ", (($data >> 22) & 0x7f)
+    printf "MCNT[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "LSDEV[17]=%d ", (($data >> 17) & 0x01)
+    printf "EPDIR[15]=%d ", (($data >> 15) & 0x01)
+    printf "EPNUM[14:11]=%d ", (($data >> 11) & 0x0f)
+    printf "MPSIZ[10:0]=%d ", (($data >> 0) & 0x7ff)
     printf "\n"
 
     ###########################
     ##        FS_HCINT2        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINT2
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINT2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERR:%d ", (($addr >> 10) & 0x01)
-    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
-    printf "BBERR:%d ", (($addr >> 8) & 0x01)
-    printf "TXERR:%d ", (($addr >> 7) & 0x01)
-    printf "ACK:%d ", (($addr >> 5) & 0x01)
-    printf "NAK:%d ", (($addr >> 4) & 0x01)
-    printf "STALL:%d ", (($addr >> 3) & 0x01)
-    printf "CHH:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "DTERR[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMOR[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERR[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERR[7]=%d ", (($data >> 7) & 0x01)
+    printf "ACK[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAK[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALL[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHH[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCINTMSK2        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINTMSK2
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINTMSK2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
-    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
-    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
-    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
-    printf "NYET:%d ", (($addr >> 6) & 0x01)
-    printf "ACKM:%d ", (($addr >> 5) & 0x01)
-    printf "NAKM:%d ", (($addr >> 4) & 0x01)
-    printf "STALLM:%d ", (($addr >> 3) & 0x01)
-    printf "CHHM:%d ", (($addr >> 1) & 0x01)
-    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "DTERRM[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMORM[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERRM[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERRM[7]=%d ", (($data >> 7) & 0x01)
+    printf "NYET[6]=%d ", (($data >> 6) & 0x01)
+    printf "ACKM[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAKM[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALLM[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHHM[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRCM[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCTSIZ2        ##
     ###########################
     set $addr = $baseaddr + $FS_HCTSIZ2
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCTSIZ2 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DPID:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "DPID[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[28:19]=%d ", (($data >> 19) & 0x3ff)
+    printf "XFRSIZ[18:0]=%d ", (($data >> 0) & 0x7ffff)
     printf "\n"
 
     ###########################
     ##        FS_HCCHAR3        ##
     ###########################
     set $addr = $baseaddr + $FS_HCCHAR3
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCCHAR3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CHENA:%d ", (($addr >> 31) & 0x01)
-    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
-    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
-    printf "DAD:%d ", (($addr >> 22) & 0x7f)
-    printf "MCNT:%d ", (($addr >> 20) & 0x03)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
-    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
-    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "CHENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "CHDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "ODDFRM[29]=%d ", (($data >> 29) & 0x01)
+    printf "DAD[28:22]=%d ", (($data >> 22) & 0x7f)
+    printf "MCNT[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "LSDEV[17]=%d ", (($data >> 17) & 0x01)
+    printf "EPDIR[15]=%d ", (($data >> 15) & 0x01)
+    printf "EPNUM[14:11]=%d ", (($data >> 11) & 0x0f)
+    printf "MPSIZ[10:0]=%d ", (($data >> 0) & 0x7ff)
     printf "\n"
 
     ###########################
     ##        FS_HCINT3        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINT3
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINT3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERR:%d ", (($addr >> 10) & 0x01)
-    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
-    printf "BBERR:%d ", (($addr >> 8) & 0x01)
-    printf "TXERR:%d ", (($addr >> 7) & 0x01)
-    printf "ACK:%d ", (($addr >> 5) & 0x01)
-    printf "NAK:%d ", (($addr >> 4) & 0x01)
-    printf "STALL:%d ", (($addr >> 3) & 0x01)
-    printf "CHH:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "DTERR[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMOR[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERR[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERR[7]=%d ", (($data >> 7) & 0x01)
+    printf "ACK[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAK[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALL[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHH[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCINTMSK3        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINTMSK3
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINTMSK3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
-    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
-    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
-    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
-    printf "NYET:%d ", (($addr >> 6) & 0x01)
-    printf "ACKM:%d ", (($addr >> 5) & 0x01)
-    printf "NAKM:%d ", (($addr >> 4) & 0x01)
-    printf "STALLM:%d ", (($addr >> 3) & 0x01)
-    printf "CHHM:%d ", (($addr >> 1) & 0x01)
-    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "DTERRM[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMORM[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERRM[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERRM[7]=%d ", (($data >> 7) & 0x01)
+    printf "NYET[6]=%d ", (($data >> 6) & 0x01)
+    printf "ACKM[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAKM[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALLM[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHHM[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRCM[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCTSIZ3        ##
     ###########################
     set $addr = $baseaddr + $FS_HCTSIZ3
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCTSIZ3 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DPID:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "DPID[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[28:19]=%d ", (($data >> 19) & 0x3ff)
+    printf "XFRSIZ[18:0]=%d ", (($data >> 0) & 0x7ffff)
     printf "\n"
 
     ###########################
     ##        FS_HCCHAR4        ##
     ###########################
     set $addr = $baseaddr + $FS_HCCHAR4
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCCHAR4 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CHENA:%d ", (($addr >> 31) & 0x01)
-    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
-    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
-    printf "DAD:%d ", (($addr >> 22) & 0x7f)
-    printf "MCNT:%d ", (($addr >> 20) & 0x03)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
-    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
-    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "CHENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "CHDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "ODDFRM[29]=%d ", (($data >> 29) & 0x01)
+    printf "DAD[28:22]=%d ", (($data >> 22) & 0x7f)
+    printf "MCNT[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "LSDEV[17]=%d ", (($data >> 17) & 0x01)
+    printf "EPDIR[15]=%d ", (($data >> 15) & 0x01)
+    printf "EPNUM[14:11]=%d ", (($data >> 11) & 0x0f)
+    printf "MPSIZ[10:0]=%d ", (($data >> 0) & 0x7ff)
     printf "\n"
 
     ###########################
     ##        FS_HCINT4        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINT4
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINT4 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERR:%d ", (($addr >> 10) & 0x01)
-    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
-    printf "BBERR:%d ", (($addr >> 8) & 0x01)
-    printf "TXERR:%d ", (($addr >> 7) & 0x01)
-    printf "ACK:%d ", (($addr >> 5) & 0x01)
-    printf "NAK:%d ", (($addr >> 4) & 0x01)
-    printf "STALL:%d ", (($addr >> 3) & 0x01)
-    printf "CHH:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "DTERR[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMOR[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERR[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERR[7]=%d ", (($data >> 7) & 0x01)
+    printf "ACK[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAK[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALL[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHH[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCINTMSK4        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINTMSK4
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINTMSK4 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
-    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
-    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
-    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
-    printf "NYET:%d ", (($addr >> 6) & 0x01)
-    printf "ACKM:%d ", (($addr >> 5) & 0x01)
-    printf "NAKM:%d ", (($addr >> 4) & 0x01)
-    printf "STALLM:%d ", (($addr >> 3) & 0x01)
-    printf "CHHM:%d ", (($addr >> 1) & 0x01)
-    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "DTERRM[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMORM[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERRM[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERRM[7]=%d ", (($data >> 7) & 0x01)
+    printf "NYET[6]=%d ", (($data >> 6) & 0x01)
+    printf "ACKM[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAKM[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALLM[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHHM[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRCM[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCTSIZ4        ##
     ###########################
     set $addr = $baseaddr + $FS_HCTSIZ4
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCTSIZ4 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DPID:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "DPID[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[28:19]=%d ", (($data >> 19) & 0x3ff)
+    printf "XFRSIZ[18:0]=%d ", (($data >> 0) & 0x7ffff)
     printf "\n"
 
     ###########################
     ##        FS_HCCHAR5        ##
     ###########################
     set $addr = $baseaddr + $FS_HCCHAR5
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCCHAR5 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CHENA:%d ", (($addr >> 31) & 0x01)
-    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
-    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
-    printf "DAD:%d ", (($addr >> 22) & 0x7f)
-    printf "MCNT:%d ", (($addr >> 20) & 0x03)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
-    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
-    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "CHENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "CHDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "ODDFRM[29]=%d ", (($data >> 29) & 0x01)
+    printf "DAD[28:22]=%d ", (($data >> 22) & 0x7f)
+    printf "MCNT[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "LSDEV[17]=%d ", (($data >> 17) & 0x01)
+    printf "EPDIR[15]=%d ", (($data >> 15) & 0x01)
+    printf "EPNUM[14:11]=%d ", (($data >> 11) & 0x0f)
+    printf "MPSIZ[10:0]=%d ", (($data >> 0) & 0x7ff)
     printf "\n"
 
     ###########################
     ##        FS_HCINT5        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINT5
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINT5 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERR:%d ", (($addr >> 10) & 0x01)
-    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
-    printf "BBERR:%d ", (($addr >> 8) & 0x01)
-    printf "TXERR:%d ", (($addr >> 7) & 0x01)
-    printf "ACK:%d ", (($addr >> 5) & 0x01)
-    printf "NAK:%d ", (($addr >> 4) & 0x01)
-    printf "STALL:%d ", (($addr >> 3) & 0x01)
-    printf "CHH:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "DTERR[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMOR[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERR[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERR[7]=%d ", (($data >> 7) & 0x01)
+    printf "ACK[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAK[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALL[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHH[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCINTMSK5        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINTMSK5
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINTMSK5 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
-    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
-    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
-    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
-    printf "NYET:%d ", (($addr >> 6) & 0x01)
-    printf "ACKM:%d ", (($addr >> 5) & 0x01)
-    printf "NAKM:%d ", (($addr >> 4) & 0x01)
-    printf "STALLM:%d ", (($addr >> 3) & 0x01)
-    printf "CHHM:%d ", (($addr >> 1) & 0x01)
-    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "DTERRM[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMORM[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERRM[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERRM[7]=%d ", (($data >> 7) & 0x01)
+    printf "NYET[6]=%d ", (($data >> 6) & 0x01)
+    printf "ACKM[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAKM[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALLM[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHHM[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRCM[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCTSIZ5        ##
     ###########################
     set $addr = $baseaddr + $FS_HCTSIZ5
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCTSIZ5 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DPID:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "DPID[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[28:19]=%d ", (($data >> 19) & 0x3ff)
+    printf "XFRSIZ[18:0]=%d ", (($data >> 0) & 0x7ffff)
     printf "\n"
 
     ###########################
     ##        FS_HCCHAR6        ##
     ###########################
     set $addr = $baseaddr + $FS_HCCHAR6
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCCHAR6 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CHENA:%d ", (($addr >> 31) & 0x01)
-    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
-    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
-    printf "DAD:%d ", (($addr >> 22) & 0x7f)
-    printf "MCNT:%d ", (($addr >> 20) & 0x03)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
-    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
-    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "CHENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "CHDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "ODDFRM[29]=%d ", (($data >> 29) & 0x01)
+    printf "DAD[28:22]=%d ", (($data >> 22) & 0x7f)
+    printf "MCNT[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "LSDEV[17]=%d ", (($data >> 17) & 0x01)
+    printf "EPDIR[15]=%d ", (($data >> 15) & 0x01)
+    printf "EPNUM[14:11]=%d ", (($data >> 11) & 0x0f)
+    printf "MPSIZ[10:0]=%d ", (($data >> 0) & 0x7ff)
     printf "\n"
 
     ###########################
     ##        FS_HCINT6        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINT6
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINT6 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERR:%d ", (($addr >> 10) & 0x01)
-    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
-    printf "BBERR:%d ", (($addr >> 8) & 0x01)
-    printf "TXERR:%d ", (($addr >> 7) & 0x01)
-    printf "ACK:%d ", (($addr >> 5) & 0x01)
-    printf "NAK:%d ", (($addr >> 4) & 0x01)
-    printf "STALL:%d ", (($addr >> 3) & 0x01)
-    printf "CHH:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "DTERR[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMOR[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERR[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERR[7]=%d ", (($data >> 7) & 0x01)
+    printf "ACK[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAK[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALL[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHH[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCINTMSK6        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINTMSK6
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINTMSK6 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
-    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
-    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
-    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
-    printf "NYET:%d ", (($addr >> 6) & 0x01)
-    printf "ACKM:%d ", (($addr >> 5) & 0x01)
-    printf "NAKM:%d ", (($addr >> 4) & 0x01)
-    printf "STALLM:%d ", (($addr >> 3) & 0x01)
-    printf "CHHM:%d ", (($addr >> 1) & 0x01)
-    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "DTERRM[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMORM[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERRM[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERRM[7]=%d ", (($data >> 7) & 0x01)
+    printf "NYET[6]=%d ", (($data >> 6) & 0x01)
+    printf "ACKM[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAKM[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALLM[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHHM[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRCM[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCTSIZ6        ##
     ###########################
     set $addr = $baseaddr + $FS_HCTSIZ6
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCTSIZ6 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DPID:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "DPID[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[28:19]=%d ", (($data >> 19) & 0x3ff)
+    printf "XFRSIZ[18:0]=%d ", (($data >> 0) & 0x7ffff)
     printf "\n"
 
     ###########################
     ##        FS_HCCHAR7        ##
     ###########################
     set $addr = $baseaddr + $FS_HCCHAR7
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCCHAR7 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CHENA:%d ", (($addr >> 31) & 0x01)
-    printf "CHDIS:%d ", (($addr >> 30) & 0x01)
-    printf "ODDFRM:%d ", (($addr >> 29) & 0x01)
-    printf "DAD:%d ", (($addr >> 22) & 0x7f)
-    printf "MCNT:%d ", (($addr >> 20) & 0x03)
-    printf "EPTYP:%d ", (($addr >> 18) & 0x03)
-    printf "LSDEV:%d ", (($addr >> 17) & 0x01)
-    printf "EPDIR:%d ", (($addr >> 15) & 0x01)
-    printf "EPNUM:%d ", (($addr >> 11) & 0x0f)
-    printf "MPSIZ:%d ", (($addr >> 0) & 0x7ff)
+    printf "CHENA[31]=%d ", (($data >> 31) & 0x01)
+    printf "CHDIS[30]=%d ", (($data >> 30) & 0x01)
+    printf "ODDFRM[29]=%d ", (($data >> 29) & 0x01)
+    printf "DAD[28:22]=%d ", (($data >> 22) & 0x7f)
+    printf "MCNT[21:20]=%d ", (($data >> 20) & 0x03)
+    printf "EPTYP[19:18]=%d ", (($data >> 18) & 0x03)
+    printf "LSDEV[17]=%d ", (($data >> 17) & 0x01)
+    printf "EPDIR[15]=%d ", (($data >> 15) & 0x01)
+    printf "EPNUM[14:11]=%d ", (($data >> 11) & 0x0f)
+    printf "MPSIZ[10:0]=%d ", (($data >> 0) & 0x7ff)
     printf "\n"
 
     ###########################
     ##        FS_HCINT7        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINT7
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINT7 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERR:%d ", (($addr >> 10) & 0x01)
-    printf "FRMOR:%d ", (($addr >> 9) & 0x01)
-    printf "BBERR:%d ", (($addr >> 8) & 0x01)
-    printf "TXERR:%d ", (($addr >> 7) & 0x01)
-    printf "ACK:%d ", (($addr >> 5) & 0x01)
-    printf "NAK:%d ", (($addr >> 4) & 0x01)
-    printf "STALL:%d ", (($addr >> 3) & 0x01)
-    printf "CHH:%d ", (($addr >> 1) & 0x01)
-    printf "XFRC:%d ", (($addr >> 0) & 0x01)
+    printf "DTERR[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMOR[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERR[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERR[7]=%d ", (($data >> 7) & 0x01)
+    printf "ACK[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAK[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALL[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHH[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRC[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCINTMSK7        ##
     ###########################
     set $addr = $baseaddr + $FS_HCINTMSK7
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCINTMSK7 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DTERRM:%d ", (($addr >> 10) & 0x01)
-    printf "FRMORM:%d ", (($addr >> 9) & 0x01)
-    printf "BBERRM:%d ", (($addr >> 8) & 0x01)
-    printf "TXERRM:%d ", (($addr >> 7) & 0x01)
-    printf "NYET:%d ", (($addr >> 6) & 0x01)
-    printf "ACKM:%d ", (($addr >> 5) & 0x01)
-    printf "NAKM:%d ", (($addr >> 4) & 0x01)
-    printf "STALLM:%d ", (($addr >> 3) & 0x01)
-    printf "CHHM:%d ", (($addr >> 1) & 0x01)
-    printf "XFRCM:%d ", (($addr >> 0) & 0x01)
+    printf "DTERRM[10]=%d ", (($data >> 10) & 0x01)
+    printf "FRMORM[9]=%d ", (($data >> 9) & 0x01)
+    printf "BBERRM[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXERRM[7]=%d ", (($data >> 7) & 0x01)
+    printf "NYET[6]=%d ", (($data >> 6) & 0x01)
+    printf "ACKM[5]=%d ", (($data >> 5) & 0x01)
+    printf "NAKM[4]=%d ", (($data >> 4) & 0x01)
+    printf "STALLM[3]=%d ", (($data >> 3) & 0x01)
+    printf "CHHM[1]=%d ", (($data >> 1) & 0x01)
+    printf "XFRCM[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        FS_HCTSIZ7        ##
     ###########################
     set $addr = $baseaddr + $FS_HCTSIZ7
+    set $data = *$addr
     printf "OTG_FS_HOST.FS_HCTSIZ7 0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DPID:%d ", (($addr >> 29) & 0x03)
-    printf "PKTCNT:%d ", (($addr >> 19) & 0x3ff)
-    printf "XFRSIZ:%d ", (($addr >> 0) & 0x7ffff)
+    printf "DPID[30:29]=%d ", (($data >> 29) & 0x03)
+    printf "PKTCNT[28:19]=%d ", (($data >> 19) & 0x3ff)
+    printf "XFRSIZ[18:0]=%d ", (($data >> 0) & 0x7ffff)
     printf "\n"
 
 end

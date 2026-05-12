@@ -17,105 +17,114 @@ define print_usart1
     ##        SR             ##
     ###########################
     set $addr = $baseaddr + $SR
+    set $data = *$addr
     printf "USART1.SR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "CTS:%d ", (($addr >> 9) & 0x01)
-    printf "LBD:%d ", (($addr >> 8) & 0x01)
-    printf "TXE:%d ", (($addr >> 7) & 0x01)
-    printf "TC:%d ", (($addr >> 6) & 0x01)
-    printf "RXNE:%d ", (($addr >> 5) & 0x01)
-    printf "IDLE:%d ", (($addr >> 4) & 0x01)
-    printf "ORE:%d ", (($addr >> 3) & 0x01)
-    printf "NF:%d ", (($addr >> 2) & 0x01)
-    printf "FE:%d ", (($addr >> 1) & 0x01)
-    printf "PE:%d ", (($addr >> 0) & 0x01)
+    printf "CTS[9]=%d ", (($data >> 9) & 0x01)
+    printf "LBD[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXE[7]=%d ", (($data >> 7) & 0x01)
+    printf "TC[6]=%d ", (($data >> 6) & 0x01)
+    printf "RXNE[5]=%d ", (($data >> 5) & 0x01)
+    printf "IDLE[4]=%d ", (($data >> 4) & 0x01)
+    printf "ORE[3]=%d ", (($data >> 3) & 0x01)
+    printf "NF[2]=%d ", (($data >> 2) & 0x01)
+    printf "FE[1]=%d ", (($data >> 1) & 0x01)
+    printf "PE[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        DR             ##
     ###########################
     set $addr = $baseaddr + $DR
+    set $data = *$addr
     printf "USART1.DR      0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
+    printf "     "
+    printf "DR[8:0]=%d ", (($data >> 0) & 0x1ff)
     printf "\n"
 
     ###########################
     ##        BRR            ##
     ###########################
     set $addr = $baseaddr + $BRR
+    set $data = *$addr
     printf "USART1.BRR     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "DIV_Mantissa:%d ", (($addr >> 4) & 0xfff)
-    printf "DIV_Fraction:%d ", (($addr >> 0) & 0x0f)
+    printf "DIV_Mantissa[15:4]=%d ", (($data >> 4) & 0xfff)
+    printf "DIV_Fraction[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        CR1            ##
     ###########################
     set $addr = $baseaddr + $CR1
+    set $data = *$addr
     printf "USART1.CR1     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "OVER8:%d ", (($addr >> 15) & 0x01)
-    printf "UE:%d ", (($addr >> 13) & 0x01)
-    printf "M:%d ", (($addr >> 12) & 0x01)
-    printf "WAKE:%d ", (($addr >> 11) & 0x01)
-    printf "PCE:%d ", (($addr >> 10) & 0x01)
-    printf "PS:%d ", (($addr >> 9) & 0x01)
-    printf "PEIE:%d ", (($addr >> 8) & 0x01)
-    printf "TXEIE:%d ", (($addr >> 7) & 0x01)
-    printf "TCIE:%d ", (($addr >> 6) & 0x01)
-    printf "RXNEIE:%d ", (($addr >> 5) & 0x01)
-    printf "IDLEIE:%d ", (($addr >> 4) & 0x01)
-    printf "TE:%d ", (($addr >> 3) & 0x01)
-    printf "RE:%d ", (($addr >> 2) & 0x01)
-    printf "RWU:%d ", (($addr >> 1) & 0x01)
-    printf "SBK:%d ", (($addr >> 0) & 0x01)
+    printf "OVER8[15]=%d ", (($data >> 15) & 0x01)
+    printf "UE[13]=%d ", (($data >> 13) & 0x01)
+    printf "M[12]=%d ", (($data >> 12) & 0x01)
+    printf "WAKE[11]=%d ", (($data >> 11) & 0x01)
+    printf "PCE[10]=%d ", (($data >> 10) & 0x01)
+    printf "PS[9]=%d ", (($data >> 9) & 0x01)
+    printf "PEIE[8]=%d ", (($data >> 8) & 0x01)
+    printf "TXEIE[7]=%d ", (($data >> 7) & 0x01)
+    printf "TCIE[6]=%d ", (($data >> 6) & 0x01)
+    printf "RXNEIE[5]=%d ", (($data >> 5) & 0x01)
+    printf "IDLEIE[4]=%d ", (($data >> 4) & 0x01)
+    printf "TE[3]=%d ", (($data >> 3) & 0x01)
+    printf "RE[2]=%d ", (($data >> 2) & 0x01)
+    printf "RWU[1]=%d ", (($data >> 1) & 0x01)
+    printf "SBK[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        CR2            ##
     ###########################
     set $addr = $baseaddr + $CR2
+    set $data = *$addr
     printf "USART1.CR2     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "LINEN:%d ", (($addr >> 14) & 0x01)
-    printf "STOP:%d ", (($addr >> 12) & 0x03)
-    printf "CLKEN:%d ", (($addr >> 11) & 0x01)
-    printf "CPOL:%d ", (($addr >> 10) & 0x01)
-    printf "CPHA:%d ", (($addr >> 9) & 0x01)
-    printf "LBCL:%d ", (($addr >> 8) & 0x01)
-    printf "LBDIE:%d ", (($addr >> 6) & 0x01)
-    printf "LBDL:%d ", (($addr >> 5) & 0x01)
-    printf "ADD:%d ", (($addr >> 0) & 0x0f)
+    printf "LINEN[14]=%d ", (($data >> 14) & 0x01)
+    printf "STOP[13:12]=%d ", (($data >> 12) & 0x03)
+    printf "CLKEN[11]=%d ", (($data >> 11) & 0x01)
+    printf "CPOL[10]=%d ", (($data >> 10) & 0x01)
+    printf "CPHA[9]=%d ", (($data >> 9) & 0x01)
+    printf "LBCL[8]=%d ", (($data >> 8) & 0x01)
+    printf "LBDIE[6]=%d ", (($data >> 6) & 0x01)
+    printf "LBDL[5]=%d ", (($data >> 5) & 0x01)
+    printf "ADD[3:0]=%d ", (($data >> 0) & 0x0f)
     printf "\n"
 
     ###########################
     ##        CR3            ##
     ###########################
     set $addr = $baseaddr + $CR3
+    set $data = *$addr
     printf "USART1.CR3     0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "ONEBIT:%d ", (($addr >> 11) & 0x01)
-    printf "CTSIE:%d ", (($addr >> 10) & 0x01)
-    printf "CTSE:%d ", (($addr >> 9) & 0x01)
-    printf "RTSE:%d ", (($addr >> 8) & 0x01)
-    printf "DMAT:%d ", (($addr >> 7) & 0x01)
-    printf "DMAR:%d ", (($addr >> 6) & 0x01)
-    printf "SCEN:%d ", (($addr >> 5) & 0x01)
-    printf "NACK:%d ", (($addr >> 4) & 0x01)
-    printf "HDSEL:%d ", (($addr >> 3) & 0x01)
-    printf "IRLP:%d ", (($addr >> 2) & 0x01)
-    printf "IREN:%d ", (($addr >> 1) & 0x01)
-    printf "EIE:%d ", (($addr >> 0) & 0x01)
+    printf "ONEBIT[11]=%d ", (($data >> 11) & 0x01)
+    printf "CTSIE[10]=%d ", (($data >> 10) & 0x01)
+    printf "CTSE[9]=%d ", (($data >> 9) & 0x01)
+    printf "RTSE[8]=%d ", (($data >> 8) & 0x01)
+    printf "DMAT[7]=%d ", (($data >> 7) & 0x01)
+    printf "DMAR[6]=%d ", (($data >> 6) & 0x01)
+    printf "SCEN[5]=%d ", (($data >> 5) & 0x01)
+    printf "NACK[4]=%d ", (($data >> 4) & 0x01)
+    printf "HDSEL[3]=%d ", (($data >> 3) & 0x01)
+    printf "IRLP[2]=%d ", (($data >> 2) & 0x01)
+    printf "IREN[1]=%d ", (($data >> 1) & 0x01)
+    printf "EIE[0]=%d ", (($data >> 0) & 0x01)
     printf "\n"
 
     ###########################
     ##        GTPR           ##
     ###########################
     set $addr = $baseaddr + $GTPR
+    set $data = *$addr
     printf "USART1.GTPR    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "GT:%d ", (($addr >> 8) & 0xff)
-    printf "PSC:%d ", (($addr >> 0) & 0xff)
+    printf "GT[15:8]=%d ", (($data >> 8) & 0xff)
+    printf "PSC[7:0]=%d ", (($data >> 0) & 0xff)
     printf "\n"
 
 end
