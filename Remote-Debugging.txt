@@ -13,11 +13,28 @@
  4.3 Arguments: --listen_port=1234
  4.3 Build Specific projects: select project of .elf file
  5.1 Run st-util at  Run->External Tools->st-util
-     or run it in a cmd shell "C:\Program Files\stlink\stlink-1.7.0-i686-w64-mingw32\bin\st-util.exe" --listen_port=1234
+     or run it in a cmd shell e.g.
+        "C:\Program Files\stlink\stlink-1.7.0-i686-w64-mingw32\bin\st-util.exe" --listen_port=1234
+        "C:\Program Files\stlink\stlink-1.8.0-win64-testing\bin\st-util.exe" --listen_port=1234
  5.2 alternative of 5.1 install stm32cubeide and run
      C:\ST\STM32CubeIDE_2.1.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.win32_2.2.400.202601091506\tools\bin\ST-LINK_gdbserver.exe -p 1234 -l 1 -d -s -cp C:\ST\STM32CubeIDE_2.1.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.400.202601091506\tools\bin -m 0 -k -v 
  6.1 Start debugging session
  
- 
  upgrade st-link:
- C:\ST\STM32CubeIDE_2.1.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.win32_2.2.400.202601091506\tools\bin\STLinkUpgrade.jar
+    C:\ST\STM32CubeIDE_2.1.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.win32_2.2.400.202601091506\tools\bin\STLinkUpgrade.jar
+ 
+ show register value in eclipse:
+	1. load embSysRegview marketplace
+	2. restart eclipse
+	3. open window 'EmbSys Registers'
+	4. click on the wrench icon within the 'EmbSys Registers' window 
+	5. select cpu
+	 
+ add new cpu to embSysRegView
+	1. put svd definition file of the cpu into the plugin folder
+	   e.g. 
+	     STM32U585.svd into %HOMEDRIVE%%HOMEPATH%\.p2\pool\plugins\org.eclipse.cdt.embsysregview.data_0.2.6.r191\data\SVD(CMSIS)\STMicro\
+	2. copy the STM32U585.svd to STM32U585.xml in the folder above
+	3. click on the wrench icon within the 'EmbSys Registers' window 
+	4. find the new cpu
+	 

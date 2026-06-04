@@ -152,10 +152,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR0
     printf "NVIC.IPR0    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -164,10 +164,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR1
     printf "NVIC.IPR1    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -176,10 +176,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR2
     printf "NVIC.IPR2    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -188,10 +188,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR3
     printf "NVIC.IPR3    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -200,10 +200,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR4
     printf "NVIC.IPR4    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -212,10 +212,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR5
     printf "NVIC.IPR5    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -224,10 +224,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR6
     printf "NVIC.IPR6    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -236,10 +236,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR7
     printf "NVIC.IPR7    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -248,10 +248,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR8
     printf "NVIC.IPR8    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -260,10 +260,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR9
     printf "NVIC.IPR9    0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -272,10 +272,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR10
     printf "NVIC.IPR10   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -284,10 +284,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR11
     printf "NVIC.IPR11   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -296,10 +296,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR12
     printf "NVIC.IPR12   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -308,10 +308,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR13
     printf "NVIC.IPR13   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -320,10 +320,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR14
     printf "NVIC.IPR14   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -332,10 +332,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR15
     printf "NVIC.IPR15   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -344,10 +344,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR16
     printf "NVIC.IPR16   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -356,10 +356,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR17
     printf "NVIC.IPR17   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -368,10 +368,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR18
     printf "NVIC.IPR18   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
     ###########################
@@ -380,10 +380,10 @@ define print_nvic
     set $addr = $baseaddr + $IPR19
     printf "NVIC.IPR19   0x%4x %4x: 0x%08x", ($addr >> 16), ($addr & 0xFFFF), *$addr 
     printf "     "
-    printf "IPR_N3:%d ", (($addr >> 24) & 0xff)
-    printf "IPR_N2:%d ", (($addr >> 16) & 0xff)
-    printf "IPR_N1:%d ", (($addr >> 8) & 0xff)
-    printf "IPR_N0:%d ", (($addr >> 0) & 0xff)
+    printf "IPR_N3:%d ", ((*$addr >> 24) & 0xff)
+    printf "IPR_N2:%d ", ((*$addr >> 16) & 0xff)
+    printf "IPR_N1:%d ", ((*$addr >> 8) & 0xff)
+    printf "IPR_N0:%d ", ((*$addr >> 0) & 0xff)
     printf "\n"
 
 end

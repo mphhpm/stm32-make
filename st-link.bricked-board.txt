@@ -2,7 +2,7 @@
 ## assuming blackpill board & st-link V2
 ## 
 ## 1. verify connection between st-linkV2 and host
-##      C:\Program Files\stlink\stlink-1.7.0-i686-w64-mingw32\bin>st-info --probe
+##      "C:\Program Files\stlink\stlink-1.7.0-i686-w64-mingw32\bin\st-info" --probe
 ##      Found 1 stlink programmers
 ##        version:    V2J29S7
 ##        serial:     160037000C00005332414D4E
@@ -11,6 +11,21 @@
 ##        chipid:     0x0431
 ##        descr:      stm32f411re
 ##
+##      "C:\Program Files\stlink\stlink-1.7.0-i686-w64-mingw32\bin\st-info" --probe
+##      Found 1 stlink programmers
+##        version:    V2J47S7
+##        serial:     160037000C00005332414D4E
+##        flash:      0 (pagesize: 0)
+##        sram:       0
+##        chipid:     0x0482
+##
 ## 2. check proper connection between st-link and board, e.g. 4 lines 
 ## 3. ensure board is connected properly to power supply, e.g. red led on board is on
 ## 4. power off st-link, keep BOOT0 pressed while powering the board, release BOOT0
+##
+## more 
+## 5. 
+## 5.1 fill memory with 0x00 starting at 0x08000000, stm32U585 size is 0xC0000 using Stm32CubeProgrammer
+## 5.2 using st-flash --connect-under-reset erase 0x08000000 0xC0000
+##     e.g.
+##      "C:\Program Files\stlink\stlink-1.7.0-i686-w64-mingw32\bin\st-flash" --connect-under-reset erase 
