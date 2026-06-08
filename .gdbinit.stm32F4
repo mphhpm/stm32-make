@@ -1,86 +1,57 @@
 ##
 ## .gdbinit.stm32f4
 
-printf "load_adc, load_dma, load_exti, load_flash, load_gpio, load_i2c, load_pwr, load_nvic, load_rcc, load_rtc, load_spi, load_syscfg, load_tim, load_usart"
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.adc1
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.adc_common
 
-define load_adc
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.adc1
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.adc_common
-end
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.dma1
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.dma2
 
-define load_dma
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.dma1
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.dma2
-end
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.exti
 
-define load_exti
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.exti
-end
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.flash
 
-define load_flash
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.flash
-end
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.gpioa
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.gpiob
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.gpioc
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.gpiod
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.gpioe
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.gpioh
 
-define load_gpio
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.gpioa
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.gpiob
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.gpioc
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.gpiod
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.gpioe
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.gpioh
-end
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.i2c1
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.i2c2
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.i2c3
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.i2s2ext
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.i2s3ext
 
-define load_i2c
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.i2c1
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.i2c2
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.i2c3
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.i2s2ext
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.i2s3ext
-end
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.pwr
 
-define load_pwr
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.pwr
-end
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.nvic
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.nvic_stir
 
-define load_nvic
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.nvic
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.nvic_stir
-end
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.rcc
 
-define load_rcc
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.rcc
-end
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.rtc
 
-define load_rtc
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.rtc
-end
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.spi1
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.spi2
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.spi3
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.spi4
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.spi5
 
-define load_spi
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.spi1
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.spi2
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.spi3
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.spi4
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.spi5
-end
+   source ../stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.syscfg
 
-define load_syscfg
-   source lib/stm32-make/STM32F411/gdbinit/.gdbinit.stm32f411.syscfg
-end
-   
-define load_tim
-	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim1
-	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim2
-	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim3
-	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim4
-	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim5
-	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim8
-	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim9
-	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim10
-	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim11
-end
+	source ../stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim1
+	source ../stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim2
+	source ../stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim3
+	source ../stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim4
+	source ../stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim5
+	source ../stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim8
+	source ../stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim9
+	source ../stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim10
+	source ../stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.tim11
 
-define load_usart
-	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.usart1
-	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.usart2
-	source lib/stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.usart6
-end
+	source ../stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.usart1
+	source ../stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.usart2
+	source ../stm32-make/stm32f411/gdbinit/.gdbinit.stm32f411.usart6
+
